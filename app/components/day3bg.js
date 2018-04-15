@@ -3,6 +3,7 @@ import {
   StyleSheet,
   Text,
   Image,
+  ImageBackground,
   View
 } from 'react-native';
 import imageFlags from '../constants/imageFlags';
@@ -11,12 +12,12 @@ export default class day3bg extends Component {
     
     render() {
         return (
-            <Image 
+            <ImageBackground 
               source={dayFlags[this.props.url]}
               style={styles.backgroundImage}
             >
             {this.props.children}
-            </Image>
+            </ImageBackground>
         )
     }
 }

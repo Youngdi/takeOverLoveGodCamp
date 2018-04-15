@@ -5,6 +5,7 @@ import getSlideFromRightTransition from 'react-navigation-slide-from-right-trans
 import FCM, {FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType} from 'react-native-fcm';
 import CodePush from "react-native-code-push";
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import EasterEggHuntTabScreen from './EasterEggHunt.js';
 class MyHomeScreen extends Component {
   constructor(props) {
     super(props);
@@ -166,6 +167,9 @@ const TabNav = TabNavigator(
         ),
       },
     },
+    EasterEggHuntTab: {
+      screen: EasterEggHuntTabScreen,
+    },
     SettingsTab: {
       screen: MySettingsScreen,
       path: '/settings',
@@ -208,7 +212,7 @@ const App = StackNavigator(
 },
   {
     transitionConfig: getSlideFromRightTransition,
-    headerMode: 'screen'
+    headerMode: 'none'
   }
 );
 
