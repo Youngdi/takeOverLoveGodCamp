@@ -100,7 +100,7 @@ android {
     defaultConfig {
         renderscriptTargetApi 26
         renderscriptSupportModeEnabled true
-        applicationId "com.bytbible.diary"
+        applicationId "com.byt.takeover.lovegodcamp"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 6

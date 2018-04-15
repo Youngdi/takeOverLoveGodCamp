@@ -1,4 +1,4 @@
-package com.bytbible.diary;
+package com.byt.takeover.lovegodcamp;
 
 import android.app.Application;
 import com.facebook.react.ReactApplication;
@@ -9,6 +9,7 @@ import com.rnfs.RNFSPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import com.evollu.react.fcm.FIRMessagingPackage;
 import org.reactnative.camera.RNCameraPackage;
+import com.cmcewen.blurview.BlurViewPackage;
 import com.airbnb.android.react.lottie.LottiePackage;
 import com.microsoft.codepush.react.CodePush;
 import com.facebook.react.ReactNativeHost;
@@ -43,7 +44,7 @@ public class MainApplication extends Application implements ReactApplication {
             new RNCameraPackage(),
             new BlurViewPackage(),
             new LottiePackage(),
-            new CodePush("G1zFykkanSA5DGFHGiZQUrr5rBptc5a64ba8-c46e-44a1-a546-41de22ffbd48", getApplicationContext(), BuildConfig.DEBUG, R.string.CodePushPublicKey),
+            new CodePush("G1zFykkanSA5DGFHGiZQUrr5rBptc5a64ba8-c46e-44a1-a546-41de22ffbd48", getApplicationContext(), BuildConfig.DEBUG, R.string.CodePushPublicKey)
       );
     }
 

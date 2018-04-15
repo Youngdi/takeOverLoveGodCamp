@@ -1,4 +1,4 @@
-package com.bytbible.diary;
+package com.byt.takeover.lovegodcamp;
 
 import com.facebook.react.ReactActivity;
 

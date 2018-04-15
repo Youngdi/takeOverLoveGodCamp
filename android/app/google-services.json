@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "933885265624",
-    "firebase_url": "https://bytdiarybible.firebaseio.com",
-    "project_id": "bytdiarybible",
-    "storage_bucket": "bytdiarybible.appspot.com"
+    "project_number": "1006460808295",
+    "firebase_url": "https://takeoverlovegodcamp.firebaseio.com",
+    "project_id": "takeoverlovegodcamp",
+    "storage_bucket": "takeoverlovegodcamp.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:933885265624:android:8c18410ebf065aca",
+        "mobilesdk_app_id": "1:1006460808295:android:122b03da67636ac6",
         "android_client_info": {
-          "package_name": "com.bytbible.diary"
+          "package_name": "com.byt.takeover.lovegodcamp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "933885265624-733ar9igabpju0cesqjej3flt28q51p0.apps.googleusercontent.com",
+          "client_id": "1006460808295-j5qpbgf01qfbb9e1hm4e59pu3or6vl3c.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDwHO4y8Pm0Zf1WzLyiYWCZvpT4Fzbjicg"
+          "current_key": "AIzaSyBccShLycNXpXZ7SlOEQFdOiqnPA2Srg10"
         }
       ],
       "services": {
