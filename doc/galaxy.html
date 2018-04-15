@@ -1,0 +1,162 @@
+<html lang="en" class="gr__content_ad2iction_com"><head>
+    <meta charset="UTF-8">
+    <title>Particle 3D</title>
+    <style>
+        body {
+            margin: 0;
+
+        }
+        canvas {
+            display: block;
+            background: url('bg_root.png') repeat scroll 0 0;
+        }
+        .desc {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body data-gr-c-s-loaded="true">
+    <canvas id="c" width="1921" height="432"></canvas>
+    
+    <div class="desc">Particle 3D
+        <br>
+        <a href="http://www.monster-strike.com/promotion/ff/" target="_blank"></a>http://www.monster-strike.com/promotion/ff/
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
+    <script src="./preloader.js"></script>
+    <script src="./utils.js"></script>
+    <script>
+        var source;
+
+        window.onload = function () {
+            /**
+             * preloader.js
+             * 預載圖片資源
+             */
+            preloader({
+                manifest : [
+                    {id: 'p1', src: 'particle_1.png'},
+                    {id: 'p2', src: 'particle_1.png'},
+                    {id: 'p3', src: 'particle_1.png'},
+                ],
+                onEachLoad: function(info) {
+                    //loadState.innerHTML = '讀取中(' + info.index + '/' + info.imgQty + ')';
+                    console.log(info);
+                },
+                onAllLoad: function(queue) {
+                    //loadState.innerHTML = '讀取完畢';
+                    console.log('img all loaded');
+                    source = queue;
+                    main();
+                }
+            });
+        }
+
+
+        function main() {
+            var c = document.getElementById('c'),
+                ctx = c.getContext('2d'),
+                cw = c.width = window.innerWidth,
+                ch = c.height = window.innerHeight;
+
+            var fl = 1000; // focus length (焦距)
+            var points = [];
+            var numPoints = 150;
+            var centerZ = 2000;
+            var radius = 1000;
+            var baseAngle = 0;
+            var rotationSpeed = .01;
+            
+            ctx.translate(cw / 2, ch / 2);
+
+            document.body.addEventListener('mousemove', function(e) {
+                rotationSpeed = (e.clientX - cw / 2) * .00001;
+            });
+
+            function addParticle() {
+                for (var i = 0; i < numPoints; i++) {
+                    var point = {
+                        distance: utils.randomRange(500, 1500),
+                        angle: Math.random() * Math.PI * 2,
+                        // y: 2000
+                        y: 2000 - 4000 / numPoints * i
+                    };
+                    
+                    point.alpha = 0;
+                    point.x = Math.cos(point.angle) * point.distance;
+                    point.z = centerZ + Math.sin(point.angle) * point.distance;
+                    point.img = source['p' + utils.randomInt(1, 3)].image;
+
+                    point.tl = new TimelineMax({ 
+                        repeat: -1,
+                        delay: Math.random() * 5,
+                        repeatDelay: 2
+                    });
+                    point.tl
+                        .to(point, 2, { alpha: 1 - Math.random() * .5 })
+                        .to(point, 2, { alpha: 0, delay: Math.random() * 2 });
+
+                    points.push(point);
+                }
+            }
+
+            function updateParticle() {
+                baseAngle += rotationSpeed;
+
+                for (var i = 0; i < numPoints; i++) {
+                    var point = points[i];
+                    
+                    point.x = Math.cos(point.angle + baseAngle) * point.distance;   
+                    point.z = centerZ + Math.sin(point.angle + baseAngle) * point.distance; 
+                    point.y -= 2;
+
+                    if (point.y < -2000) {
+                        point.y = 2000;
+                    }
+                }
+            }
+
+            // function resetParticle() {
+
+            // }
+
+            function drawParticle() {
+                for (var i = 0; i < numPoints; i++) {
+                    var point = points[i];
+                    // 設定 perspective (跟css3的不一樣，這裡是表示要縮放的比例)
+                    var perspective = fl / (fl + point.z);
+
+                    ctx.save();
+                    ctx.scale(perspective, perspective);
+                    ctx.translate(point.x, point.y);
+
+                    ctx.globalAlpha = point.alpha;
+                    ctx.fillStyle = '#fff';
+                    ctx.beginPath();
+                    // ctx.arc(0, 0, 30, 0, Math.PI * 2, false);
+                    ctx.drawImage(point.img, 0, 0, 68, 68);
+                    ctx.fill();
+
+                    ctx.restore();
+
+                }
+            }
+
+            function update() {
+                ctx.clearRect(-cw / 2, - ch / 2, cw, ch);
+
+                updateParticle();
+
+                drawParticle();
+                requestAnimationFrame(update);
+            }
+
+            addParticle();
+            update();
+        };
+    </script>
+
+<span id="pablo-extension-hover-button" style="display: none;position: absolute;z-index: 8675309;width: 66px;height: 25px;background-image: url(chrome-extension://gfpibnlcombjoeejlongmihndgkpnjjo/data/shared/img/pablo-hover-icon@1x.png);background-size: 66px 25px;opacity: 0.9;cursor: pointer;"></span></body></html>

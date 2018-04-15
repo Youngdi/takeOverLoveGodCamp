@@ -1,0 +1,1 @@
+mongoimport --headerline -d takeitover -c map --type csv --file /Users/yang/Downloads/map.csv

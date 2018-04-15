@@ -1,0 +1,18 @@
+
+#[test01]
+#172.17.41.52 ansible_user=ubuntu ansible_ssh_pass=password
+#
+#[test02]
+#172.17.41.51 ansible_user=ubuntu ansible_ssh_pass=password
+#
+#[Platform9test03]
+#172.17.41.53 ansible_user=ubuntu ansible_ssh_pass=password
+
+[EC2]
+#13.114.30.172 ansible_user=ubuntu ansible_ssh_private_key_file=takeover.pem
+107.167.181.56 ansible_user=yang ansible_ssh_private_key_file=google_compute_engine
+
+#[Platform9test04]
+#172.17.41.45 ansible_user=ubuntu ansible_ssh_pass=password
+#172.17.41.47 ansible_user=ubuntu ansible_ssh_pass=password
+

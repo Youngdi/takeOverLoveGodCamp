@@ -1,0 +1,21 @@
+code push auth:
+0de841ed47c8a4e56e687edda7b5d0ce9e935321
+
+code-push release-react TakeItOver ios
+code-push release-react TakeItOver ios -d Production
+
+Production │ dERAjV0i8QiFqUbsjHCVAU8wytxFc5a64ba8-c46e-44a1-a546-41de22ffbd48
+
+Staging    │ w7EeXl176Y2xKCuCOsgamHpCzu74c5a64ba8-c46e-44a1-a546-41de22ffbd48
+
+
+code-push release-react AN_TakeItOver android
+code-push release-react AN_TakeItOver android -d Production
+
+Production │ NgEBCPrbMqx3hSIBLbUv3Clstc4Xc5a64ba8-c46e-44a1-a546-41de22ffbd48 
+Staging    │ HaXD2GrmobDFrXeWyCbJ7bJY6tdic5a64ba8-c46e-44a1-a546-41de22ffbd48
+
+
+
+code-push deployment ls TakeItOver -k
+code-push deployment ls AN_TakeItOver -k

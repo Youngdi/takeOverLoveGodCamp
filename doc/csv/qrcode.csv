@@ -1,0 +1,11 @@
+address,source,water,fire,wood,stone,seed
+httpwwwbannerchorg1,R1,10,0,0,0,0
+httpwwwbannerchorg2,R2,10,0,0,0,0
+httpwwwbannerchorg3,R3,0,10,0,0,0
+httpwwwbannerchorg4,R4,0,10,0,0,0
+httpwwwbannerchorg5,R5,0,0,10,0,0
+httpwwwbannerchorg6,R6,0,0,10,0,0
+httpwwwbannerchorg7,R7,0,0,0,10,0
+httpwwwbannerchorg8,R8,0,0,0,10,0
+httpwwwbannerchorg9,R9,0,0,0,0,10
+httpwwwbannerchorg10,R10,0,0,0,0,10

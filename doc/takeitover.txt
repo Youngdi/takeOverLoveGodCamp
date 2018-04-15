@@ -1,0 +1,19 @@
+輸入金鑰儲存庫密碼:takeitover  
+重新輸入新密碼: takeitover
+您的名字與姓氏為何？
+  [Unknown]:  Bill YoungDi
+您的組織單位名稱為何？
+  [Unknown]:  Banner Church
+您的組織名稱為何？
+  [Unknown]:  BYT   
+您所在的城市或地區名稱為何？
+  [Unknown]:  Taichung
+您所在的州及省份名稱為何？
+  [Unknown]:  Taiwan
+此單位的兩個字母國別代碼為何？
+  [Unknown]:  TW
+CN=Bill YoungDi, OU=Banner Church, O=BYT, L=Taichung, ST=Taiwan, C=TW 正確嗎？
+  [否]:  Y
+
+針對 CN=Bill YoungDi, OU=Banner Church, O=BYT, L=Taichung, ST=Taiwan, C=TW 產生有效期 10,000 天的 2,048 位元 RSA 金鑰組以及自我簽署憑證 (SHA256withRSA)
+	

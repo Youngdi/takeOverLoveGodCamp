@@ -1,0 +1,5 @@
+Open iOS/AppDelegate.m
+Comment out jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle"];
+Uncomment jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+Start up the packager with npm start and then run curl http://localhost:8081/index.ios.bundle -o main.jsbundle - if this fails (as it did on my machine) add the --ipv4 flag to the end of it.
+In XCode, right click on your project directory and click Add Files to "Project Name Here" - choose the main.jsbundle file that you generated.
