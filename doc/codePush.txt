@@ -1,25 +1,22 @@
-code push auth:
-0de841ed47c8a4e56e687edda7b5d0ce9e935321
+Project name:takeOverLoveGodCamp_ios 
 
-Project name:byt.bible.diary.ios 
+code-push release-react takeOverLoveGodCamp_ios ios
+code-push release-react takeOverLoveGodCamp_ios ios -d Production
 
-code-push release-react byt.bible.diary.ios ios
-code-push release-react byt.bible.diary.ios ios -d Production
-
-Production │ _xnfKjAXD9UL8gfgInf92bv-pu04c5a64ba8-c46e-44a1-a546-41de22ffbd48
-Staging    │ mUeHS6A8_RfO4MekUbtUGzQiQgPQc5a64ba8-c46e-44a1-a546-41de22ffbd48
+Production │ vys4i-OWHoi6Wxzb82iY9it1VzI3c5a64ba8-c46e-44a1-a546-41de22ffbd48
+Staging    │ 0VWkVSdLJGdM3M506GrSeJBMNbMlc5a64ba8-c46e-44a1-a546-41de22ffbd48
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Project name:byt.bible.diary.an 
+Project name:takeOverLoveGodCamp_an 
 
-code-push release-react byt.bible.diary.an android
-code-push release-react byt.bible.diary.an android -d Production
+code-push release-react takeOverLoveGodCamp_an android
+code-push release-react takeOverLoveGodCamp_an android -d Production
 
-Production │ h66c1t38byxIsORFis7KicgXdTSdc5a64ba8-c46e-44a1-a546-41de22ffbd48
-Staging    │ wjDehiEoZkysspJnEoQVXo-xtA3kc5a64ba8-c46e-44a1-a546-41de22ffbd48
+Production │ uFY7DhdPqARQ9aHRLpbb35xtaQ03c5a64ba8-c46e-44a1-a546-41de22ffbd48
+Staging    │ G1zFykkanSA5DGFHGiZQUrr5rBptc5a64ba8-c46e-44a1-a546-41de22ffbd48
 
 
-code-push deployment ls byt.bible.diary.ios  -k
-code-push deployment ls byt.bible.diary.an  -k
+code-push deployment ls takeOverLoveGodCamp_ios  -k
+code-push deployment ls takeOverLoveGodCamp_an  -k

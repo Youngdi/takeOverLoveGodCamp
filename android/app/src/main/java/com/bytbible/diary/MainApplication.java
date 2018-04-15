@@ -2,20 +2,15 @@ package com.bytbible.diary;
 
 import android.app.Application;
 import com.facebook.react.ReactApplication;
-import com.microsoft.codepush.react.CodePush;
-import io.realm.react.RealmReactPackage;
-import com.github.alinz.reactnativewebviewbridge.WebViewBridgePackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.react.rnspinkit.RNSpinkitPackage;
 import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
 import com.rnfs.RNFSPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import com.evollu.react.fcm.FIRMessagingPackage;
-import org.capslock.RNDeviceBrightness.RNDeviceBrightness;
-import com.cmcewen.blurview.BlurViewPackage;
+import org.reactnative.camera.RNCameraPackage;
 import com.airbnb.android.react.lottie.LottiePackage;
-import com.rnfs.RNFSPackage;
-import com.cmcewen.blurview.BlurViewPackage;
+import com.microsoft.codepush.react.CodePush;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -39,18 +34,16 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
-            new CodePush("wjDehiEoZkysspJnEoQVXo-xtA3kc5a64ba8-c46e-44a1-a546-41de22ffbd48", getApplicationContext(), BuildConfig.DEBUG, R.string.CodePushPublicKey),
-            new RNDeviceBrightness(),
-            new FIRMessagingPackage(),
-            new WebViewBridgePackage(),
-            new RNFetchBlobPackage(),
-            new RealmReactPackage(),
             new VectorIconsPackage(),
             new RNSpinkitPackage(),
             new RNI18nPackage(),
             new RNFSPackage(),
+            new RNFetchBlobPackage(),
+            new FIRMessagingPackage(),
+            new RNCameraPackage(),
             new BlurViewPackage(),
-            new LottiePackage()
+            new LottiePackage(),
+            new CodePush("G1zFykkanSA5DGFHGiZQUrr5rBptc5a64ba8-c46e-44a1-a546-41de22ffbd48", getApplicationContext(), BuildConfig.DEBUG, R.string.CodePushPublicKey),
       );
     }
 

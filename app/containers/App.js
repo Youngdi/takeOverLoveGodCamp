@@ -4,44 +4,20 @@ import { SafeAreaView, StackNavigator, TabNavigator, NavigationActions } from 'r
 import getSlideFromRightTransition from 'react-navigation-slide-from-right-transition';
 import FCM, {FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType} from 'react-native-fcm';
 import CodePush from "react-native-code-push";
-import DiaryScreen from './DiaryRead';
-import I18n, { getLanguages } from 'react-native-i18n';
-import moment from 'moment/min/moment-with-locales';
-import RNFS from 'react-native-fs';
-import Realm from 'realm';
-import LottieView from 'lottie-react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import BookmarkScreen from './Bookmark';
-import BibleScreen from './Bible';
-import MoreScreen from './More';
-import NoteScreen from './Note';
-import NoteListScreen from './NoteList';
-import IntroScreen from './Intro';
-import BibleSearchScreen from './BibleSearch';
-import { test_db } from '../api/api';
-import bibleFlag from '../constants/bible';
-
-Realm.copyBundledRealmFiles();
-
 class MyHomeScreen extends Component {
   constructor(props) {
     super(props);
   }
-  getDiaryBiblePhrase = (time) => {
-    let number = Math.floor(Math.random() * 74) + 1;
-    let bible_number = `B${number}`;
-    return `${time}經文-${bibleFlag[bible_number].chapter}\n${bibleFlag[bible_number].verse}`;
-  }
   componentDidMount() {
-    this.setupScheduleLocalNotification();
-    const resetAction = NavigationActions.reset({
-      index: 0,
-      actions: [
-        NavigationActions.navigate({routeName: 'Diary'}),
-      ],
-    });
-    this.props.navigation.dispatch(resetAction);
+    // this.setupScheduleLocalNotification();
+    // const resetAction = NavigationActions.reset({
+    //   index: 0,
+    //   actions: [
+    //     NavigationActions.navigate({routeName: 'Diary'}),
+    //   ],
+    // });
+    // this.props.navigation.dispatch(resetAction);
     FCM.requestPermissions();
     FCM.getFCMToken().then(token => {
       console.log("TOKEN (getFCMToken)", token);
@@ -54,7 +30,7 @@ class MyHomeScreen extends Component {
       if (Platform.OS == 'ios') {
         if (notif.local_notification) {
           FCM.setBadgeNumber(0);
-          this.setupScheduleLocalNotification();
+          // this.setupScheduleLocalNotification();
           return;
         } else {
           // alert(notif.aps.alert);
@@ -84,7 +60,7 @@ class MyHomeScreen extends Component {
       this.refreshTokenListener = FCM.on(FCMEvent.RefreshToken, token => {
         console.log("TOKEN (refreshUnsubscribe)", token);
       });
-  });
+    });
     CodePush.sync({ updateDialog: false, installMode: CodePush.InstallMode.IMMEDIATE },
       (status) => {
         switch (status) {
@@ -104,12 +80,7 @@ class MyHomeScreen extends Component {
       }
     );
   }
-  BBB = async () => {
-    const d = await test_db();
-    alert(d.length);
-  }
   setupScheduleLocalNotification = () => {
-    // const badgeNumber = await FCM.getBadgeNumber();
     FCM.cancelLocalNotification('nightReminders');
     FCM.cancelLocalNotification('dayReminders');
     FCM.scheduleLocalNotification({
@@ -234,30 +205,6 @@ const App = StackNavigator(
       title: `${navigation.state.params.name}'s Profile!`;
     },
   },
-  Diary: {
-    screen: DiaryScreen,
-  },
-  Bible: {
-    screen: BibleScreen,
-  },
-  Bookmark: {
-    screen: BookmarkScreen,
-  },
-  More: {
-    screen: MoreScreen,
-  },
-  Note: {
-    screen: NoteScreen,
-  },
-  NoteList: {
-    screen: NoteListScreen,
-  },
-  BibleSearch: {
-    screen: BibleSearchScreen,
-  },
-  Intro : {
-    screen: IntroScreen,
-  }
 },
   {
     transitionConfig: getSlideFromRightTransition,
