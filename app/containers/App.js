@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
-import { Button, ScrollView, Text, View, TouchableOpacity, Animated, StyleSheet, Share, Platform } from 'react-native';
+import { Button, ScrollView, Text, View, TouchableOpacity, Animated, StyleSheet, Share, Platform, Image } from 'react-native';
 import { SafeAreaView, StackNavigator, TabNavigator, NavigationActions } from 'react-navigation';
 import getSlideFromRightTransition from 'react-navigation-slide-from-right-transition';
 import FCM, {FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType} from 'react-native-fcm';
 import CodePush from "react-native-code-push";
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import EasterEggHuntTabScreen from './EasterEggHunt.js';
+import EasterEggHunterScreen from './EasterEggHunt.js';
+import HomeScreen from './Home';
+import LandScreen from './Land';
+import PuzzleGameScreen from './PuzzleGame';
+import SplashScreen from './Splash';
+import LoginScreen from './Login';
+
 class MyHomeScreen extends Component {
   constructor(props) {
     super(props);
@@ -150,52 +156,99 @@ const MySettingsScreen = ({ navigation }) => (
   <MyNavScreen banner="Settings Screen" navigation={navigation} />
 );
 
-const TabNav = TabNavigator(
+const HomeTabNav = TabNavigator(
   {
-    MainTab: {
-      screen: MyHomeScreen,
+    Home: {
+      screen: HomeScreen,
       path: '/',
       navigationOptions: {
-        title: '',
-        tabBarLabel: 'Home',
+        title: '首頁',
+        tabBarLabel: '首頁',
         tabBarIcon: ({ tintColor, focused }) => (
-          <Ionicons
-            name={focused ? 'ios-home' : 'ios-home-outline'}
-            size={26}
-            style={{ color: tintColor }}
+          <Image
+            source={require('../images/tabIcons/castle-01.png')}
+            style={[styles.icon, {tintColor: tintColor}]}
           />
-        ),
+        )
       },
     },
-    EasterEggHuntTab: {
-      screen: EasterEggHuntTabScreen,
-    },
-    SettingsTab: {
-      screen: MySettingsScreen,
-      path: '/settings',
+    PuzzleGame: {
+      path: '/puzzle',
+      screen: PuzzleGameScreen,
       navigationOptions: {
-        title: 'Settings',
+        title: '九宮格解謎',
+        tabBarLabel: '解謎',
         tabBarIcon: ({ tintColor, focused }) => (
-          <Ionicons
-            name={focused ? 'ios-settings' : 'ios-settings-outline'}
-            size={26}
-            style={{ color: tintColor }}
+          <Image
+            source={require('../images/tabIcons/grid-01.png')}
+            style={[styles.icon, {tintColor: tintColor}]}
           />
-        ),
+        )
+      },
+    },
+    EasterEggHunter: {
+      path: '/easterEggHunter',
+      screen: EasterEggHunterScreen,
+      navigationOptions: {
+        title: '尋寶獵人',
+        tabBarLabel: '尋寶',
+        tabBarIcon: ({ tintColor, focused }) => (
+          <Image
+            source={require('../images/tabIcons/map-01.png')}
+            style={[styles.icon, {tintColor: tintColor}]}
+          />
+        )
+      },
+    },
+    Land: {
+      path: '/lang',
+      screen: LandScreen,
+      navigationOptions: {
+        title: '領土爭奪',
+        tabBarLabel: '領土爭奪',
+        tabBarIcon: ({ tintColor, focused }) => (
+          <Image
+            source={require('../images/tabIcons/banner-01.png')}
+            style={[styles.icon, {tintColor: tintColor}]}
+          />
+        )
       },
     },
   },
   {
+    swipeEnabled: false,
+    lazyLoad: true,
     tabBarPosition: 'bottom',
-    animationEnabled: true,
-    swipeEnabled: true,
+    tabBarOptions: {
+      activeTintColor: Platform.OS === 'ios' ? '#fff' : '#fff',
+      labelStyle: {
+          fontSize: 12,
+          color: '#eff0f4',
+      },
+      showIcon: true,
+      showLabel: false,
+      style: {
+        backgroundColor: '#2c2f30',
+        borderTopWidth: 3,
+        borderTopColor: 'rgba(83,83,83,0.1)',
+      },
+      indicatorStyle: {
+        backgroundColor: '#2c2f30',
+      }
+    }
   }
 );
 
 const App = StackNavigator(
 {
   Root: {
-    screen: TabNav,
+    screen: SplashScreen,
+  },
+  Login: {
+    screen: LoginScreen,
+  },
+  HomeTab: {
+    screen: HomeTabNav,
   },
   NotifSettings: {
     screen: MyNotificationsSettingsScreen,
@@ -217,3 +270,10 @@ const App = StackNavigator(
 );
 
 export default App;
+
+const styles = StyleSheet.create({
+  icon: {
+    width: 30,
+    height: 30,
+  },
+});

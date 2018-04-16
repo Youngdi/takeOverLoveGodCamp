@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "1006460808295",
-    "firebase_url": "https://takeoverlovegodcamp.firebaseio.com",
-    "project_id": "takeoverlovegodcamp",
-    "storage_bucket": "takeoverlovegodcamp.appspot.com"
+    "project_number": "1072157588582",
+    "firebase_url": "https://takeitover-85825.firebaseio.com",
+    "project_id": "takeitover-85825",
+    "storage_bucket": "takeitover-85825.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1006460808295:android:122b03da67636ac6",
+        "mobilesdk_app_id": "1:1072157588582:android:5ca05d25e144c659",
         "android_client_info": {
-          "package_name": "com.byt.takeover.lovegodcamp"
+          "package_name": "com.banner.takeitover"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1006460808295-j5qpbgf01qfbb9e1hm4e59pu3or6vl3c.apps.googleusercontent.com",
+          "client_id": "1072157588582-e2q6h136l2f6jlu530vr1lhtga090ufb.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBccShLycNXpXZ7SlOEQFdOiqnPA2Srg10"
+          "current_key": "AIzaSyB66qiHZinRtRwkxw2TVY-XNbi5Vni3d3k"
         }
       ],
       "services": {

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>管理頁面-登入</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-block-ui.min.js"></script>
+    <script src="js/sweet-alert.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/config.js"></script>
+    <!-- Bootstrap -->
+    <link href="css/sweet-alert.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link href="css/angular-block-ui.min.css" rel="stylesheet">
+    <link href="css/signin.css" rel="stylesheet">
+    <link href="css/my.css">
+</head>
+
+<body>
+    <div ng-app="ngAppStrictDemo">
+        <div ng-controller="GoodController1" id="MainWrap">
+            <br>
+            <br>
+            <br>
+            <div class="container">
+                <div class="col-md-2 col-lg-2"></div>
+                <div class="col-md-8 col-lg-8">
+                    <center>
+                        <h2>2017旌旗教會TakeOver傾城而出夏令營管理者頁面</h2>
+                    </center>
+                    <form ng-submit="login();" name="userForm" class="signin form-horizontal" autocomplete="off">
+                        <fieldset>
+                            <div class="form-group">
+                                <div data-ng-show="error" class="text-center text-danger">
+                                    <div class="alert alert-danger" role="alert">
+                                        <strong data-ng-bind="error"></strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group input-group-lg">
+                                    <span class="input-group-addon"><i class="text-muted glyphicon glyphicon-user"></i></span>
+                                    <input type="text" class="form-control" data-ng-model="user.username" placeholder="請輸入帳號" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group input-group-lg">
+                                    <span class="input-group-addon">
+                            <i class="text-muted glyphicon glyphicon-asterisk"></i>
+                        </span>
+                                    <input type="password" name="password" class="form-control" data-ng-model="user.password" placeholder="密碼" required>
+                                </div>
+                            </div>
+                            </br>
+                            <div class="form-group" id="captchaHolder"></div>
+                            <div class="text-center form-group">
+                                <button type="submit" ng-disabled="userForm.$invalid" class="btn btn-success btn-lg btn-block">登入</button>
+                            </div>
+                            <div class="forgot-password">
+                                <a href="#">Forgot your password?</a> &nbsp; Or &nbsp;
+                                <a href="#">Sign In</a>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div block-ui="main" class="block-ui-main"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+    var app = angular.module('ngAppStrictDemo', ['blockUI']);
+    app.controller('GoodController1',
+        function($scope, $http, blockUI) {
+            $scope.login = function() {
+                var globe_function = this;
+                blockUI.start();
+                if ($scope.userForm.$valid) {
+                    $http({
+                        method: 'POST',
+                        url: BASECONNECTION + ':' + PORT + '/manager_login',
+                        data: {
+                            user: $scope.user
+                        }
+                    }).success(function(data) {
+                        blockUI.stop();
+                        if (data.logined) {
+                            window.location.href = "day1.html";
+                        }
+                        if (data.invaild) {
+                            blockUI.stop();
+                            swal({
+                                title: "序號或密碼錯誤",
+                                type: "warning"
+                            });
+                        }
+                    }).error(function(data) {
+                        console.log("failed");
+                        blockUI.stop();
+                    });
+                } else {
+                    blockUI.stop();
+                    swal({
+                        title: "請輸入欄位",
+                        type: "warning"
+                    });
+                }
+            };
+        }
+    );
+    </script>
+</body>
+
+</html>

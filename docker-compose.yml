@@ -1,0 +1,72 @@
+version: "2"
+services:
+  db:
+    image: mongo
+  import:
+    image: mongo
+    volumes:
+      - ./doc:/doc
+    links: 
+      - db
+    working_dir: /doc
+    command: "sh mongoImport.sh"  
+
+  web:
+    image: registry.gitlab.com/youngdi/takeover:0.0.3
+    restart: always
+    ports:
+      - "8083:8083"
+    links:
+      - db
+    depends_on: 
+      - nginx-proxy
+    environment:
+      PORT: 8083 # this is optional, allows express to use process.env.PORT instead of a raw 3000
+      mongoConfig: mongodb://db:27017/takeitover
+      VIRTUAL_HOST: 'bytday.com'
+      VIRTUAL_NETWORK: 'nginx-proxy'
+      VIRTUAL_PORT: 8083
+      LETSENCRYPT_HOST: 'bytday.com'
+      LETSENCRYPT_EMAIL: 'u9951062@gmail.com'
+  # web2:
+  #   image: youngdi/takeover:latest
+  #   restart: always
+  #   ports:
+  #     - "8084:8083"
+  #   links:
+  #     - db
+  #   environment:
+  #     PORT: 8083 # this is optional, allows express to use process.env.PORT instead of a raw 3000
+  #     mongoConfig: mongodb://db:27017/takeitover
+  #     VIRTUAL_HOST: 'team4taiwan.com'
+  #     VIRTUAL_NETWORK: 'nginx-proxy'
+  #     VIRTUAL_PORT: 8083
+  #     LETSENCRYPT_HOST: 'team4taiwan.com'
+  #     LETSENCRYPT_EMAIL: 'u9951062@gmail.com'
+  nginx-proxy:
+    restart: always
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    labels:
+      - "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy"
+    volumes:
+      - "/svr/certs:/etc/nginx/certs:ro"
+      - "/svr/nginx/vhost.d:/etc/nginx/vhost.d"
+      - "/svr/share/nginx/html:/usr/share/nginx/html"
+      - "/var/run/docker.sock:/tmp/docker.sock:ro"
+
+  letsencrypt-nginx-proxy-companion:
+    restart: always
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    container_name: letsencrypt-nginx-proxy-companion
+    volumes_from:
+      - nginx-proxy
+    volumes:
+      - "/svr/certs:/etc/nginx/certs:rw"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    environment:
+      - NGINX_DOCKER_GEN_CONTAINER=nginx-gen
+# youngdi/takeover:latest 

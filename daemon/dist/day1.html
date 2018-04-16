@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>管理頁面Day1</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-block-ui.min.js"></script>
+    <script src="js/sweet-alert.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/config.js"></script>
+    <!-- Bootstrap -->
+    <link href="css/sweet-alert.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link href="css/angular-block-ui.min.css" rel="stylesheet">
+    <link href="css/signin.css" rel="stylesheet">
+</head>
+
+<body ng-app="ngAppStrictDemo">
+    <div id="MainWrap" ng-controller="GoodController1">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">TakeOver傾城而出</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="day1.html"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Day1計分</a>
+                        </li>
+                        <li><a href="day3.html"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Day3計分</a>
+                        </li>
+                        <li><a href="setting.html"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> 設定開關</a>
+                        </li>
+                        <li><a href="#" onclick="record();"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> 紀錄查詢</a>
+                        </li>
+                        <li><a href="#" ng-click="logOut();"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> 登出</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="col-md-12" style="margin-top:30px;">
+                <div class="col-md-3">
+                    <label for="team">組別:</label>
+                    <select class="form-control" id="team">
+                        <option>BYT01</option>
+                        <option>BYT02</option>
+                        <option>BYT03</option>
+                        <option>BYT04</option>
+                        <option>BYT05</option>
+                        <option>BYT06</option>
+                        <option>BYT07</option>
+                        <option>BYT08</option>
+                        <option>BYT09</option>
+                        <option>BYT10</option>
+                        <option>BYT11</option>
+                        <option>BYT12</option>
+                        <option>BYT13</option>
+                        <option>BYT14</option>
+                        <option>BYT15</option>
+                        <option>BYT16</option>
+                        <option>BYT17</option>
+                        <option>BYT18</option>
+                        <option>BYT19</option>
+                        <option>BYT20</option>
+                        <option>BYT21</option>
+                        <option>BYT22</option>
+                        <option>BYT23</option>
+                        <option>BYT24</option>
+                        <option>BYT25</option>
+                        <option>BYT26</option>
+                        <option>BYT27</option>
+                        <option>BYT28</option>
+                        <option>BYT29</option>
+                        <option>BYT30</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-12" style="margin-top:30px;">
+                <div class="col-md-1" style="margin-top:20px;">
+                    <H5>能力值:</H5>
+                </div>
+                <div class="col-md-1">
+                    <label for="A1">K寶石:</label>
+                    <input class="form-control" type="number" value="0" id="A1">
+                </div>
+                <div class="col-md-1">
+                    <label for="A2">水:</label>
+                    <input class="form-control" type="number" value="0" id="A2">
+                </div>
+                <div class="col-md-1">
+                    <label for="A3">火:</label>
+                    <input class="form-control" type="number" value="0" id="A3">
+                </div>
+                <div class="col-md-1">
+                    <label for="A4">木:</label>
+                    <input class="form-control" type="number" value="0" id="A4">
+                </div>
+                <div class="col-md-1">
+                    <label for="A5">石:</label>
+                    <input class="form-control" type="number" value="0" id="A5">
+                </div>
+                <div class="col-md-1">
+                    <label for="A6">種子:</label>
+                    <input class="form-control" type="number" value="0" id="A6">
+                </div>
+                <div class="col-md-2 col-lg-2" style="margin-top:25px;">
+                    <button ng-click="submit('resource');" type="button" class="col-md-6 col-lg-6 col-xs-12 col-sm-12 btn btn-primary">確定</button>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top:20px;">
+                <div class="col-md-1 col-lg-1" style="margin-top:20px;">
+                    <H5>九宮格(全換):</H5>
+                </div>
+                <div class="col-md-1">
+                    <label for="B1">第一關:</label>
+                    <select class="form-control" id="B1">
+                        <option>W</option>
+                        <option>N</option>
+                        <option>L</option>
+                    </select>
+                </div>
+                <div class="col-md-1">
+                    <label for="B2">第二關:</label>
+                    <select class="form-control" id="B2">
+                        <option>W</option>
+                        <option>N</option>
+                        <option>L</option>
+                    </select>
+                </div>
+                <div class="col-md-1">
+                    <label for="B3">第三關:</label>
+                    <select class="form-control" id="B3">
+                        <option>W</option>
+                        <option>N</option>
+                        <option>L</option>
+                    </select>
+                </div>
+                <div class="col-md-1">
+                    <label for="B4">第四關:</label>
+                    <select class="form-control" id="B4">
+                        <option>W</option>
+                        <option>N</option>
+                        <option>L</option>
+                    </select>
+                </div>
+                <div class="col-md-1">
+                    <label for="B5">第五關:</label>
+                    <select class="form-control" id="B5">
+                        <option>W</option>
+                        <option>N</option>
+                        <option>L</option>
+                    </select>
+                    <br>
+                </div>
+                <div class="col-md-1">
+                    <label for="B6">第六關:</label>
+                    <select class="form-control" id="B6">
+                        <option>W</option>
+                        <option>N</option>
+                        <option>L</option>
+                    </select>
+                </div>
+                <div class="col-md-1">
+                    <label for="B7">第七關:</label>
+                    <select class="form-control" id="B7">
+                        <option>W</option>
+                        <option>N</option>
+                        <option>L</option>
+                    </select>
+                </div>
+                <div class="col-md-1">
+                    <label for="B8">第八關:</label>
+                    <select class="form-control" id="B8">
+                        <option>W</option>
+                        <option>N</option>
+                        <option>L</option>
+                    </select>
+                </div>
+                <div class="col-md-1">
+                    <label for="B9">第九關:</label>
+                    <select class="form-control" id="B9">
+                        <option>W</option>
+                        <option>N</option>
+                        <option>L</option>
+                    </select>
+                </div>
+                <div class="col-md-1">
+                    <label for="B10">第十關:</label>
+                    <select class="form-control" id="B10">
+                        <option>W</option>
+                        <option>N</option>
+                        <option>L</option>
+                    </select>
+                    <br>
+                </div>
+                <div class="col-md-1 col-lg-1" style="margin-top:25px;">
+                    <button style="width:140px;" ng-click="submit('puzzle');" type="button" class="col-md-6 col-lg-6 col-xs-12 col-sm-12 btn btn-primary">確定</button>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="col-md-1 col-lg-1" style="margin-top:20px;">
+                    <H5>九宮格(單一):</H5>
+                </div>
+                <div class="col-md-2">
+                    <label for="puzzle">關卡:</label>
+                    <select class="form-control" id="puzzle">
+                        <option>P1</option>
+                        <option>P2</option>
+                        <option>P3</option>
+                        <option>P4</option>
+                        <option>P5</option>
+                        <option>P6</option>
+                        <option>P7</option>
+                        <option>P8</option>
+                        <option>P9</option>
+                        <option>P10</option>
+                    </select>
+                </div>
+                <div class="col-md-1">
+                    <label for="puzzle_result">結果:</label>
+                    <select class="form-control" id="puzzle_result">
+                        <option>W</option>
+                        <option>N</option>
+                        <option>L</option>
+                    </select>
+                </div>
+                <div class="col-md-1 col-lg-1" style="margin-top:25px;">
+                    <button style="width:140px;" ng-click="submit('puzzle_single');" type="button" class="col-md-6 col-lg-6 col-xs-12 col-sm-12 btn btn-primary">確定</button>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="container-fluid">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <h3>小組能力表</h3>
+                    <table class="table table-striped table-hover table-bordered table-condensed">
+                        <thead>
+                            <tr>
+                                <th>組別/國家</th>
+                                <th>K寶石</th>
+                                <th>水</th>
+                                <th>火</th>
+                                <th>木</th>
+                                <th>石</th>
+                                <th>種子</th>
+                                <th>加乘參數(K寶~種子)</th>
+                                <th>拼圖(P1~P10)</th>
+                                <th>資源點(R1~R10)</th>
+                            </tr>
+                        </thead>
+                        <tbody ng-repeat="user in user_data">
+                            <tr>
+                                <td>第{{$index+1}}組
+                                    <p ng-if="user.country == 'M' ">Modern</p>
+                                    <p ng-if="user.country == 'W' ">Wealth</p>
+                                    <p ng-if="user.country == 'P' ">Power</p>
+                                    <p ng-if="user.country == 'A' ">Academic</p>
+                                    <p ng-if="user.country == 'L' ">Labor</p>
+                                    <p ng-if="user.country == 'N' ">大魔王</p>
+                                </td>
+                                <td>{{user.K}}</td>
+                                <td>{{user.water}}</td>
+                                <td>{{user.fire}}</td>
+                                <td>{{user.wood}}</td>
+                                <td>{{user.stone}}</td>
+                                <td>{{user.seed}}</td>
+                                <td>{{'K寶石: '+user.B1 + ' , 水: ' + user.B2 + ' , 火: ' + user.B3 + ' , 木: ' + user.B4 + ' , 石: ' + user.B5 + ' , 種子: ' + user.B6}}</td>
+                                <td>{{user.P1 + ',' + user.P2 + ',' + user.P3 + ',' + user.P4 + ',' + user.P5 + ',' + user.P6 + ',' + user.P7 + ',' + user.P8 + ',' + user.P9 + ',' + user.P10}}</td>
+                                <td>{{user.R1 + ',' + user.R2 + ',' + user.R3 + ',' + user.R4 + ',' + user.R5 + ',' + user.R6 + ',' + user.R7 + ',' + user.R8 + ',' + user.R9 + ',' + user.R10}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div block-ui="main" class="block-ui-main"></div>
+    </div>
+    <script>
+    function record() {
+        $.ajax({
+                url: BASECONNECTION + ':' + PORT + '/get_record',
+                type: 'GET'
+            })
+            .done(function(data) {
+                console.log(data);
+            });
+    }
+    window.onload = function() {
+        var scope = angular.element(document.getElementById("MainWrap")).scope();
+        scope.$apply(function() {
+            scope.check_login();
+        });
+    };
+    function findCountry(team){
+        switch (team) {
+            case 'BYT01':
+            return 'M' 
+            case 'BYT02':
+            return 'M'
+            case 'BYT03':
+            return 'M' 
+            case 'BYT04':
+            return 'M'
+            case 'BYT05':
+            return 'M' 
+            case 'BYT06':
+            return 'M'
+            case 'BYT07':
+            return 'W'
+            case 'BYT08':
+            return 'W'
+            case 'BYT09':
+            return 'W'
+            case 'BYT10':
+            return 'W'
+            case 'BYT11':
+            return 'W'
+            case 'BYT12':
+            return 'W'
+            case 'BYT13':
+            return 'P'
+            case 'BYT14':
+            return 'P'
+            case 'BYT15':
+            return 'P'
+            case 'BYT16':
+            return 'P'
+            case 'BYT17':
+            return 'P'
+            case 'BYT18':
+            return 'P'
+            case 'BYT19':
+            return 'A'
+            case 'BYT20':
+            return 'A'
+            case 'BYT21':
+            return 'A'
+            case 'BYT22':
+            return 'A'
+            case 'BYT23':
+            return 'A'
+            case 'BYT24':
+            return 'A'
+            case 'BYT25':
+            return 'L'
+            case 'BYT26':
+            return 'L'
+            case 'BYT27':
+            return 'L'
+            case 'BYT28':
+            return 'L'
+            case 'BYT29':
+            return 'L'
+            case 'BYT30':
+            return 'L'
+        }
+    }
+    var app = angular.module('ngAppStrictDemo', ['blockUI']);
+    app.controller('GoodController1',
+        function($scope, $http, blockUI) {
+            $scope.logOut = function() {
+                 blockUI.start();
+                $http({
+                    method: 'GET',
+                    url: BASECONNECTION + ':' + PORT + '/manager_logout'
+                }).success(function(data) {
+                     blockUI.stop();
+                    window.location.href = "index.html";
+                }).error(function(e) {
+                    alert('failed');
+                });
+            };
+            $scope.init = function() {
+                for(i=1; i < 11; i++) {
+                    $('#A'+i).val(0);
+                    $('#B'+i)[0].selectedIndex = 0;
+                }
+                blockUI.start();
+                $http({
+                    method: 'GET',
+                    url: BASECONNECTION + ':' + PORT + '/get_user'
+                }).success(function(data) {
+                    $scope.user_data = data;
+                    blockUI.stop();
+                }).error(function(e) {
+                    alert('failed');
+                });
+            };
+            $scope.check_login = function() {
+                var globe_function = this;
+                blockUI.start();
+                $http({
+                    method: 'GET',
+                    url: BASECONNECTION + ':' + PORT + '/manager_check_login'
+                }).success(function(data) {
+                    blockUI.stop();
+                    if (data.need_login) {
+                        window.location.href = "index.html";
+                    } else {
+                        globe_function.init();
+                    }
+                }).error(function(e) {
+                    alert('failed');
+                });
+            };
+            $scope.submit = function(flag) {
+                blockUI.start();
+                var globe_function = this;
+                var team = $('#team').val();
+                var A1 = Number($('#A1').val());
+                var A2 = Number($('#A2').val());
+                var A3 = Number($('#A3').val());
+                var A4 = Number($('#A4').val());
+                var A5 = Number($('#A5').val());
+                var A6 = Number($('#A6').val());
+                var B1 = $('#B1').val();
+                var B2 = $('#B2').val();
+                var B3 = $('#B3').val();
+                var B4 = $('#B4').val();
+                var B5 = $('#B5').val();
+                var B6 = $('#B6').val();
+                var B7 = $('#B7').val();
+                var B8 = $('#B8').val();
+                var B9 = $('#B9').val();
+                var B10 = $('#B10').val();
+                var puzzle = $('#puzzle').val();
+                var puzzle_result = $('#puzzle_result').val();
+                //var bread = $('#bread').val();
+                if (flag == 'puzzle') {
+                    $http({
+                        method: 'POST',
+                        url: BASECONNECTION + ':' + PORT + '/update_user_puzzle',
+                        data: {
+                            name: team,
+                            P1: B1,
+                            P2: B2,
+                            P3: B3,
+                            P4: B4,
+                            P5: B5,
+                            P6: B6,
+                            P7: B7,
+                            P8: B8,
+                            P9: B9,
+                            P10: B10,
+                        }
+                    }).success(function(data) {
+                        blockUI.stop();
+                        globe_function.init();
+                    }).error(function(e) {
+                        alert('failed');
+                    });
+                }
+                if (flag == 'resource') {
+                    var country = findCountry(team)
+                    $http({
+                        method: 'POST',
+                        url: BASECONNECTION + ':' + PORT + '/update_user_resource',
+                        data: {
+                            name: team,
+                            country: country,
+                            K: A1,
+                            water: A2,
+                            fire: A3,
+                            wood: A4,
+                            stone: A5,
+                            seed: A6,
+                        }
+                    }).success(function(data) {
+                        blockUI.stop();
+                        globe_function.init();
+                    }).error(function(e) {
+                        alert('failed');
+                    });
+                }
+                if (flag == 'puzzle_single') {
+                    $http({
+                        method: 'POST',
+                        url: BASECONNECTION + ':' + PORT + '/update_user_puzzle_single',
+                        data: {
+                            name: team,
+                            puzzle: puzzle,
+                            puzzle_result: puzzle_result
+                        }
+                    }).success(function(data) {
+                        blockUI.stop();
+                        globe_function.init();
+                    }).error(function(e) {
+                        alert('failed');
+                    });
+                }
+                // $http({
+                //     method: 'POST',
+                //     url: BASECONNECTION + ':' + PORT + '/update_user_data',
+                //     data: {
+                //         name: team,
+                //         K: A1,
+                //         water: A2,
+                //         fire: A3,
+                //         wood: A4,
+                //         stone: A5,
+                //         seed: A6,
+                //         P1: B1,
+                //         P2: B2,
+                //         P3: B3,
+                //         P4: B4,
+                //         P5: B5,
+                //         P6: B6,
+                //         P7: B7,
+                //         P8: B8,
+                //         P9: B9,
+                //         P10: B10,
+                //     }
+                // }).success(function(data) {
+                //     blockUI.stop();
+                //     globe_function.init();
+                // }).error(function(data) {
+                //     console.log("failed");
+                // });
+            };
+        }
+    );
+    </script>
+</body>
+
+</html>

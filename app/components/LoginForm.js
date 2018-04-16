@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
 
 import {
   AppRegistry,
@@ -12,39 +11,28 @@ import {
   Button,
   TouchableOpacity,
   Alert,
+  ImageBackground
 } from 'react-native';
 
 const { width, height } = Dimensions.get("window");
-
 const background = require("../images/TakeOver_Login.png");
 const mark = require("../images/login1_mark.png");
 const lockIcon = require("../images/login1_lock.png");
 const personIcon = require("../images/login1_person.png");
 
-const renderNameInput = ({ input: { onChange, ...restInput }}) => {
-  return <TextInput placeholder="Username" placeholderTextColor="#FFF" style={styles.input} onChangeText={onChange} {...restInput} />
-}
-const renderPassWordInput = ({ input: { onChange, ...restInput }}) => {
-  return <TextInput  placeholder="Password" placeholderTextColor="#FFF" style={styles.input} secureTextEntry onChangeText={onChange} {...restInput} />
-}
-
-class LoginForm extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  // const { handleSubmit } = this.props
+export default class LoginForm extends React.Component {
   render() {
   return (
       <View style={styles.container}>
-        <Image source={background} style={styles.background} resizeMode="cover">
+        <ImageBackground source={background} style={styles.background} resizeMode="cover">
           <View style={{height:height * 0.35,width:1}}>
           </View>
           <View style={styles.wrapper}>
             <View style={styles.inputWrap}>
-              <Field name="username" component={renderNameInput} />
+              <TextInput placeholder="Username" placeholderTextColor="#FFF" style={styles.input} onChangeText={this.props.onChangeUsername}/>
             </View>
             <View style={styles.inputWrap}>
-              <Field name="password" component={renderPassWordInput} />
+              <TextInput  placeholder="Password" placeholderTextColor="#FFF" style={styles.input} secureTextEntry onChangeText={this.props.onChangePassword} />
             </View>
             <TouchableOpacity activeOpacity={.5} onPress={() => Alert.alert('去問你的隊輔XD')}>
               <View>
@@ -52,12 +40,12 @@ class LoginForm extends React.Component {
               </View>
             </TouchableOpacity>
             {(this.props.wrong) && (<TouchableOpacity activeOpacity={.5}><View><Text style={styles.wrongPasswordText}>帳號或密碼錯誤</Text></View></TouchableOpacity>)}
-            <TouchableOpacity activeOpacity={.5} onPress={this.props.handleSubmit(this.props.Submit)}>
+            <TouchableOpacity activeOpacity={.5} onPress={this.props.submit}>
               <View style={styles.button}>
                 <Text style={styles.buttonText}>Log in</Text>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity activeOpacity={.5} onPress={this.props.tryforfun.bind(this)}>
+            <TouchableOpacity activeOpacity={.5} onPress={this.props.tryforfun}>
               <View>
                 <Text style={styles.loginforfun}>體驗帳號登入</Text>
               </View>
@@ -67,7 +55,7 @@ class LoginForm extends React.Component {
             <View style={styles.signupWrap}>
             </View>
           </View>
-        </Image>
+        </ImageBackground>
       </View>
     )
   }
@@ -165,8 +153,3 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   }
 });
-
-// Decorate the form component
-export default reduxForm({
-  form: 'Login' // a unique name for this form
-})(LoginForm);

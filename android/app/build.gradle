@@ -102,7 +102,7 @@ android {
     defaultConfig {
         renderscriptTargetApi 26
         renderscriptSupportModeEnabled true
-        applicationId "com.byt.takeover.lovegodcamp"
+        applicationId "com.banner.takeitover"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 6

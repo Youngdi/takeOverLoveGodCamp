@@ -1,0 +1,91 @@
+- hosts: EC2
+  remote_user: ubuntu
+  become: true
+  become_user: root
+  become_method: sudo
+  gather_facts: no
+  pre_tasks:
+    - name: 'install python2'
+      raw: sudo apt-get -y install python-simplejson
+  tasks:
+    - name: install node 8.x step1
+      raw: sudo apt-get update
+    - name: install node 8.x step2
+      raw: curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+    - name: install node 8.x step3
+      raw: sudo apt-get install -y nodejs
+    - name: install nginx step1
+      raw: sudo apt-get update
+    - name: install nginx step2
+      raw: yes | sudo apt-get install nginx
+    - name: git clone TakeOver
+      raw: sudo git clone https://github.com/Youngdi/TakeOver
+    - name: chown change authority
+      raw: sudo chown -R ubuntu TakeOver
+    - name: install pm2
+      raw: sudo npm install pm2 -g
+    - name: install nodemon
+      raw: sudo npm install nodemon -g
+    - name: install make for opencc step1
+      raw: sudo apt install make 
+    - name: install opencc step2
+      raw: yes | sudo apt install node-gyp
+    - name: install daemon node_mudule
+      raw: sudo npm install --prefix ./TakeOver/daemon/
+    - name: install mongo step1
+      raw: sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
+    - name: install mongo step2
+      raw: echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
+    - name: install mongo step3
+      raw: sudo apt-get update
+    - name: install mongo step4
+      raw: sudo apt-get install -y mongodb-org
+    - name: install mongo step5
+      raw: sudo service mongod start
+    - name: import takeItOver data
+      raw: sh ./TakeOver/doc/ansible_mongo_import.sh
+    - name: install LetEncrypt step1
+      raw: sudo wget https://dl.eff.org/certbot-auto
+    - name: change authority of certbot-auto
+      raw: sudo chmod a+x certbot-auto
+    - name: mkdir a document to put LetEncrypt
+      raw: sudo mkdir /opt/letsencrypt
+    - name: move certbot-auto to /opt/letsencrypt/
+      raw: sudo mv certbot-auto /opt/letsencrypt/
+    - name: fix install certbot bug by using export LC_ALL="C"
+      raw: export LC_ALL="C"
+    - name: install LetEncrypt step2
+      raw: sudo apt-get update
+    - name: install LetEncrypt step3
+      raw: sudo apt-get install software-properties-common
+    - name: install LetEncrypt step4
+      raw: yes | sudo add-apt-repository ppa:certbot/certbot
+    - name: install LetEncrypt step5
+      raw: sudo apt-get update
+    - name: install LetEncrypt step6
+      raw: yes | sudo apt-get install python-certbot-nginx 
+    #- name: install certbot-auto
+    #  raw: yes | sudo /opt/letsencrypt/certbot-auto
+
+    
+   # - name: install Docker from official shell script
+  #    raw: curl -sSL https://get.docker.com/ | sh
+   #- name: test1
+   #  raw: sudo dpkg --configure -a
+   #  raw: curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+   #- name: test5
+   #  apt: name=nodejs state=installed force=yes
+  # - name: install | GIT | DOCKER
+  #   apt: name={{item}} state=installed force=yes
+  #   with_items:
+      #- git
+   #- name: install | GIT
+   #  apt: name=git state=installed
+   #- name: "Install npm forever package"
+   #  npm: name=forever global=yes state=present
+   #- name: GIT | Cloning 
+   #  git: repo=git://github.com/CSC-DevOps/App.git dest=/srv/DevOps clone=yes update=yes
+   #- name: "install NPM packages"
+   #  npm: path=/srv/DevOps state=latest
+   #- name: "Run app: forever start main.js"
+   #  command: forever start /srv/DevOps/main.js

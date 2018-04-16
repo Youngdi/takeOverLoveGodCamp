@@ -4,19 +4,20 @@ import {
   Text,
   Image,
   View,
-  Dimensions
+  Dimensions,
+  ImageBackground
 } from 'react-native';
 const { width, height } = Dimensions.get("window");
 export default class landBG extends Component {
     render() {
         return (
-            <Image 
+            <ImageBackground 
               source={require('../images/land/bg.png')}
               style={styles.backgroundImage}
               resizeMode={'contain'}
             >
             {this.props.children}
-            </Image>
+            </ImageBackground>
         )
     }
 }

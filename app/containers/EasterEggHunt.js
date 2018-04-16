@@ -25,7 +25,6 @@ import Modal from 'react-native-modalbox';
 import Day3bg from '../components/day3bg';
 import Modaliconimage from '../components/Modaliconimage';
 import bibleFlag from '../constants/bible';
-import BackgroundImage from '../components/BackgroundImage';
 import HomeImage from '../components/HomeImage';
 import GiveScoreDay3 from '../components/GiveScoreDay3';
 import { getMyUser, getMyCountry, getLand, api_buyResource, api_buyLand, api_qrcode, api_giveScoreDay3} from '../api/api';
@@ -40,18 +39,6 @@ const Seed = require('../images/modal/Seed.png');
 const Stone = require('../images/modal/Rock.png');
 
 export default class EasterEggHunt extends React.Component {
-
-  static navigationOptions = ({ navigation }) => {
-    const titleName = '尋寶獵人';
-    return {
-      title: titleName,
-      headerTitleStyle:{
-        alignSelf: 'center',
-        marginRight: -20,
-      },
-      headerLeft: null,
-    };
-  };
   constructor(props) {
     super(props);
     this.state = {

@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>管理頁面-設定</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-block-ui.min.js"></script>
+    <script src="js/sweet-alert.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-switch.min.js"></script>
+    <script src="js/config.js"></script>
+    <!-- Bootstrap -->
+    <link href="css/sweet-alert.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link href="css/bootstrap-switch.min.css" rel="stylesheet">
+    <link href="css/angular-block-ui.min.css" rel="stylesheet">
+    <link href="css/signin.css" rel="stylesheet">
+</head>
+
+<body ng-app="ngAppStrictDemo">
+    <div id="MainWrap" ng-controller="GoodController1">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">TakeOver傾城而出</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="day1.html"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Day1計分</a>
+                        </li>
+                        <li><a href="day3.html"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Day3計分</a>
+                        </li>
+                        <li><a href="setting.html"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> 設定開關</a>
+                        </li>
+                        <li><a href="#" onclick="record();"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> 紀錄查詢</a>
+                        </li>
+                        <li><a href="#" ng-click="logOut();"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> 登出</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid">
+            <div class="col-md-12" style="margin-top:30px;">
+                <div class="col-md-2 col-xs-12 col-sm-12">
+                </div>
+                <div class="col-md-2 col-xs-12 col-sm-12">
+                    <H3>QRCode重置</H3>
+                    <button ng-click="submit_qrcode_reset();" type="button" class="col-md-4 col-lg-4 col-xs-12 col-sm-12 btn btn-primary">確定</button>
+                </div>
+                <div class="col-md-3 col-xs-12 col-sm-12">
+                    <H3>切換首頁資源顯示(從各小隊變國家)</H3>
+                    <input id="change" type="checkbox" name="my-checkbox" checked>
+                </div>
+                <div class="col-md-2 col-xs-12 col-sm-12">
+                    <H3 class="col-md-12 col-xs-12 col-sm-12">領土參數調整</H3>
+                    <input id="reference" type="number" class="col-md-12 col-xs-12 col-sm-12">
+                    <button ng-click="submit_reference();" type="button" class="col-md-12 col-lg-12 col-xs-12 col-sm-12 btn btn-primary" style="margin-top:10px;">確定</button>
+                </div>
+                <div class="col-md-2 col-xs-12 col-sm-12">
+                    <H3 class="col-md-12 col-xs-12 col-sm-12">關主密碼</H3>
+                    <input id="password" class="col-md-12 col-xs-12 col-sm-12">
+                    <button ng-click="submit_password();" type="button" class="col-md-12 col-lg-12 col-xs-12 col-sm-12 btn btn-primary" style="margin-top:10px;">確定</button>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <hr style="border-top:1px solid black">
+        <div class="container">
+            <div class="col-md-12" style="margin-top:30px;">
+                <h2>廣播:</h2>
+                <br>
+                <textarea class="col-md-12 col-xs-12" style="height:320px;" id="broadcast"></textarea>
+                <br>
+                <button ng-click="submit_broadcast();" type="button" class="col-md-12 col-lg-12 col-xs-12 col-sm-12 btn btn-primary" style="margin-top:10px;">確定</button>
+            </div>
+        </div>
+        <div block-ui="main" class="block-ui-main"></div>
+    </div>
+    <script>
+    function record() {
+        $.ajax({
+                url: BASECONNECTION + ':' + PORT + '/get_record',
+                type: 'GET'
+            })
+            .done(function(data) {
+                console.log(data);
+            });
+    }
+    window.onload = function() {
+        var scope = angular.element(document.getElementById("MainWrap")).scope();
+        scope.$apply(function() {
+            scope.check_login();
+        });
+        $('#change').on('switchChange.bootstrapSwitch', function(event, state) {
+            var state_converter = state ? 'T' : 'F'
+            $.ajax({
+                url: BASECONNECTION + ':' + PORT + '/switchs_table',
+                type: 'POST',
+                data: {
+                    state: state_converter
+                }
+            });
+        });
+    };
+    var app = angular.module('ngAppStrictDemo', ['blockUI']);
+    app.controller('GoodController1',
+        function($scope, $http, blockUI) {
+            $scope.logOut = function() {
+                blockUI.start();
+                $http({
+                    method: 'GET',
+                    url: BASECONNECTION + ':' + PORT + '/manager_logout'
+                }).success(function(data) {
+                    blockUI.stop();
+                    window.location.href = "index.html";
+                    console.log("success");
+                }).error(function(data) {
+                    console.log("failed");
+                });
+            };
+            $scope.check_login = function() {
+                var globe_function = this;
+                blockUI.start();
+                $http({
+                    method: 'GET',
+                    url: BASECONNECTION + ':' + PORT + '/manager_check_login'
+                }).success(function(data) {
+                    blockUI.stop();
+                    if (data.need_login) {
+                        window.location.href = "index.html";
+                    } else {
+                        globe_function.init();
+                    }
+                }).error(function(data) {
+                    blockUI.stop();
+                    console.log("failed");
+                });
+            };
+            $scope.submit_broadcast = function() {
+                var globe_function = this;
+                blockUI.start();
+                var broadcast = $('#broadcast').val();
+                $http({
+                    method: 'POST',
+                    url: BASECONNECTION + ':' + PORT + '/update_board',
+                    data: {
+                        board: broadcast,
+                    }
+                }).success(function(data) {
+                    blockUI.stop();
+                    $('#broadcast').val("");
+                    alert('廣播至公布欄成功');
+                }).error(function(data) {
+                    alert('廣播至公布欄失敗');
+                });
+            };
+            $scope.submit_password = function() {
+                var globe_function = this;
+                blockUI.start();
+                var password = $('#password').val();
+                $http({
+                    method: 'POST',
+                    url: BASECONNECTION + ':' + PORT + '/update_password',
+                    data: {
+                        password: password,
+                    }
+                }).success(function(data) {
+                    blockUI.stop();
+                    //$('#password').val("");
+                    alert('變更關主密碼成功');
+                }).error(function(data) {
+                    alert('變更關主密碼失敗');
+                });
+            };
+            $scope.submit_qrcode_reset = function() {
+                blockUI.start();
+                $http({
+                    method: 'POST',
+                    url: BASECONNECTION + ':' + PORT + '/reset_qrcode'
+                }).success(function(data) {
+                    blockUI.stop();
+                    alert('QRcode重置成功');
+                }).error(function(data) {
+                    alert('QRcode重置失敗');
+                });
+            };
+            $scope.submit_reference = function() {
+                blockUI.start();
+                var reference = Number($('#reference').val());
+                $http({
+                    method: 'POST',
+                    url: BASECONNECTION + ':' + PORT + '/update_reference',
+                    data: {
+                        reference: reference,
+                    }
+                }).success(function(data) {
+                    blockUI.stop();
+                    $('#reference').val(1);
+                    alert('參數更新成功');
+                }).error(function(e) {
+                    alert('參數更新失敗');
+                });
+            };
+            $scope.init = function() {
+                $http({
+                    method: 'GET',
+                    url: BASECONNECTION + ':' + PORT + '/get_setting',
+                }).success(function(data) {
+                    blockUI.stop();
+                    var state = (data[0].changeToDay3 == 'T') ? true : false;
+                    $("[name='my-checkbox']").bootstrapSwitch({
+                        state: state,
+                        onColor: 'success',
+                        offColor: 'danger'
+                    });
+                    $('#broadcast').val(data[0].board);
+                    $('#reference').val(data[0].reference);
+                    $('#password').val(data[0].password);
+                }).error(function(e) {
+                });
+            };
+        }
+    );
+    </script>
+</body>
+
+</html>

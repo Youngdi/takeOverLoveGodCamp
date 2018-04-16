@@ -1,0 +1,24 @@
+- hosts: GCP
+  remote_user: ubuntu
+  gather_facts: no
+  pre_tasks:
+    - name: 'install python2'
+      raw: sudo apt-get -y install python-simplejson
+  tasks:
+    - copy: 
+        src: ../doc/csv
+        dest: ~/doc/
+    - copy: 
+        src: ../doc/mongoImport.sh
+        dest: ~/doc/
+    - copy: 
+        src: ../docker-compose.yml
+        dest: ~/
+    - name: install Docker from official shell script
+      raw: curl -sSL https://get.docker.com/ | sh
+    - name: install Docker-compose
+      raw: yes | sudo apt install docker-compose
+    - name: login docker
+      raw: sudo docker login registry.gitlab.com -u youngdi -p youngdi0627
+    - name: run takeover docker
+      raw: sudo docker-compose up -d

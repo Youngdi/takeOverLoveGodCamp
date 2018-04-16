@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>管理頁面Day3</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-block-ui.min.js"></script>
+    <script src="js/sweet-alert.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/config.js"></script>
+    <!-- Bootstrap -->
+    <link href="css/sweet-alert.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link href="css/angular-block-ui.min.css" rel="stylesheet">
+    <link href="css/signin.css" rel="stylesheet">
+</head>
+
+<body ng-app="ngAppStrictDemo">
+    <div id="MainWrap" ng-controller="GoodController1">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">TakeOver傾城而出</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="day1.html"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Day1計分</a>
+                        </li>
+                        <li><a href="day3.html"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span> Day3計分</a>
+                        </li>
+                        <li><a href="setting.html"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> 設定開關</a>
+                        </li>
+                        <li><a href="#" onclick="record();"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> 紀錄查詢</a>
+                        </li>
+                        <li><a href="#" ng-click="logOut();"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> 登出</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <center><h2 style="margin-top:30px;">資源給予</h2></center>
+            <div class="col-md-12" style="margin-top:30px;">
+                <div class="col-md-2">
+                    <label for="team">國家:</label>
+                    <select class="form-control" id="team">
+                        <option>M</option>
+                        <option>W</option>
+                        <option>P</option>
+                        <option>A</option>
+                        <option>L</option>
+                    </select>
+                </div>
+                <div class="col-md-1">
+                    <label for="A1">K寶石:</label>
+                    <input class="form-control" type="number" value="0" id="A1">
+                </div>
+                <div class="col-md-1">
+                    <label for="A2">水:</label>
+                    <input class="form-control" type="number" value="0" id="A2">
+                </div>
+                <div class="col-md-1">
+                    <label for="A3">火:</label>
+                    <input class="form-control" type="number" value="0" id="A3">
+                </div>
+                <div class="col-md-1">
+                    <label for="A4">木:</label>
+                    <input class="form-control" type="number" value="0" id="A4">
+                </div>
+                <div class="col-md-1">
+                    <label for="A5">石:</label>
+                    <input class="form-control" type="number" value="0" id="A5">
+                </div>
+                <div class="col-md-1">
+                    <label for="A6">種子:</label>
+                    <input class="form-control" type="number" value="0" id="A6">
+                </div>
+                <div class="col-md-4 col-lg-4" style="margin-top:25px;">
+                    <button ng-click="submit_country();" type="button" class="col-md-6 col-lg-6 col-xs-12 col-sm-12 btn btn-primary">資源給予確定</button>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="container">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <h3>國家資源表</h3>
+                    <table class="table table-striped table-hover table-bordered table-condensed">
+                        <thead>
+                            <tr>
+                                <th>國家</th>
+                                <th>K寶石</th>
+                                <th>水</th>
+                                <th>火</th>
+                                <th>木</th>
+                                <th>石</th>
+                                <th>種子</th>
+                            </tr>
+                        </thead>
+                        <tbody ng-repeat="country in country_data">
+                            <tr>
+                                <td>
+                                    <p ng-if="country.country == 'M' ">Modern</p>
+                                    <p ng-if="country.country == 'W' ">Wealth</p>
+                                    <p ng-if="country.country == 'P' ">Power</p>
+                                    <p ng-if="country.country == 'A' ">Academic</p>
+                                    <p ng-if="country.country == 'L' ">Labor</p>
+                                    <p ng-if="country.country == 'N' ">大魔王</p>
+                                </td>
+                                <td>{{country.K}}</td>
+                                <td>{{country.water}}</td>
+                                <td>{{country.fire}}</td>
+                                <td>{{country.wood}}</td>
+                                <td>{{country.stone}}</td>
+                                <td>{{country.seed}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <hr style="border-top:1px solid black">
+        <div class="container">
+            <center><h2>領土爭奪</h2></center>
+            <div class="col-md-12" style="margin-top:30px;">
+                <div class="col-md-4">
+                    <label for="team">土地:</label>
+                    <select class="form-control" id="map">
+                        <option>M1</option>
+                        <option>M2</option>
+                        <option>M3</option>
+                        <option>M4</option>
+                        <option>M5</option>
+                        <option>M6</option>
+                        <option>M7</option>
+                        <option>M8</option>
+                        <option>M9</option>
+                        <option>M10</option>
+                        <option>M11</option>
+                        <option>M12</option>
+                        <option>M13</option>
+                        <option>M14</option>
+                        <option>M15</option>
+                        <option>M16</option>
+                        <option>M17</option>
+                        <option>M18</option>
+                        <option>M19</option>
+                        <option>M20</option>
+                        <option>M21</option>
+                        <option>M22</option>
+                        <option>M23</option>
+                        <option>M24</option>
+                        <option>M25</option>
+                        <option>M26</option>
+                        <option>M27</option>
+                        <option>M28</option>
+                        <option>M29</option>
+                        <option>M30</option>
+                        <option>M31</option>
+                        <option>M32</option>
+                        <option>M33</option>
+                        <option>M34</option>
+                        <option>M35</option>
+                        <option>M36</option>
+                        <option>M37</option>
+                        <option>M38</option>
+                        <option>M39</option>
+                        <option>M40</option>
+                        <option>M41</option>
+                        <option>M42</option>
+                        <option>M43</option>
+                        <option>M44</option>
+                        <option>M45</option>
+                        <option>M46</option>
+                        <option>M47</option>
+                        <option>M48</option>
+                        <option>M49</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="country">國家:</label>
+                    <select class="form-control" id="country">
+                        <option>M</option>
+                        <option>W</option>
+                        <option>P</option>
+                        <option>A</option>
+                        <option>L</option>
+                        <option>N</option>
+                    </select>
+                </div>
+                <div class="col-md-4 col-lg-4" style="margin-top:25px;">
+                    <button ng-click="submit_map();" type="button" class="col-md-6 col-lg-6 col-xs-12 col-sm-12 btn btn-primary">更換土地確定</button>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <h3>土地所有權表</h3>
+                    <table class="table table-striped table-hover table-bordered table-condensed">
+                        <thead>
+                            <tr>
+                                <th>土地名稱</th>
+                                <th>國家</th>
+                            </tr>
+                        </thead>
+                        <tbody ng-repeat="map in map_data">
+                            <tr>
+                                <td>
+                                    {{map.map_name}}
+                                </td>
+                                <td>
+                                    <p ng-if="map.country == 'M' ">Modern</p>
+                                    <p ng-if="map.country == 'W' ">Wealth</p>
+                                    <p ng-if="map.country == 'P' ">Power</p>
+                                    <p ng-if="map.country == 'A' ">Academic</p>
+                                    <p ng-if="map.country == 'L' ">Labor</p>
+                                    <p ng-if="map.country == 'N' ">大魔王</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div block-ui="main" class="block-ui-main"></div>
+    </div>
+    <script>
+    function record() {
+        $.ajax({
+                url: BASECONNECTION + ':' + PORT + '/get_record',
+                type: 'GET'
+            })
+            .done(function(data) {
+                console.log(data);
+            });
+    }
+    window.onload = function() {
+        var scope = angular.element(document.getElementById("MainWrap")).scope();
+        scope.$apply(function() {
+            scope.check_login();
+        });
+    };
+    var app = angular.module('ngAppStrictDemo', ['blockUI']);
+    app.controller('GoodController1',
+        function($scope, $http, blockUI) {
+            $scope.logOut = function() {
+                blockUI.start();
+                $http({
+                    method: 'GET',
+                    url: BASECONNECTION + ':' + PORT + '/manager_logout'
+                }).success(function(data) {
+                    blockUI.stop();
+                    window.location.href = "index.html";
+                    console.log("success");
+                }).error(function(e) {
+                    alert('failed');
+                });
+            };
+            $scope.init = function() {
+                for(i=1; i < 11; i++) {
+                    $('#A'+i).val(0);
+                }
+                $('#info').text("");
+
+                blockUI.start();
+                $http({
+                    method: 'GET',
+                    url: BASECONNECTION + ':' + PORT + '/get_country'
+                }).success(function(data) {
+                    $scope.country_data = data;
+                    blockUI.stop();
+                }).error(function(e) {
+                    alert('failed');
+                });
+               $http({
+                    method: 'GET',
+                    url: BASECONNECTION + ':' + PORT + '/get_map'
+                }).success(function(data) {
+                    $scope.map_data = data;
+                    blockUI.stop();
+                }).error(function(e) {
+                    alert('failed');
+                });
+            };
+            $scope.check_login = function() {
+                var globe_function = this;
+                blockUI.start();
+                $http({
+                    method: 'GET',
+                    url: BASECONNECTION + ':' + PORT + '/manager_check_login'
+                }).success(function(data) {
+                    blockUI.stop();
+                    if (data.need_login) {
+                        window.location.href = "index.html";
+                    } else {
+                        globe_function.init();
+                    }
+                }).error(function(e) {
+                    alert('failed');
+                });
+            };
+            $scope.submit_country = function() {
+                blockUI.start();
+                var globe_function = this;
+                var team = $('#team').val();
+                var A1 = Number($('#A1').val());
+                var A2 = Number($('#A2').val());
+                var A3 = Number($('#A3').val());
+                var A4 = Number($('#A4').val());
+                var A5 = Number($('#A5').val());
+                var A6 = Number($('#A6').val());
+                $http({
+                    method: 'POST',
+                    url: BASECONNECTION + ':' + PORT + '/update_country',
+                    data: {
+                        name: team,
+                        K: A1,
+                        water: A2,
+                        fire: A3,
+                        wood: A4,
+                        stone: A5,
+                        seed: A6,
+                    }
+                }).success(function(data) {
+                    blockUI.stop();
+                    globe_function.init();
+                }).error(function(e) {
+                    alert('failed');
+                });
+            }
+            $scope.submit_map = function() {
+                blockUI.start();
+                var globe_function = this;
+                var map_name = $('#map').val();
+                var country = $('#country').val();
+                $http({
+                    method: 'POST',
+                    url: BASECONNECTION + ':' + PORT + '/update_map',
+                    data: {
+                        map_name: map_name,
+                        country: country,
+                    }
+                }).success(function(data) {
+                    blockUI.stop();
+                    globe_function.init();
+                }).error(function(e) {
+                    alert('failed');
+                });
+            };
+        }
+    );
+    </script>
+</body>
+
+</html>

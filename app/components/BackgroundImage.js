@@ -3,19 +3,20 @@ import {
   StyleSheet,
   Text,
   Image,
-  View
+  View,
+  ImageBackground
 } from 'react-native';
 import imageFlags from '../constants/imageFlags';
 export default class BackgroundImage extends Component {
     
     render() {
         return (
-            <Image 
+            <ImageBackground 
               source={imageFlags[this.props.url]}
               style={styles.backgroundImage}
             >
             {this.props.children}
-            </Image>
+            </ImageBackground>
         )
     }
 }

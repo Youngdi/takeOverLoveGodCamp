@@ -1,0 +1,45 @@
+stages:
+  - build
+  - deploy
+build-docker-master:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - docker build --pull -t "$CI_REGISTRY_IMAGE" .
+    - docker push "$CI_REGISTRY_IMAGE"
+  tags:
+   - docker
+setup_env:
+  image: williamyeh/ansible:ubuntu14.04
+  stage: deploy
+  before_script:
+    - mkdir -p ~/.ssh
+    - echo -e "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+      # Install ssh-agent if not already installed, it is required by Docker.
+    - chmod 600 ~/.ssh/id_rsa
+      # (change apt-get to yum if you use a CentOS-based image)
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - ansible-playbook -i ./ansible/inventory ./ansible/playbook_docker.yml -vvv
+  tags:
+    - docker
+  when: manual
+auto_deploy:
+  image: rastasheep/ubuntu-sshd
+  stage: deploy
+  allow_failure: true
+  before_script:
+    - mkdir -p ~/.ssh
+    - echo -e "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+      # Install ssh-agent if not already installed, it is required by Docker.
+    - chmod 600 ~/.ssh/id_rsa
+      # (change apt-get to yum if you use a CentOS-based image)
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - bash .gitlab-deploy.sh
+  tags:
+    - docker
