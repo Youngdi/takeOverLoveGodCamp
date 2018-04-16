@@ -18,15 +18,18 @@ import {
   ImageBackground
 } from 'react-native';
 import Modal from 'react-native-modalbox';
+import Spinner from 'react-native-loading-spinner-overlay';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+import Drawer from 'react-native-drawer';
 import * as Config from '../constants/config';
 import imageFlags from '../constants/config';
 import history from '../constants/history';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import { getMyUser, getMyCountry, api_buyResource, getFlagFromSetting } from '../api/api';
 import Modaliconimage from '../components/Modaliconimage';
 import HomeImage from '../components/HomeImage.js';
-import Spinner from 'react-native-loading-spinner-overlay';
+import DrawerPanel from '../components/DrawerPanel';
 const { width, height } = Dimensions.get("window");
 
 export default class Home extends React.Component {
@@ -125,6 +128,8 @@ export default class Home extends React.Component {
       alert('不好意思，伺服器已關閉，明年請儘早報名變強好不好夏令營');
     }
   }
+  closeControlPanel = () => this._drawer.close()
+  openControlPanel = () => this._drawer.open()
   _onRefresh() {
     this.setState({isRefreshing: true});
     this.init();
@@ -192,210 +197,240 @@ export default class Home extends React.Component {
     }
   }
   render() {
-    return(
-      <View
-        style={{
-          flex:1,
-          backgroundColor:'rgb(165,186,194)',
-        }}>
-        <ScrollView
-          style={styles.contentContainer}     
-          refreshControl={
-            <RefreshControl
-              refreshing={this.state.isRefreshing}
-              onRefresh={this._onRefresh.bind(this)}
-              //tintColor="#ff0000"
-              title="Loading..."
-              //titleColor="#00ff00"
-              //colors={['#ff0000', '#00ff00', '#0000ff']}
-              //progressBackgroundColor="#ffff00"
-            />
-          }
-        >
-            <View style={{width:'100%', height:height*0.5, marginBottom:15}}>
-              <TouchableOpacity onPress={() => this.refs.history_modal.open()}>
-               <HomeImage url={this.state.username} navigation={this.props.navigation}></HomeImage>
-              </TouchableOpacity>
-            </View>
-            <View style={{width:'100%'}}>
-              <View style={{flex:1, width:'100%', height: '100%', flexDirection:'row', flexWrap: 'nowrap'}}>
-                <View style={styles.sourceSize}>
-                  <ImageBackground
-                    style={styles.source}
-                    source={require('../images/home/fire.png')}>
-                    <TouchableOpacity onPress={this.onPressSourceButton.bind(this, 'fire')}>
-                      <View style={styles.backdropView}>
-                        <Text style={styles.headline}>{Math.floor(this.state.fire)}</Text>
-                      </View>
-                    </TouchableOpacity>
-                  </ImageBackground>
-                </View>
-                <View style={styles.sourceSize}>
-                  <ImageBackground
-                    style={styles.source}
-                    source={require('../images/home/k.png')}>
-                    <TouchableOpacity onPress={() => alert('神祕的K寶石可以用來買各種資源')}>
-                      <View style={styles.backdropView}>
-                        <Text style={styles.headline}>{Math.floor(this.state.K)}</Text>
-                      </View>
-                    </TouchableOpacity>
-                  </ImageBackground>
-                </View>
-                <View style={styles.sourceSize}>
-                  <ImageBackground
-                    style={styles.source}
-                    source={require('../images/home/water.png')}>
-                    <TouchableOpacity onPress={this.onPressSourceButton.bind(this, 'water')}>
-                      <View style={styles.backdropView}>
-                        <Text style={styles.headline}>{Math.floor(this.state.water)}</Text>
-                      </View>
-                    </TouchableOpacity>
-                  </ImageBackground>
-                </View>
+    const drawerStyles = {
+      drawer: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
+      main: {paddingLeft: 3},
+      drawerOverlay: { opacity: 0.1}
+    }
+    return (
+      <Drawer
+        type="displace"
+        content={
+          <DrawerPanel
+            navigation={this.props.navigation}
+            closeControlPanel={this.closeControlPanel}
+          />
+        }
+        captureGestures={true}
+        tapToClose={true}
+        openDrawerOffset={0.2} // 20% gap on the right side of drawer
+        panCloseMask={0.2}
+        panOpenMask={20}
+        closedDrawerOffset={-3}
+        styles={drawerStyles}
+        tweenHandler={(ratio) => ({
+          main: { opacity:( 2 - ratio) /2 },
+          mainOverlay: {
+            opacity: ratio / 1.2,
+            backgroundColor: 'black',
+          },
+        })}
+        ref={(ref) => this._drawer = ref}
+      >
+        <View
+          style={{
+            flex:1,
+            backgroundColor:'rgb(165,186,194)',
+          }}>
+          <ScrollView
+            style={styles.contentContainer}     
+            refreshControl={
+              <RefreshControl
+                refreshing={this.state.isRefreshing}
+                onRefresh={this._onRefresh.bind(this)}
+                //tintColor="#ff0000"
+                title="Loading..."
+                //titleColor="#00ff00"
+                //colors={['#ff0000', '#00ff00', '#0000ff']}
+                //progressBackgroundColor="#ffff00"
+              />
+            }
+          >
+              <View style={{width:'100%', height:height*0.5, marginBottom:15}}>
+                <TouchableOpacity onPress={() => this.refs.history_modal.open()}>
+                <HomeImage url={this.state.username} navigation={this.props.navigation}></HomeImage>
+                </TouchableOpacity>
               </View>
-              <View style={{flex:1, width:'100%', height: '100%', flexDirection:'row', flexWrap: 'nowrap'}}>
-                <View style={styles.sourceSize}>
-                  <ImageBackground
-                    style={styles.source}
-                    source={require('../images/home/stone.png')}>
-                    <TouchableOpacity onPress={this.onPressSourceButton.bind(this, 'stone')}>
-                      <View style={styles.backdropView}>
-                        <Text style={styles.headline}>{Math.floor(this.state.stone)}</Text>
-                      </View>
-                    </TouchableOpacity>
-                  </ImageBackground>
-                </View>
-                <View style={styles.sourceSize}>
-                  <ImageBackground
-                    style={styles.source}
-                    source={require('../images/home/seed.png')}>
-                    <TouchableOpacity onPress={this.onPressSourceButton.bind(this, 'seed')}>
-                      <View style={styles.backdropView}>
-                        <Text style={styles.headline}>{Math.floor(this.state.seed)}</Text>
-                      </View>
-                    </TouchableOpacity>
-                  </ImageBackground>
-                </View>
-                <View style={styles.sourceSize}>
-                  <ImageBackground
-                    style={styles.source}
-                    source={require('../images/home/wood.png')}>
-                    <TouchableOpacity onPress={this.onPressSourceButton.bind(this, 'wood')}>
-                      <View style={styles.backdropView}>
-                        <Text style={styles.headline}>{Math.floor(this.state.wood)}</Text>
-                      </View>
-                    </TouchableOpacity>
-                  </ImageBackground>
-                </View>
-              </View>
-              <View style={{width:'100%', height:5}}></View>
-            </View>
-        </ScrollView>
-        <Modal
-          style={[styles.modal]}
-          position={"center"}
-          ref={"buy_modal"}
-          isOpen={this.state.isOpen}
-          swipeToClose={false}
-        >
-          <View style={styles.ImageShadow}>
-            <ImageBackground 
-              style={styles.backdrop} 
-              source={require('../images/short_modal_bg.png')}>
-                <ScrollView contentContainerStyle={styles.backdropSourceView}>
-                  <Text onPress={() => this.setState({isOpen:false})} style={styles.backdropSourceViewClose}>{''}</Text>
-                  <Text style={styles.backdropSourceViewHeadline}>請問你是否要用3顆K寶石換1個{this.state.shopText}</Text>
-                  <View style={{flexDirection:'row'}}>
-                    <Text style={{fontSize:20,marginTop:18}}>3</Text>
-                    <Text style={{fontSize:20,marginTop:18, marginLeft:10}}>X</Text>
-                    <Image
-                      style={{width:50, height:50}}
-                      source={require('../images/modal/K_Jewelry.png')}
-                    ></Image>
-                    <Text style={{fontSize:20,marginTop:18, marginRight:10}}>=</Text>
-                    <Modaliconimage url={this.state.shopIcon}>
-                    </Modaliconimage>
-                  </View>
-                  <View style={{width:250, marginTop:20}}>
-                      <View style={styles.inputWrap}>
-                        <View style={styles.iconWrap}>
-                          <Image source={require('../images/modal/K_Jewelry.png')} style={styles.icon} resizeMode="contain" />
+              <View style={{width:'100%'}}>
+                <View style={{flex:1, width:'100%', height: '100%', flexDirection:'row', flexWrap: 'nowrap'}}>
+                  <View style={styles.sourceSize}>
+                    <ImageBackground
+                      style={styles.source}
+                      source={require('../images/home/fire.png')}>
+                      <TouchableOpacity onPress={this.onPressSourceButton.bind(this, 'fire')}>
+                        <View style={styles.backdropView}>
+                          <Text style={styles.headline}>{Math.floor(this.state.fire)}</Text>
                         </View>
-                        <TextInput
-                          placeholder="請輸入數量"
-                          keyboardType="numeric"
-                          placeholderTextColor="#8495a0" 
-                          style={styles.input}
-                          onChangeText={(val) => this.onChangeText(val)}
-                          />
+                      </TouchableOpacity>
+                    </ImageBackground>
+                  </View>
+                  <View style={styles.sourceSize}>
+                    <ImageBackground
+                      style={styles.source}
+                      source={require('../images/home/k.png')}>
+                      <TouchableOpacity onPress={() => alert('神祕的K寶石可以用來買各種資源')}>
+                        <View style={styles.backdropView}>
+                          <Text style={styles.headline}>{Math.floor(this.state.K)}</Text>
+                        </View>
+                      </TouchableOpacity>
+                    </ImageBackground>
+                  </View>
+                  <View style={styles.sourceSize}>
+                    <ImageBackground
+                      style={styles.source}
+                      source={require('../images/home/water.png')}>
+                      <TouchableOpacity onPress={this.onPressSourceButton.bind(this, 'water')}>
+                        <View style={styles.backdropView}>
+                          <Text style={styles.headline}>{Math.floor(this.state.water)}</Text>
+                        </View>
+                      </TouchableOpacity>
+                    </ImageBackground>
+                  </View>
+                </View>
+                <View style={{flex:1, width:'100%', height: '100%', flexDirection:'row', flexWrap: 'nowrap'}}>
+                  <View style={styles.sourceSize}>
+                    <ImageBackground
+                      style={styles.source}
+                      source={require('../images/home/stone.png')}>
+                      <TouchableOpacity onPress={this.onPressSourceButton.bind(this, 'stone')}>
+                        <View style={styles.backdropView}>
+                          <Text style={styles.headline}>{Math.floor(this.state.stone)}</Text>
+                        </View>
+                      </TouchableOpacity>
+                    </ImageBackground>
+                  </View>
+                  <View style={styles.sourceSize}>
+                    <ImageBackground
+                      style={styles.source}
+                      source={require('../images/home/seed.png')}>
+                      <TouchableOpacity onPress={this.onPressSourceButton.bind(this, 'seed')}>
+                        <View style={styles.backdropView}>
+                          <Text style={styles.headline}>{Math.floor(this.state.seed)}</Text>
+                        </View>
+                      </TouchableOpacity>
+                    </ImageBackground>
+                  </View>
+                  <View style={styles.sourceSize}>
+                    <ImageBackground
+                      style={styles.source}
+                      source={require('../images/home/wood.png')}>
+                      <TouchableOpacity onPress={this.onPressSourceButton.bind(this, 'wood')}>
+                        <View style={styles.backdropView}>
+                          <Text style={styles.headline}>{Math.floor(this.state.wood)}</Text>
+                        </View>
+                      </TouchableOpacity>
+                    </ImageBackground>
+                  </View>
+                </View>
+                <View style={{width:'100%', height:5}}></View>
+              </View>
+          </ScrollView>
+          <Modal
+            style={[styles.modal]}
+            position={"center"}
+            ref={"buy_modal"}
+            isOpen={this.state.isOpen}
+            swipeToClose={false}
+          >
+            <View style={styles.ImageShadow}>
+              <ImageBackground 
+                style={styles.backdrop} 
+                source={require('../images/short_modal_bg.png')}>
+                  <ScrollView contentContainerStyle={styles.backdropSourceView}>
+                    <Text onPress={() => this.setState({isOpen:false})} style={styles.backdropSourceViewClose}>{''}</Text>
+                    <Text style={styles.backdropSourceViewHeadline}>請問你是否要用3顆K寶石換1個{this.state.shopText}</Text>
+                    <View style={{flexDirection:'row'}}>
+                      <Text style={{fontSize:20,marginTop:18}}>3</Text>
+                      <Text style={{fontSize:20,marginTop:18, marginLeft:10}}>X</Text>
+                      <Image
+                        style={{width:50, height:50}}
+                        source={require('../images/modal/K_Jewelry.png')}
+                      ></Image>
+                      <Text style={{fontSize:20,marginTop:18, marginRight:10}}>=</Text>
+                      <Modaliconimage url={this.state.shopIcon}>
+                      </Modaliconimage>
                     </View>
-                  </View>
-                  <View style={{top:5, width:200}}>
-                    <Button
-                      style={{width:100}}
-                      title={"確定購買"}
-                      onPress={this.buy.bind(this)}
-                    >
-                    </Button>
-                  </View>
-                </ScrollView>
-            </ImageBackground>
-          </View>
-        </Modal>
-        <Modal
-          position={"center"}
-          ref={"history_modal"}
-          isOpen={this.state.history_isOpen}
-          swipeToClose={true}
-        >
-          <View style={styles.ImageShadow}>
-            <ImageBackground 
-              style={{width: width+20,height: height+30, top: -30, left: -10}}
-              source={require('../images/long_modal_bg.png')}
-            >
-              <TouchableOpacity
-                onPress={() => {
-                  this.refs.history_modal.close();
-                  this.setState({history_isOpen:false});
-                  }
-                }
-                hitSlop={{top: 50, bottom: 50, left: 50, right: 50}}
-                style={{position:'absolute',right:0,top:50, width:100, height:100, backgroundColor:'red'}}
+                    <View style={{width:250, marginTop:20}}>
+                        <View style={styles.inputWrap}>
+                          <View style={styles.iconWrap}>
+                            <Image source={require('../images/modal/K_Jewelry.png')} style={styles.icon} resizeMode="contain" />
+                          </View>
+                          <TextInput
+                            placeholder="請輸入數量"
+                            keyboardType="numeric"
+                            placeholderTextColor="#8495a0" 
+                            style={styles.input}
+                            onChangeText={(val) => this.onChangeText(val)}
+                            />
+                      </View>
+                    </View>
+                    <View style={{top:5, width:200}}>
+                      <Button
+                        style={{width:100}}
+                        title={"確定購買"}
+                        onPress={this.buy.bind(this)}
+                      >
+                      </Button>
+                    </View>
+                  </ScrollView>
+              </ImageBackground>
+            </View>
+          </Modal>
+          <Modal
+            position={"center"}
+            ref={"history_modal"}
+            isOpen={this.state.history_isOpen}
+            swipeToClose={true}
+          >
+            <View style={styles.ImageShadow}>
+              <ImageBackground 
+                style={{width: width+20,height: height+30, top: -30, left: -10}}
+                source={require('../images/long_modal_bg.png')}
               >
-              <View></View>
-              </TouchableOpacity>
-                <ScrollView 
-                  style={{
-                    flex:1,
-                    width:width,
-                    height:height,
-                    backgroundColor: 'rgba(0,0,0,0)',
-                    marginTop:80,
-                  }}
-                  contentContainerStyle={{
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}
+                <TouchableOpacity
+                  onPress={() => {
+                    this.refs.history_modal.close();
+                    this.setState({history_isOpen:false});
+                    }
+                  }
+                  hitSlop={{top: 50, bottom: 50, left: 50, right: 50}}
+                  style={{position:'absolute',right:0,top:50, width:100, height:100, backgroundColor:'red'}}
                 >
-                  <View>
-                    <Text style={{fontSize:30, fontWeight:'800', color:'rgb(120,120,120)', marginBottom:30}}>{'國家歷史'}</Text>
-                  </View>
-                  <View style={{width:width * 0.8}}>
-                    <Text style={{fontSize:20, fontWeight:'400', color:'rgb(60,60,60)', marginBottom:30}}>{history[this.state.country].history}</Text>
-                  </View>
-                  <View>
-                    <Text style={{fontSize:30, fontWeight:'800', color:'rgb(120,120,120)', marginBottom:30}}>{'特殊能力'}</Text>
-                  </View>
-                  <View style={{width:width * 0.8}}>
-                    <Text style={{fontSize:20, fontWeight:'400', color:'rgb(60,60,60)', marginBottom:30}}>{history[this.state.country].ability}</Text>
-                  </View>
-                  <View style={{width:1,height:50}}></View>
-                </ScrollView>
-            </ImageBackground>
-          </View>
-        </Modal>
-        {/* <Spinner visible={this.state.visible} textContent={"Loading..."} textStyle={{color: '#FFF'}} /> */}
-      </View>
+                <View></View>
+                </TouchableOpacity>
+                  <ScrollView 
+                    style={{
+                      flex:1,
+                      width:width,
+                      height:height,
+                      backgroundColor: 'rgba(0,0,0,0)',
+                      marginTop:80,
+                    }}
+                    contentContainerStyle={{
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <View>
+                      <Text style={{fontSize:30, fontWeight:'800', color:'rgb(120,120,120)', marginBottom:30}}>{'國家歷史'}</Text>
+                    </View>
+                    <View style={{width:width * 0.8}}>
+                      <Text style={{fontSize:20, fontWeight:'400', color:'rgb(60,60,60)', marginBottom:30}}>{history[this.state.country].history}</Text>
+                    </View>
+                    <View>
+                      <Text style={{fontSize:30, fontWeight:'800', color:'rgb(120,120,120)', marginBottom:30}}>{'特殊能力'}</Text>
+                    </View>
+                    <View style={{width:width * 0.8}}>
+                      <Text style={{fontSize:20, fontWeight:'400', color:'rgb(60,60,60)', marginBottom:30}}>{history[this.state.country].ability}</Text>
+                    </View>
+                    <View style={{width:1,height:50}}></View>
+                  </ScrollView>
+              </ImageBackground>
+            </View>
+          </Modal>
+          <Spinner visible={this.state.visible} textContent={"Loading..."} textStyle={{color: '#FFF'}} />
+        </View>
+      </Drawer>
     )
   }
 }

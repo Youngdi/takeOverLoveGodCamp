@@ -12,150 +12,12 @@ import PuzzleGameScreen from './PuzzleGame';
 import SplashScreen from './Splash';
 import LoginScreen from './Login';
 
-class MyHomeScreen extends Component {
-  constructor(props) {
-    super(props);
-  }
-  componentDidMount() {
-    // this.setupScheduleLocalNotification();
-    // const resetAction = NavigationActions.reset({
-    //   index: 0,
-    //   actions: [
-    //     NavigationActions.navigate({routeName: 'Diary'}),
-    //   ],
-    // });
-    // this.props.navigation.dispatch(resetAction);
-    FCM.requestPermissions();
-    FCM.getFCMToken().then(token => {
-      console.log("TOKEN (getFCMToken)", token);
-    });
-    FCM.getInitialNotification().then(notif => {
-      FCM.setBadgeNumber(0);
-      console.log("INITIAL NOTIFICATION", notif)
-    });
-    this.notificationListener = FCM.on(FCMEvent.Notification, notif => {
-      if (Platform.OS == 'ios') {
-        if (notif.local_notification) {
-          FCM.setBadgeNumber(0);
-          // this.setupScheduleLocalNotification();
-          return;
-        } else {
-          // alert(notif.aps.alert);
-        }
-      } else {
-          // alert(notif.fcm.body);
-      }
-      if(notif.local_notification){
-        return;
-      }
-      if(notif.opened_from_tray){
-        return;
-      }
-      if(Platform.OS ==='ios') {
-        switch(notif._notificationType){
-          case NotificationType.Remote:
-            notif.finish(RemoteNotificationResult.NewData) //other types available: RemoteNotificationResult.NewData, RemoteNotificationResult.ResultFailed
-            break;
-          case NotificationType.NotificationResponse:
-            notif.finish();
-            break;
-          case NotificationType.WillPresent:
-            notif.finish(WillPresentNotificationResult.All) //other types available: WillPresentNotificationResult.None
-            break;
-        }
-      }
-      this.refreshTokenListener = FCM.on(FCMEvent.RefreshToken, token => {
-        console.log("TOKEN (refreshUnsubscribe)", token);
-      });
-    });
-    CodePush.sync({ updateDialog: false, installMode: CodePush.InstallMode.IMMEDIATE },
-      (status) => {
-        switch (status) {
-          case CodePush.SyncStatus.DOWNLOADING_PACKAGE:
-            this.setState({showDownloadingModal: false});
-            break;
-          case CodePush.SyncStatus.INSTALLING_UPDATE:
-            this.setState({showInstalling: true});
-            break;
-          case CodePush.SyncStatus.UPDATE_INSTALLED:
-            this.setState({showDownloadingModal: false});
-            break;
-        }
-      },
-      ({ receivedBytes, totalBytes, }) => {
-          this.setState({downloadProgress: receivedBytes / totalBytes * 100});
-      }
-    );
-  }
-  setupScheduleLocalNotification = () => {
-    FCM.cancelLocalNotification('nightReminders');
-    FCM.cancelLocalNotification('dayReminders');
-    FCM.scheduleLocalNotification({
-      fire_date: moment(`${moment().format('YYYY-MM-DD')} 08:00:00`).toDate().getTime(),
-      id: 'dayReminders',
-      title: '早起靈修，開啟你美好的一天',
-      body: this.getDiaryBiblePhrase('每日一'),
-      priority: 'high', 
-      show_in_foreground: true,
-      sound: 'default',
-      local: true,
-      badge: 1,
-      vibrate: 500,
-      wake_screen: true
-    });
-    FCM.scheduleLocalNotification({
-      fire_date: moment(`${moment().format('YYYY-MM-DD')} 22:00:00`).toDate().getTime(),
-      id: 'nightReminders',
-      title: '睡前靈修，願主與你一同進入夢鄉',
-      body: this.getDiaryBiblePhrase('睡前'),
-      priority: 'high', 
-      show_in_foreground: true,
-      sound: 'default',
-      local: true,
-      badge: 1,
-      vibrate: 500,
-      wake_screen: true
-    });
-  }
-  componentWillUnmount() {
-    // stop listening for events
-    // this.notificationListener.remove();
-  }
-  render() {
-    return (
-      <View style={{opacity:1}}>
-        <Button title="AAAA" onPress={() => this.props.navigation.navigate('Diary')}></Button>
-        <Button title="BBBBB" onPress={() => this.scheduleLocalNotification()}></Button>
-      </View>
-    );
-  }
-}
-class MyNavScreen extends Component {
-  render() {
-    return (
-      <ScrollView>
-        <View>
-        </View>
-      </ScrollView>
-    );
-  }
-}
-
-const MyProfileScreen = ({ navigation }) => (
-  <MyNavScreen
-    banner={`${navigation.state.params.name}s Profile`}
-    navigation={navigation}
-  />
-);
-
-const MyNotificationsSettingsScreen = ({ navigation }) => (
-  <MyNavScreen banner="Notifications Screen" navigation={navigation} />
-);
-
-const MySettingsScreen = ({ navigation }) => (
-  <MyNavScreen banner="Settings Screen" navigation={navigation} />
-);
-
+const styles = StyleSheet.create({
+  icon: {
+    width: 30,
+    height: 30,
+  },
+});
 const HomeTabNav = TabNavigator(
   {
     Home: {
@@ -177,6 +39,7 @@ const HomeTabNav = TabNavigator(
       screen: PuzzleGameScreen,
       navigationOptions: {
         title: '九宮格解謎',
+        header: null,
         tabBarLabel: '解謎',
         tabBarIcon: ({ tintColor, focused }) => (
           <Image
@@ -191,6 +54,7 @@ const HomeTabNav = TabNavigator(
       screen: EasterEggHunterScreen,
       navigationOptions: {
         title: '尋寶獵人',
+        header: null,
         tabBarLabel: '尋寶',
         tabBarIcon: ({ tintColor, focused }) => (
           <Image
@@ -205,6 +69,7 @@ const HomeTabNav = TabNavigator(
       screen: LandScreen,
       navigationOptions: {
         title: '領土爭奪',
+        header: null,
         tabBarLabel: '領土爭奪',
         tabBarIcon: ({ tintColor, focused }) => (
           <Image
@@ -243,37 +108,27 @@ const App = StackNavigator(
 {
   Root: {
     screen: SplashScreen,
+    navigationOptions: {
+      header: null,
+    },
   },
   Login: {
     screen: LoginScreen,
+    navigationOptions: {
+      header: null,
+    },
   },
   HomeTab: {
     screen: HomeTabNav,
-  },
-  NotifSettings: {
-    screen: MyNotificationsSettingsScreen,
     navigationOptions: {
-      title: 'Notifications',
-    },
-  },
-  Profile: {
-    screen: MyProfileScreen,
-    navigationOptions: ({ navigation }) => {
-      title: `${navigation.state.params.name}'s Profile!`;
+      header: null,
     },
   },
 },
   {
     transitionConfig: getSlideFromRightTransition,
-    headerMode: 'none'
+    headerMode: 'screen'
   }
 );
 
 export default App;
-
-const styles = StyleSheet.create({
-  icon: {
-    width: 30,
-    height: 30,
-  },
-});

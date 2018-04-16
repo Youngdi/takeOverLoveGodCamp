@@ -14,12 +14,19 @@ import {
   AsyncStorage,
   Alert
 } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 import * as Config from '../constants/config';
 import LoginForm from '../components/LoginForm';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { api_login } from '../api/api';
 async function login(value) {
   try {
+    const resetAction = NavigationActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({routeName:'HomeTab'}),
+      ],
+    });
     const response = await api_login(value);
     if (response.loggedIn) {
       try {
@@ -34,7 +41,7 @@ async function login(value) {
         visible: !this.state.visible,
         wrong: false,
       });
-      this.props.navigation.navigate('Home');
+      this.props.navigation.dispatch(resetAction);
     } else {
       this.setState({
         visible: !this.state.visible,
@@ -50,6 +57,12 @@ async function login(value) {
 }
 async function loginForFun() {
   try {
+    const resetAction = NavigationActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({routeName:'HomeTab'}),
+      ],
+    });
     const value = {username:'BYT30', password:'A23456'};
     const response = await api_login(value);
     if (response.loggedIn) {
@@ -65,7 +78,7 @@ async function loginForFun() {
         visible: !this.state.visible,
         wrong: false,
       });
-      this.props.navigation.navigate('Home');
+      this.props.navigation.dispatch(resetAction);
     } else {
       this.setState({
         visible: !this.state.visible,

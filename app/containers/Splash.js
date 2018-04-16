@@ -8,7 +8,7 @@ import {
 import InitialScreen from '../components/initialScreen';
 import BackgroundImage from '../components/BackgroundImage';
 import Spinner from 'react-native-spinkit';
-import { NavigationActions } from 'react-navigation'
+import { NavigationActions } from 'react-navigation';
 import * as Config from '../constants/config';
 
 async function check_login() {
