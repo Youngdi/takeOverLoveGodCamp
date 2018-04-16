@@ -40,11 +40,11 @@ export default class SideDrawer extends React.Component {
       drawerItems: [
         {route:'HomeTab', name:'首頁', iconName:'md-home'},
         {route:'Workshop', name:'工作坊', iconName:'md-construct'},
-        {route:'', name:'行程表', iconName:'md-clipboard'},
-        {route:'', name:'國家歷史', iconName:'md-flag'},
-        {route:'', name:'疑難雜症要找誰', iconName:'md-help'},
-        {route:'', name:'回饋單填寫', iconName:'md-document'},
-        {route:'', name:'旌旗教會資訊', iconName:'md-people'},
+        {route:'Schedule', name:'行程表', iconName:'md-clipboard'},
+        {route:'History', name:'國家歷史', iconName:'md-flag'},
+        {route:'HelpInfo', name:'疑難雜症要找誰', iconName:'md-help'},
+        {route:'Questionnaire', name:'回饋單填寫', iconName:'md-document'},
+        {route:'Church', name:'旌旗教會資訊', iconName:'md-people'},
         {route:'Logout', name:'登出', iconName:'md-power'}
       ]
     }

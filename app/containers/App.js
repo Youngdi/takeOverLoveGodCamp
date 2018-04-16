@@ -11,6 +11,13 @@ import LandScreen from './Land';
 import PuzzleGameScreen from './PuzzleGame';
 import SplashScreen from './Splash';
 import LoginScreen from './Login';
+import WorkshopScreen from './Workshop';
+import HistoryScreen from './History';
+import HelpInfoScreen from './HelpInfo';
+import ScheduleScreen from './Schedule';
+import QuestionnaireScreen from './Questionnaire';
+import ChurchScreen from './Church';
+import ScanScreen from './Scan';
 
 const styles = StyleSheet.create({
   icon: {
@@ -39,7 +46,6 @@ const HomeTabNav = TabNavigator(
       screen: PuzzleGameScreen,
       navigationOptions: {
         title: '九宮格解謎',
-        header: null,
         tabBarLabel: '解謎',
         tabBarIcon: ({ tintColor, focused }) => (
           <Image
@@ -54,7 +60,6 @@ const HomeTabNav = TabNavigator(
       screen: EasterEggHunterScreen,
       navigationOptions: {
         title: '尋寶獵人',
-        header: null,
         tabBarLabel: '尋寶',
         tabBarIcon: ({ tintColor, focused }) => (
           <Image
@@ -69,7 +74,6 @@ const HomeTabNav = TabNavigator(
       screen: LandScreen,
       navigationOptions: {
         title: '領土爭奪',
-        header: null,
         tabBarLabel: '領土爭奪',
         tabBarIcon: ({ tintColor, focused }) => (
           <Image
@@ -124,6 +128,27 @@ const App = StackNavigator(
       header: null,
     },
   },
+  Scan: {
+    screen: ScanScreen,
+  },
+  Workshop: {
+    screen: WorkshopScreen,
+  },
+  Schedule: {
+    screen: ScheduleScreen,
+  },
+  History: {
+    screen: HistoryScreen,
+  },
+  HelpInfo: {
+    screen: HelpInfoScreen,
+  },
+  Questionnaire: {
+    screen: QuestionnaireScreen,
+  },
+  Church: {
+    screen: ChurchScreen,
+  }
 },
   {
     transitionConfig: getSlideFromRightTransition,
