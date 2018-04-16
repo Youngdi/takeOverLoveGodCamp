@@ -101,7 +101,7 @@ export default class Land extends React.Component {
               '歡迎下次再度光臨',
               [
                 {text: '確定', onPress: () => {
-                  this.context.socket.emit('message','refresh')
+                  global.socket.emit('message','refresh')
                   this.setState({
                     isOpen: false,
                     visible1: false,
@@ -132,11 +132,11 @@ export default class Land extends React.Component {
       { cancelable: false }
     )
   }
-  // componentWillMount() {
-  //   this.context.socket.on('message', (message) => {
-  //     this.init();
-  //   });
-  // }
+  componentWillMount() {
+    global.socket.on('message', (message) => {
+      this.init();
+    });
+  }
   _onRefresh() {
     this.setState({isRefreshing: true});
     this.init();

@@ -18,8 +18,6 @@ import {
   ImageBackground
 } from 'react-native';
 import Modal from 'react-native-modalbox';
-import FCM, {FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType} from 'react-native-fcm';
-import CodePush from "react-native-code-push";
 import * as Config from '../constants/config';
 import imageFlags from '../constants/config';
 import history from '../constants/history';
@@ -126,107 +124,6 @@ export default class Home extends React.Component {
     } catch (error) {
       alert('不好意思，伺服器已關閉，明年請儘早報名變強好不好夏令營');
     }
-  }
-  componentDidMount() {
-    // this.setupScheduleLocalNotification();
-    // const resetAction = NavigationActions.reset({
-    //   index: 0,
-    //   actions: [
-    //     NavigationActions.navigate({routeName: 'Diary'}),
-    //   ],
-    // });
-    // this.props.navigation.dispatch(resetAction);
-    FCM.requestPermissions();
-    FCM.getFCMToken().then(token => {
-      console.log("TOKEN (getFCMToken)", token);
-    });
-    FCM.getInitialNotification().then(notif => {
-      FCM.setBadgeNumber(0);
-      console.log("INITIAL NOTIFICATION", notif)
-    });
-    this.notificationListener = FCM.on(FCMEvent.Notification, notif => {
-      if (Platform.OS == 'ios') {
-        if (notif.local_notification) {
-          FCM.setBadgeNumber(0);
-          // this.setupScheduleLocalNotification();
-          return;
-        } else {
-          // alert(notif.aps.alert);
-        }
-      } else {
-          // alert(notif.fcm.body);
-      }
-      if(notif.local_notification){
-        return;
-      }
-      if(notif.opened_from_tray){
-        return;
-      }
-      if(Platform.OS ==='ios') {
-        switch(notif._notificationType){
-          case NotificationType.Remote:
-            notif.finish(RemoteNotificationResult.NewData) //other types available: RemoteNotificationResult.NewData, RemoteNotificationResult.ResultFailed
-            break;
-          case NotificationType.NotificationResponse:
-            notif.finish();
-            break;
-          case NotificationType.WillPresent:
-            notif.finish(WillPresentNotificationResult.All) //other types available: WillPresentNotificationResult.None
-            break;
-        }
-      }
-      this.refreshTokenListener = FCM.on(FCMEvent.RefreshToken, token => {
-        console.log("TOKEN (refreshUnsubscribe)", token);
-      });
-    });
-    // CodePush.sync({ updateDialog: false, installMode: CodePush.InstallMode.IMMEDIATE },
-    //   (status) => {
-    //     switch (status) {
-    //       case CodePush.SyncStatus.DOWNLOADING_PACKAGE:
-    //         this.setState({showDownloadingModal: false});
-    //         break;
-    //       case CodePush.SyncStatus.INSTALLING_UPDATE:
-    //         this.setState({showInstalling: true});
-    //         break;
-    //       case CodePush.SyncStatus.UPDATE_INSTALLED:
-    //         this.setState({showDownloadingModal: false});
-    //         break;
-    //     }
-    //   },
-    //   ({ receivedBytes, totalBytes, }) => {
-    //       this.setState({downloadProgress: receivedBytes / totalBytes * 100});
-    //   }
-    // );
-  }
-  setupScheduleLocalNotification = () => {
-    FCM.cancelLocalNotification('nightReminders');
-    FCM.cancelLocalNotification('dayReminders');
-    FCM.scheduleLocalNotification({
-      fire_date: moment(`${moment().format('YYYY-MM-DD')} 08:00:00`).toDate().getTime(),
-      id: 'dayReminders',
-      title: '早起靈修，開啟你美好的一天',
-      body: this.getDiaryBiblePhrase('每日一'),
-      priority: 'high', 
-      show_in_foreground: true,
-      sound: 'default',
-      local: true,
-      badge: 1,
-      vibrate: 500,
-      wake_screen: true
-    });
-    FCM.scheduleLocalNotification({
-      fire_date: moment(`${moment().format('YYYY-MM-DD')} 22:00:00`).toDate().getTime(),
-      id: 'nightReminders',
-      title: '睡前靈修，願主與你一同進入夢鄉',
-      body: this.getDiaryBiblePhrase('睡前'),
-      priority: 'high', 
-      show_in_foreground: true,
-      sound: 'default',
-      local: true,
-      badge: 1,
-      vibrate: 500,
-      wake_screen: true
-    });
   }
   _onRefresh() {
     this.setState({isRefreshing: true});
