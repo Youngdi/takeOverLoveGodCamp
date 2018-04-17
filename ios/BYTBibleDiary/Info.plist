@@ -26,6 +26,14 @@
 	<string>0VWkVSdLJGdM3M506GrSeJBMNbMlc5a64ba8-c46e-44a1-a546-41de22ffbd48</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+  <key>NSCameraUsageDescription</key>
+  <string>Used to scan QRcodes</string>
+  <!-- Include this only if you are planning to use the camera roll -->
+  <key>NSPhotoLibraryUsageDescription</key>
+  <string>Your message to user when the photo library is accessed for the first time</string>
+  <!-- Include this only if you are planning to use the microphone for video recording -->
+  <key>NSMicrophoneUsageDescription</key>
+  <string>Your message to user when the microphone is accessed for the first time</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -50,7 +58,7 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Used to send you a notification</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Entypo.ttf</string>

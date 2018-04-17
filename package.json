@@ -44,7 +44,7 @@
     "react-native-animatable": "^1.2.4",
     "react-native-app-intro": "git+https://github.com/merryjs/react-native-app-intro.git",
     "react-native-blur": "^3.2.2",
-    "react-native-camera": "^1.0.3",
+    "react-native-camera-kit": "^6.2.0",
     "react-native-circular-action-menu": "^0.4.0",
     "react-native-code-push": "^5.2.1",
     "react-native-drawer": "^2.5.0",

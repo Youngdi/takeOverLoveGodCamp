@@ -10,9 +10,9 @@ import {
   TouchableOpacity,
   Linking,
   Platform,
+  Alert
 } from 'react-native';
-
-import QRCodeScanner from '../components/QRCodeScanner';
+import { CameraKitCameraScreen, CameraKitCamera } from 'react-native-camera-kit';
 import { NavigationActions } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -21,97 +21,47 @@ export default class Scan extends Component {
     const {state, setParams} = navigation;
     return {
       title: '掃寶物',
-      titleStyle: {
-        textAlign: 'center',
-      },
-      headerLeft: (
-        <Ionicons
-            name='ios-arrow-back'
-            size={24}
-            color='#1c79ff'
-            style={{marginLeft:13}}
-            onPress={()=>{navigation.goBack();}}
-        >
-        </Ionicons>
-      ),
     };
   };
-  constructor(props) {
+  constructor(props){
     super(props);
     this.state = {
-      focused: true,
-      isRefreshing: false,
-      board: '歡迎進入奇妙的世界！'
-    };
+      checkScanOnce: false,
+    }
   }
-  componentWillMount() {
-    this.setState({
-      focused: this.props.navigation.state.params.focused
-    })
-  }
-  onSuccess(e) {
-    this.setState({
-      focused: false,
-    })
-    this.props.navigation.navigate.goBack();
-    // this.props.navigation.navigate('TabThreeScreenOne', e);
-    /*const setParamsAction = NavigationActions.setParams({
-      params: e,
-      key: 'TabOneScreenOne',
-    });*/
-    //this.props.navigation.dispatch(setParamsAction);
-    //this.props.navigation.dispatch({type:'JUMP_TO_TAB', payload:{e}});
+  onSuccess = (value) => {
     // const resetAction = NavigationActions.reset({
-    //     index: 0,
-    //     actions: [
-    //         NavigationActions.navigate({ routeName: 'TabThreeScreenFour'}),
-    //         NavigationActions.navigate({ routeName: 'TabThreeScreenOne'})
-    //     ]
-    //   });
+    //   index: 0,
+    //   actions: [
+    //     NavigationActions.navigate({routeName: "HomeTab", params: {data: value }}),
+    //   ],
+    // });
     // this.props.navigation.dispatch(resetAction);
-    //Linking.openURL(e.data).catch(err => console.error('An error occured', err));
-    //console.log(e);
-  }
-  topContent() {
-    return (
-        <Text style={styles.centerText}>
-            scan the QR code
-        </Text>
-    );
-  }
-  bottomContent() {
-    return (
-        <TouchableOpacity style={styles.buttonTouchable}>
-          <Text style={styles.buttonText}>OK. Got it!</Text>
-        </TouchableOpacity>
-    );
+    if(this.state.checkScanOnce) {
+      return 
+    } else {
+      this.setState({
+        checkScanOnce: true,
+      });
+      this.props.navigation.goBack();
+      setTimeout(() => {
+        this.props.navigation.state.params.getEgg(value);
+      }, 100);
+    }
   }
   render() {
     return (
-      this.state.focused ? <QRCodeScanner onRead={this.onSuccess.bind(this)} bottomContent={this.bottomContent()}/> : null
+      <CameraKitCameraScreen
+        scanBarcode={true}
+        laserColor={"blue"}
+        frameColor={"yellow"}
+        onReadCode={((event) => this.onSuccess(event.nativeEvent.codeStringValue))}
+        hideControls={true}           //(default false) optional, hide buttons and additional controls on top and bottom of screen
+        showFrame={true}   //(default false) optional, show frame with transparent layer (qr code or barcode will be read on this area ONLY), start animation for scanner,that stoped when find any code. Frame always at center of the screen
+        offsetForScannerFrame = {10}   //(default 30) optional, offset from left and right side of the screen
+        heightForScannerFrame = {400}  //(default 200) optional, change height of the scanner frame
+        colorForScannerFrame = {'red'} //(default white) optional, change colot of the scanner frame
+      />
     )
   }
 }
-
-const styles = StyleSheet.create({
-  centerText: {
-    flex: 1,
-    fontSize: 18,
-    padding: 32,
-    color: '#777',
-  },
-
-  textBold: {
-    fontWeight: '500',
-    color: '#000',
-  },
-
-  buttonText: {
-    fontSize: 21,
-    color: 'rgb(0,122,255)',
-  },
-
-  buttonTouchable: {
-    padding: 16,
-  },
-});

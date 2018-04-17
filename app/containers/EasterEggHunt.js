@@ -104,13 +104,57 @@ export default class EasterEggHunt extends React.Component {
     });
   }
   componentWillMount() {
-    if (this.props.navigation.state.params) {
-      function RemoveHTML(strText) {
-        return strText.replace('://', "").replace('.', "").replace('.', "").replace('/', "");
-      }
-      const QRcode_money = QRCode[RemoveHTML(this.props.navigation.state.params.data)];
+    // alert(JSON.stringify(this.props.navigation.state.params));
+    // if (this.props.navigation.state.params) {
+    //   function RemoveHTML(strText) {
+    //     return strText.replace('://', "").replace('.', "").replace('.', "").replace('/', "");
+    //   }
+    //   const QRcode_money = QRCode[RemoveHTML(this.props.navigation.state.params.data)];
+    //   if (QRcode_money == undefined) {
+    //     const QRcode_url = this.props.navigation.state.params.data;
+    //     (QRcode_url.search('line') > -1) ? alert('你想加line好友呀?') : alert('不要亂掃，我看不懂這是什麼鬼！');
+    //   } else {
+    //     const flag = api_qrcode(QRcode_money.fire, QRcode_money.water, QRcode_money.wood, QRcode_money.stone, QRcode_money.seed, QRcode_money.source)
+    //     flag.then((data) => {
+    //       if (data.data) {
+    //         this.setState({
+    //           visible: false,
+    //           q_source: QRcode_money.source,
+    //           q_water: QRcode_money.water,
+    //           q_fire: QRcode_money.fire,
+    //           q_stone: QRcode_money.stone,
+    //           q_wood: QRcode_money.wood,
+    //           q_seed: QRcode_money.seed,
+    //         });
+    //         Alert.alert(
+    //         '掃描成功',
+    //         `獲得資源能力加成\n火寶石:${this.state.q_fire}x${data.B.B2}, 水寶石:${this.state.q_water}x${data.B.B3}, 土寶石:${this.state.q_stone}x${data.B.B4}\n木寶石:${this.state.q_wood}x${data.B.B5}, 種子:${this.state.q_seed}x${data.B.B6}`,
+    //         [
+    //           {text: '確定', onPress: () => console.log('yes')},
+    //         ],
+    //           { cancelable: false }
+    //         )
+    //       } else {
+    //         alert('此資源已領取過');
+    //         this.setState({
+    //           visible: false,
+    //           q_source: QRcode_money.source,
+    //           q_water: QRcode_money.water,
+    //           q_fire: QRcode_money.fire,
+    //           q_stone: QRcode_money.stone,
+    //           q_wood: QRcode_money.wood,
+    //           q_seed: QRcode_money.seed,
+    //         });
+    //       }
+    //     })
+    //   }
+    // }
+  }
+  getEgg = (value) => {
+      const RemoveHTML = (strText) => strText.replace('://', "").replace('.', "").replace('.', "").replace('/', "");
+      const QRcode_money = QRCode[RemoveHTML(value)];
       if (QRcode_money == undefined) {
-        const QRcode_url = this.props.navigation.state.params.data;
+        const QRcode_url = value;
         (QRcode_url.search('line') > -1) ? alert('你想加line好友呀?') : alert('不要亂掃，我看不懂這是什麼鬼！');
       } else {
         const flag = api_qrcode(QRcode_money.fire, QRcode_money.water, QRcode_money.wood, QRcode_money.stone, QRcode_money.seed, QRcode_money.source)
@@ -147,8 +191,6 @@ export default class EasterEggHunt extends React.Component {
           }
         })
       }
-
-    }
   }
   _onRefresh() {
     this.setState({isRefreshing: true});
@@ -249,7 +291,7 @@ export default class EasterEggHunt extends React.Component {
                             source={require('../images/day3/M2.png')}>
                             <TouchableHighlight
                               underlayColor={'rgba(252,252,252,0.5)'} 
-                              onPress={() => this.props.navigation.navigate('TabThreeScreenTwo',{focused: true})}>
+                              onPress={() => this.props.navigation.navigate('Scan',{getEgg:this.getEgg})}>
                               <View style={{width:'100%',height:height * 0.09, margin:0.5}}></View>
                             </TouchableHighlight>
                           </ImageBackground>
@@ -258,7 +300,7 @@ export default class EasterEggHunt extends React.Component {
                             source={require('../images/day3/M3.png')}>
                             <TouchableHighlight
                               underlayColor={'rgba(252,252,252,0.5)'} 
-                              onPress={() => this.props.navigation.navigate('TabThreeScreenTwo',{focused: true})}>
+                              onPress={() => this.props.navigation.navigate('Scan',{getEgg:this.getEgg})}>
                               <View style={{width:'100%',height:height * 0.09, margin:0.5}}></View>
                             </TouchableHighlight>
                           </ImageBackground>
@@ -267,7 +309,7 @@ export default class EasterEggHunt extends React.Component {
                             source={require('../images/day3/M4.png')}>
                             <TouchableHighlight
                               underlayColor={'rgba(252,252,252,0.5)'} 
-                              onPress={() => this.props.navigation.navigate('TabThreeScreenTwo',{focused: true})}>
+                              onPress={() => this.props.navigation.navigate('Scan',{getEgg:this.getEgg})}>
                               <View style={{width:'100%',height:height * 0.09, margin:0.5}}></View>
                             </TouchableHighlight>
                           </ImageBackground>
@@ -276,7 +318,7 @@ export default class EasterEggHunt extends React.Component {
                             source={require('../images/day3/M5.png')}>
                             <TouchableHighlight
                               underlayColor={'rgba(252,252,252,0.5)'} 
-                              onPress={() => this.props.navigation.navigate('TabThreeScreenTwo',{focused: true})}>
+                              onPress={() => this.props.navigation.navigate('Scan',{getEgg:this.getEgg})}>
                               <View style={{width:'100%',height:height * 0.09, margin:0.5}}></View>
                             </TouchableHighlight>
                           </ImageBackground>
@@ -365,7 +407,7 @@ export default class EasterEggHunt extends React.Component {
                             source={require('../images/day3/M14.png')}>
                             <TouchableHighlight
                               underlayColor={'rgba(252,252,252,0.5)'} 
-                              onPress={() => this.props.navigation.navigate('TabThreeScreenTwo',{focused: true})}>
+                              onPress={() => this.props.navigation.navigate('Scan',{getEgg:this.getEgg})}>
                               <View style={{width:'100%',height:height * 0.09, margin:0.5}}></View>
                             </TouchableHighlight>
                           </ImageBackground>
@@ -374,7 +416,7 @@ export default class EasterEggHunt extends React.Component {
                             source={require('../images/day3/M15.png')}>
                             <TouchableHighlight
                               underlayColor={'rgba(252,252,252,0.5)'} 
-                              onPress={() => this.props.navigation.navigate('TabThreeScreenTwo',{focused: true})}>
+                              onPress={() => this.props.navigation.navigate('Scan',{getEgg:this.getEgg})}>
                               <View style={{width:'100%',height:height * 0.09, margin:0.5}}></View>
                             </TouchableHighlight>
                           </ImageBackground>
@@ -387,7 +429,7 @@ export default class EasterEggHunt extends React.Component {
                             source={require('../images/day3/M16.png')}>
                             <TouchableHighlight
                               underlayColor={'rgba(252,252,252,0.5)'} 
-                              onPress={() => this.props.navigation.navigate('TabThreeScreenTwo',{focused: true})}>
+                              onPress={() => this.props.navigation.navigate('Scan',{getEgg:this.getEgg})}>
                               <View style={{width:'100%',height:height * 0.09, margin:0.5}}></View>
                             </TouchableHighlight>
                           </ImageBackground>
@@ -414,7 +456,7 @@ export default class EasterEggHunt extends React.Component {
                             source={require('../images/day3/M19.png')}>
                             <TouchableHighlight
                               underlayColor={'rgba(252,252,252,0.5)'} 
-                              onPress={() => this.props.navigation.navigate('TabThreeScreenTwo',{focused: true})}>
+                              onPress={() => this.props.navigation.navigate('Scan',{getEgg:this.getEgg})}>
                               <View style={{width:'100%',height:height * 0.09, margin:0.5}}></View>
                             </TouchableHighlight>
                           </ImageBackground>
@@ -436,7 +478,7 @@ export default class EasterEggHunt extends React.Component {
                             source={require('../images/day3/M21.png')}>
                             <TouchableHighlight
                               underlayColor={'rgba(252,252,252,0.5)'} 
-                              onPress={() => this.props.navigation.navigate('TabThreeScreenTwo',{focused: true})}>
+                              onPress={() => this.props.navigation.navigate('Scan',{getEgg:this.getEgg})}>
                               <View style={{width:'100%',height:height * 0.09, margin:0.5}}></View>
                             </TouchableHighlight>
                           </ImageBackground>
@@ -454,7 +496,7 @@ export default class EasterEggHunt extends React.Component {
                             source={require('../images/day3/M23.png')}>
                             <TouchableHighlight
                               underlayColor={'rgba(252,252,252,0.5)'} 
-                              onPress={() => this.props.navigation.navigate('TabThreeScreenTwo',{focused: true})}>
+                              onPress={() => this.props.navigation.navigate('Scan',{getEgg:this.getEgg})}>
                               <View style={{width:'100%',height:height * 0.09, margin:0.5}}></View>
                             </TouchableHighlight>
                           </ImageBackground>
@@ -472,7 +514,7 @@ export default class EasterEggHunt extends React.Component {
                             source={require('../images/day3/M25.png')}>
                             <TouchableHighlight
                               underlayColor={'rgba(252,252,252,0.5)'} 
-                              onPress={() => this.props.navigation.navigate('TabThreeScreenThree')}>
+                              onPress={() => this.props.navigation.navigate('RobotChat')}>
                               <View style={{width:'100%',height:height * 0.09, margin:0.5}}></View>
                             </TouchableHighlight>
                           </ImageBackground>

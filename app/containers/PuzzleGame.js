@@ -20,9 +20,6 @@ export default class PuzzleGame extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
       title: '九宮格解謎',
-      headerTitleStyle:{
-        alignSelf: 'center',
-      }
     };
   };
 

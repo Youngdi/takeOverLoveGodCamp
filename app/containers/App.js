@@ -18,6 +18,7 @@ import ScheduleScreen from './Schedule';
 import QuestionnaireScreen from './Questionnaire';
 import ChurchScreen from './Church';
 import ScanScreen from './Scan';
+import RobotChatScreen from './RobotChat';
 
 const styles = StyleSheet.create({
   icon: {
@@ -130,6 +131,9 @@ const App = StackNavigator(
   },
   Scan: {
     screen: ScanScreen,
+  },
+  RobotChat: {
+    screen: RobotChatScreen,
   },
   Workshop: {
     screen: WorkshopScreen,
