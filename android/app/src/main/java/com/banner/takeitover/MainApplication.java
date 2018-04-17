@@ -8,7 +8,6 @@ import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
 import com.rnfs.RNFSPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import com.evollu.react.fcm.FIRMessagingPackage;
-import org.reactnative.camera.RNCameraPackage;
 import com.cmcewen.blurview.BlurViewPackage;
 import com.airbnb.android.react.lottie.LottiePackage;
 import com.microsoft.codepush.react.CodePush;
@@ -42,7 +41,6 @@ public class MainApplication extends Application implements ReactApplication {
             new RNFSPackage(),
             new RNFetchBlobPackage(),
             new FIRMessagingPackage(),
-            new RNCameraPackage(),
             new BlurViewPackage(),
             new LottiePackage(),
             new RNCameraKitPackage(),

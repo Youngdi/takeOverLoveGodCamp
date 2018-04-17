@@ -44,7 +44,7 @@ export default class Workshop extends React.Component {
                 <View style={styles.ImageShadow}>
                   <ImageBackground 
                     style={styles.backdrop} 
-                    source={require('../images/workshop/B砲擊訓練 Basketball-楊德恩.jpg')}>
+                    source={require('../images/workshop/B砲擊訓練Basketball-楊德恩.jpg')}>
                       <View style={styles.backdropView}>
                         <Text style={styles.headline}>楊德恩-台灣品格籃球創辦人</Text>
                       </View>
@@ -188,7 +188,7 @@ export default class Workshop extends React.Component {
                 <View style={styles.ImageShadow}>
                   <ImageBackground 
                     style={styles.backdrop} 
-                    source={require('../images/workshop/B艦隊經營學Career Analysis-莊懷德.jpg')}>
+                    source={require('../images/workshop/B艦隊經營學CareerAnalysis-莊懷德.jpg')}>
                       <View style={styles.backdropView}>
                         <Text style={styles.headline}>莊懷德-匯豐銀行資深副總裁</Text>
                       </View>

@@ -35,23 +35,7 @@ const { width, height } = Dimensions.get("window");
 export default class Home extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
-      visible: false,
       title:'首頁',
-      headerTitleStyle:{
-        alignSelf: 'center',
-        marginLeft: -20,
-      },
-      headerLeft: (
-        <Ionicons.Button 
-          name="ios-menu"
-          color="#185ffe"
-          style={{marginLeft:13}} 
-          backgroundColor="#eeeef2"
-          onPress={
-            () => navigation.navigate('DrawerOpen')
-          }>
-        </Ionicons.Button>
-      ),
     }
   };
   constructor(props) {
@@ -248,7 +232,12 @@ export default class Home extends React.Component {
           >
               <View style={{width:'100%', height:height*0.5, marginBottom:15}}>
                 <TouchableOpacity onPress={() => this.refs.history_modal.open()}>
-                <HomeImage url={this.state.username} navigation={this.props.navigation}></HomeImage>
+                <HomeImage
+                  url={this.state.username}
+                  navigation={this.props.navigation}
+                  openControlPanel={this.openControlPanel}
+                >
+                </HomeImage>
                 </TouchableOpacity>
               </View>
               <View style={{width:'100%'}}>
@@ -394,7 +383,7 @@ export default class Home extends React.Component {
                     }
                   }
                   hitSlop={{top: 50, bottom: 50, left: 50, right: 50}}
-                  style={{position:'absolute',right:0,top:50, width:100, height:100, backgroundColor:'red'}}
+                  style={{position:'absolute',right:0,top:50, width:100, height:100}}
                 >
                 <View></View>
                 </TouchableOpacity>
