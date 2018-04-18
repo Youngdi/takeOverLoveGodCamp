@@ -478,7 +478,13 @@ export default class Land extends React.Component {
               style={styles.backdrop} 
               source={require('../images/short_modal_bg.png')}>
                 <View style={styles.backdropSourceView}>
-                  <TouchableOpacity onPress={() => this.setState({history_isOpen:false})} style={{position:'absolute',right:0,top:10, width:50, height:50}}
+                  <TouchableOpacity
+                    onPress={() => {
+                        this.refs.buy_modal.close();
+                      }
+                    }
+                    style={{position:'absolute',right:0,top:10, width:50, height:50}}
+                    hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
                   >
                     <View></View>
                   </TouchableOpacity>

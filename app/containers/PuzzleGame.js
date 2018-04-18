@@ -233,7 +233,17 @@ export default class PuzzleGame extends React.Component {
             style={styles.backdrop}
             source={require('../images/short_modal_bg.png')}>
               <View style={{flex:1,width:330,height:400,justifyContent: 'flex-start',alignItems: 'center',backgroundColor: 'rgba(0,0,0,0)',}}>
-                <Text onPress={() => this.setState({isOpen:false})} style={{top:10,left:130, fontSize: 20, width:50, height:50, fontWeight: '800'}}>{''}</Text>
+                <Text
+                  onPress={() => {
+                      this.refs.W_modal.close();
+                      this.setState({isOpen:false})
+                    }
+                  }
+                  style={{top:10,left:130, fontSize: 20, width:50, height:50, fontWeight: '800'}}
+                  hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
+                >
+                  {''}
+                </Text>
                 <View style={{flex:1, flexWrap:'nowrap', flexDirection:'row', justifyContent:'center', alignItems:'center',right:6, top:-40}}>
                   <Image
                     style={{width:30,height:70, marginRight:20}}
@@ -259,7 +269,17 @@ export default class PuzzleGame extends React.Component {
             style={styles.backdrop}
             source={require('../images/short_modal_bg.png')}>
               <View style={styles.backdropSourceView}>
-                <Text onPress={() => this.setState({isOpen:false})} style={{top:-35,left:135, fontSize: 20, width:50, height:50, fontWeight: '800'}}>{''}</Text>
+                <Text 
+                  onPress={() => {
+                      this.refs.L_modal.close();
+                      this.setState({isOpen:false})
+                    }
+                  }
+                  style={{top:-35,left:135, fontSize: 20, width:50, height:50, fontWeight: '800'}}
+                  hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
+                >
+                  {''}
+                </Text>
                 <Text style={{fontSize:24, marginBottom:50, fontWeight: '800',color: 'rgb(60,60,60)'}}>Lose</Text>
                 <Text style={{fontSize:18, color: "#ff4a4a",}}>是否花 {this.state.cost} 個K寶石購買提示?</Text>
                 <View style={styles.btnContainer}>
@@ -293,7 +313,17 @@ export default class PuzzleGame extends React.Component {
             style={styles.backdrop}
             source={require('../images/short_modal_bg.png')}>
               <View style={styles.backdropSourceView}>
-                <Text onPress={() => this.setState({isOpen:false})} style={{top:10,left:135, fontSize: 20, width:50, height:50, fontWeight: '800'}}>{''}</Text>
+                <Text
+                  onPress={() => {
+                      this.refs.N_modal.close();
+                      this.setState({isOpen:false})
+                    }
+                  } 
+                  style={{top:10,left:135, fontSize: 20, width:50, height:50, fontWeight: '800'}}
+                  hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
+                >
+                  {''}
+                </Text>
                 <View style={{flex:1, width:'70%', marginTop:20}}>
                   <SegmentedControls
                     tint={'#f80046'}

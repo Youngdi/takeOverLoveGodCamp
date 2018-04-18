@@ -326,7 +326,16 @@ export default class Home extends React.Component {
                 style={styles.backdrop} 
                 source={require('../images/short_modal_bg.png')}>
                   <ScrollView contentContainerStyle={styles.backdropSourceView}>
-                    <Text onPress={() => this.setState({isOpen:false})} style={styles.backdropSourceViewClose}>{''}</Text>
+                    <Text
+                      onPress={() => {
+                          this.refs.buy_modal.close();
+                          this.setState({isOpen:false})
+                        }
+                      }
+                      style={styles.backdropSourceViewClose}
+                      hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
+                    >{''}
+                    </Text>
                     <Text style={styles.backdropSourceViewHeadline}>請問你是否要用3顆K寶石換1個{this.state.shopText}</Text>
                     <View style={{flexDirection:'row'}}>
                       <Text style={{fontSize:20,marginTop:18}}>3</Text>

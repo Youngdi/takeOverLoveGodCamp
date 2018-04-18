@@ -543,8 +543,15 @@ export default class EasterEggHunt extends React.Component {
             style={styles.backdrop}
             resizeMode={'stretch'}
             source={require('../images/long_modal_bg.png')}>
-              <TouchableOpacity onPress={() => this.setState({score_modal_isOpen:false})} 
-                style={{right:-250,top:10, width:100, height:50}}>
+              <TouchableOpacity
+                onPress={() => {
+                    this.refs.score_modal.close();
+                    this.setState({score_modal_isOpen:false})
+                  }
+                }
+                style={{right:-250,top:10, width:100, height:50}}
+                hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
+              >
                 <View></View>
               </TouchableOpacity>
               <Text style={{color:'rgb(60,60,60)',backgroundColor:'rgba(255,255,255,0)',textAlign:'center',fontSize: 20,fontWeight: '800', top:-20}}>{'挑戰關主'}</Text>
