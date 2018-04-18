@@ -14,12 +14,12 @@ export default class RobotChat extends React.Component {
   };
   constructor(props) {
     const robot_url = [
-      'https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/19366204_10203907845891987_2459007927381942638_n.jpg?oh=f84052ef9833f5c36054e0e48c7c2fa6&oe=599C82E9',
-      'https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/19366453_10203907844011940_450462116541654372_n.jpg?oh=e0d4c5b8d2dfddb1571f9be50e662625&oe=59D83A27',
-      'https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/19399443_10203907844051941_3551918138333844875_n.jpg?oh=12663412fedc4d180b5c9aaed9b203ed&oe=599BA0E7',
-      'https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/19366204_10203907845891987_2459007927381942638_n.jpg?oh=f84052ef9833f5c36054e0e48c7c2fa6&oe=599C82E9',
-      'https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/19366204_10203907845891987_2459007927381942638_n.jpg?oh=f84052ef9833f5c36054e0e48c7c2fa6&oe=599C82E9',
-      'https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/19366204_10203907845891987_2459007927381942638_n.jpg?oh=f84052ef9833f5c36054e0e48c7c2fa6&oe=599C82E9',
+      'https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/19366453_10203907844011940_450462116541654372_n.jpg?_nc_cat=0&_nc_eui2=v1%3AAeFtj_7qT91mCBc6U_vzrRkFqs6iUJRDB2wEN-yKe5RntIQEP-sBl5JXpIoPAHz6V9BgX9qnp9PIePlTFvHpmMpeH7HhCOQtlXwMgkhjByQ5gA&oh=39e29b7aae75d1eed8fae0816369cffe&oe=5B63BC27',
+      'https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/19399443_10203907844051941_3551918138333844875_n.jpg?_nc_cat=0&_nc_eui2=v1%3AAeHrZrPanUzvNHTmyPoEgFTeh1_wO0plEvxRIrtxjr-dLLtEG15LwFcaN3ssduaXzLYvt-6T7ubHwFpNf1hfNjCoEuZmppv2aIyyAWND6u514g&oh=ee26560864ef18c6a27c3aa0cb9a3820&oe=5B2722E7',
+      'https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/19366204_10203907845891987_2459007927381942638_n.jpg?_nc_cat=0&_nc_eui2=v1%3AAeEEOux_87YMh-tNoDzDlFlO3QzMZ1YgSVSPquwzbVFhrYRMtK7A8ccancxQv-Or4R47nQ2GQOGKnw54gAVdP4msDJSdInSrLOowwgvVKuRemg&oh=4b1626667b8e6df7e852036a52a1bb90&oe=5B4F91E9',
+      'https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/19366453_10203907844011940_450462116541654372_n.jpg?_nc_cat=0&_nc_eui2=v1%3AAeFtj_7qT91mCBc6U_vzrRkFqs6iUJRDB2wEN-yKe5RntIQEP-sBl5JXpIoPAHz6V9BgX9qnp9PIePlTFvHpmMpeH7HhCOQtlXwMgkhjByQ5gA&oh=39e29b7aae75d1eed8fae0816369cffe&oe=5B63BC27',
+      'https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/19399443_10203907844051941_3551918138333844875_n.jpg?_nc_cat=0&_nc_eui2=v1%3AAeHrZrPanUzvNHTmyPoEgFTeh1_wO0plEvxRIrtxjr-dLLtEG15LwFcaN3ssduaXzLYvt-6T7ubHwFpNf1hfNjCoEuZmppv2aIyyAWND6u514g&oh=ee26560864ef18c6a27c3aa0cb9a3820&oe=5B2722E7',
+      'https://scontent-tpe1-1.xx.fbcdn.net/v/t1.0-9/19366204_10203907845891987_2459007927381942638_n.jpg?_nc_cat=0&_nc_eui2=v1%3AAeEEOux_87YMh-tNoDzDlFlO3QzMZ1YgSVSPquwzbVFhrYRMtK7A8ccancxQv-Or4R47nQ2GQOGKnw54gAVdP4msDJSdInSrLOowwgvVKuRemg&oh=4b1626667b8e6df7e852036a52a1bb90&oe=5B4F91E9',
     ];
     let robot_number = Math.floor(Math.random() * 6) + 1;
     super(props);

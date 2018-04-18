@@ -53,8 +53,8 @@ export default class Scan extends Component {
     return (
       <CameraKitCameraScreen
         scanBarcode={true}
-        laserColor={"blue"}
-        frameColor={"yellow"}
+        // laserColor={"blue"}
+        // frameColor={"yellow"}
         onReadCode={((event) => this.onSuccess(event.nativeEvent.codeStringValue))}
         hideControls={true}           //(default false) optional, hide buttons and additional controls on top and bottom of screen
         showFrame={true}   //(default false) optional, show frame with transparent layer (qr code or barcode will be read on this area ONLY), start animation for scanner,that stoped when find any code. Frame always at center of the screen
