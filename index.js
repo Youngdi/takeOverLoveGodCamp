@@ -54,24 +54,52 @@ class AppProvider extends Component {
         console.log("TOKEN (refreshUnsubscribe)", token);
       });
     });
-    // CodePush.sync({ updateDialog: false, installMode: CodePush.InstallMode.IMMEDIATE },
-    //   (status) => {
-    //     switch (status) {
-    //       case CodePush.SyncStatus.DOWNLOADING_PACKAGE:
-    //         this.setState({showDownloadingModal: false});
-    //         break;
-    //       case CodePush.SyncStatus.INSTALLING_UPDATE:
-    //         this.setState({showInstalling: true});
-    //         break;
-    //       case CodePush.SyncStatus.UPDATE_INSTALLED:
-    //         this.setState({showDownloadingModal: false});
-    //         break;
-    //     }
-    //   },
-    //   ({ receivedBytes, totalBytes, }) => {
-    //       this.setState({downloadProgress: receivedBytes / totalBytes * 100});
-    //   }
-    // );
+    this.socket.on('notification', (message) => {
+      alert(message.data);
+      // FCM.presentLocalNotification({
+      //     id: "UNIQ_ID_STRING",                               // (optional for instant notification)
+      //     title: "大會通知",                     // as FCM payload
+      //     body: message.data,                    // as FCM payload (required)
+      //     sound: "default",                                   // as FCM payload
+      //     priority: "high",                                   // as FCM payload
+      //     click_action: "ACTION",                             // as FCM payload
+      //     badge: 0,                                           // as FCM payload IOS only, set 0 to clear badges
+      //     icon: "ic_launcher",                                // as FCM payload, you can relace this with custom icon you put in mipmap
+      //     my_custom_data:'my_custom_field_value',             // extra data you want to throw
+      //     show_in_foreground:true                             // notification when app is in foreground (local & remote)
+      // });
+      // FCM.scheduleLocalNotification({
+      //   id: 'testnotif',
+      //   fire_date: new Date().getTime()+5000,
+      //   vibrate: 500,
+      //   title: 'Hello',
+      //   body: 'Test Scheduled Notification',
+      //   sub_text: 'sub text',
+      //   priority: "high",
+      //   large_icon: "https://image.freepik.com/free-icon/small-boy-cartoon_318-38077.jpg",
+      //   show_in_foreground: true,
+      //   picture: 'https://firebase.google.com/_static/af7ae4b3fc/images/firebase/lockup.png',
+      //   wake_screen: true,
+      // });
+    });
+    CodePush.sync({ updateDialog: false, installMode: CodePush.InstallMode.IMMEDIATE },
+      (status) => {
+        switch (status) {
+          case CodePush.SyncStatus.DOWNLOADING_PACKAGE:
+            this.setState({showDownloadingModal: false});
+            break;
+          case CodePush.SyncStatus.INSTALLING_UPDATE:
+            this.setState({showInstalling: true});
+            break;
+          case CodePush.SyncStatus.UPDATE_INSTALLED:
+            this.setState({showDownloadingModal: false});
+            break;
+        }
+      },
+      ({ receivedBytes, totalBytes, }) => {
+          this.setState({downloadProgress: receivedBytes / totalBytes * 100});
+      }
+    );
   }
   setupScheduleLocalNotification = () => {
     FCM.cancelLocalNotification('nightReminders');
