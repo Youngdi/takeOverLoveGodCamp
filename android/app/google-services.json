@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1072157588582:android:5ca05d25e144c659",
+        "mobilesdk_app_id": "1:1072157588582:android:b7370129fc1a5f2a",
         "android_client_info": {
-          "package_name": "com.banner.takeitover"
+          "package_name": "com.banner.takeover"
         }
       },
       "oauth_client": [

@@ -1,4 +1,4 @@
-package com.banner.takeitover;
+package com.banner.takeover;
 
 import com.facebook.react.ReactActivity;
 

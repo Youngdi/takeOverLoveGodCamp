@@ -45,12 +45,12 @@ android_library(
 
 android_build_config(
     name = "build_config",
-    package = "com.banner.takeitover",
+    package = "com.banner.takeover",
 )
 
 android_resource(
     name = "res",
-    package = "com.banner.takeitover",
+    package = "com.banner.takeover",
     res = "src/main/res",
 )
 

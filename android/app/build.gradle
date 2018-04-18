@@ -102,7 +102,7 @@ android {
     defaultConfig {
         renderscriptTargetApi 26
         renderscriptSupportModeEnabled true
-        applicationId "com.banner.takeitover"
+        applicationId "com.banner.takeover"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 6
