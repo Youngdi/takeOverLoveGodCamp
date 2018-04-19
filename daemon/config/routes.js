@@ -129,6 +129,9 @@ module.exports = (app, io) => {
   app.get('/logout', (req, res) => {
     // clear the remember me cookie when logging out
     req.session.destroy()
+    res.send({
+      successed: true
+    })
     res.end()
   })
   app.get('/manager_logout', (req, res) => {
