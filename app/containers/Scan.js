@@ -9,7 +9,6 @@ import {
   NavigatorIOS,
   TouchableOpacity,
   Linking,
-  Platform,
   Alert
 } from 'react-native';
 import { CameraKitCameraScreen, CameraKitCamera } from 'react-native-camera-kit';

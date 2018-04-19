@@ -1,6 +1,6 @@
 'use strict'
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, RefreshControl, ScrollView, Platform, AsyncStorage } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, RefreshControl, ScrollView, AsyncStorage } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { GiftedChat } from 'react-native-gifted-chat';

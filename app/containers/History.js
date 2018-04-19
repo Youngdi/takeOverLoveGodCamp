@@ -1,32 +1,22 @@
-'use strict'
 import React from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet, ScrollView, Platform } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { Dimensions } from 'react-native';
+import PhotoView from 'react-native-photo-view';
+const { width, height } = Dimensions.get("window");
 export default class History extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
       title:'國家歷史',
     }
   };
-
   render(){
     return(
-      <ScrollView>
-        <View style={{backgroundColor:'#ecead9'}}>
-          <Image
-            style={styles.backgroundImage}
-            source={require('../images/TakeOver_History.png')}
-            resizeMode={'contain'}
-          ></Image>
-        </View>
-      </ScrollView>
+      <PhotoView
+        source={require('../images/TakeOver_History.png')}
+        minimumZoomScale={0.5}
+        maximumZoomScale={3}
+        androidScaleType="center"
+        style={{width: width, height: height}}
+      />
     )
   }
 }
-const styles = StyleSheet.create({
-    backgroundImage: {
-        width: '100%',
-        height: 1300,
-    },
-});

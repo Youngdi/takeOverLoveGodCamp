@@ -1,8 +1,6 @@
-'use strict'
 import React from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet, Alert, Dimensions, Platform, ScrollView, Modal } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { Dimensions } from 'react-native';
+import PhotoView from 'react-native-photo-view';
 const { width, height } = Dimensions.get("window");
 
 export default class Schedule extends React.Component {
@@ -13,21 +11,13 @@ export default class Schedule extends React.Component {
   };
   render() {
     return(
-      <ScrollView>
-        <Image
-          resizeMode='contain'
-          style={{width:width, height: height}}
-          source={require('../images/schdule1.jpg')}
-        ></Image>
-      </ScrollView>
+      <PhotoView
+        source={require('../images/schdule1.jpg')}
+        minimumZoomScale={0.5}
+        maximumZoomScale={3}
+        androidScaleType="center"
+        style={{width: width, height: height}}
+      />
     )
   }
 }
-const styles = StyleSheet.create({
-    text: {
-        textAlign: 'center',
-        color: 'white',
-        backgroundColor: 'rgba(0,0,0,0)',
-        fontSize: 32
-    }
-});

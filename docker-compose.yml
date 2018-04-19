@@ -9,7 +9,7 @@ services:
     links: 
       - db
     working_dir: /doc
-    command: "sh mongoImport.sh"  
+    command: "sh mongoImport.sh"
 
   web:
     image: registry.gitlab.com/youngdi/takeover:0.0.3

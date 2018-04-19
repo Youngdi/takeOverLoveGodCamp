@@ -2,7 +2,6 @@
 import React from 'react';
 import { 
   StyleSheet,
-  Platform,
   AsyncStorage
 } from 'react-native';
 import InitialScreen from '../components/initialScreen';

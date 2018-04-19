@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry } from 'react-native';
+import { AppRegistry, Platform } from 'react-native';
 import io from 'socket.io-client';
 import FCM, {FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType} from 'react-native-fcm';
 import CodePush from "react-native-code-push";
@@ -12,24 +12,24 @@ class AppProvider extends Component {
   componentDidMount() {
     global.socket = this.socket;
     FCM.requestPermissions();
+
     FCM.getFCMToken().then(token => {
       console.log("TOKEN (getFCMToken)", token);
     });
+
     FCM.getInitialNotification().then(notif => {
-      FCM.setBadgeNumber(0);
       console.log("INITIAL NOTIFICATION", notif)
     });
+
     this.notificationListener = FCM.on(FCMEvent.Notification, notif => {
       if (Platform.OS == 'ios') {
-        if (notif.local_notification) {
-          FCM.setBadgeNumber(0);
-          // this.setupScheduleLocalNotification();
+        if (notif.local_notification){
           return;
         } else {
-          // alert(notif.aps.alert);
+          alert(notif.aps.alert);
         }
       } else {
-          // alert(notif.fcm.body);
+        alert(notif.fcm.body);
       }
       if(notif.local_notification){
         return;
@@ -37,7 +37,7 @@ class AppProvider extends Component {
       if(notif.opened_from_tray){
         return;
       }
-      if(Platform.OS ==='ios') {
+      if(Platform.OS ==='ios'){
         switch(notif._notificationType){
           case NotificationType.Remote:
             notif.finish(RemoteNotificationResult.NewData) //other types available: RemoteNotificationResult.NewData, RemoteNotificationResult.ResultFailed
@@ -50,37 +50,25 @@ class AppProvider extends Component {
             break;
         }
       }
+
       this.refreshTokenListener = FCM.on(FCMEvent.RefreshToken, token => {
         console.log("TOKEN (refreshUnsubscribe)", token);
       });
-    });
+    })
     this.socket.on('notification', (message) => {
       alert(message.data);
-      // FCM.presentLocalNotification({
-      //     id: "UNIQ_ID_STRING",                               // (optional for instant notification)
-      //     title: "大會通知",                     // as FCM payload
-      //     body: message.data,                    // as FCM payload (required)
-      //     sound: "default",                                   // as FCM payload
-      //     priority: "high",                                   // as FCM payload
-      //     click_action: "ACTION",                             // as FCM payload
-      //     badge: 0,                                           // as FCM payload IOS only, set 0 to clear badges
-      //     icon: "ic_launcher",                                // as FCM payload, you can relace this with custom icon you put in mipmap
-      //     my_custom_data:'my_custom_field_value',             // extra data you want to throw
-      //     show_in_foreground:true                             // notification when app is in foreground (local & remote)
-      // });
-      // FCM.scheduleLocalNotification({
-      //   id: 'testnotif',
-      //   fire_date: new Date().getTime()+5000,
-      //   vibrate: 500,
-      //   title: 'Hello',
-      //   body: 'Test Scheduled Notification',
-      //   sub_text: 'sub text',
-      //   priority: "high",
-      //   large_icon: "https://image.freepik.com/free-icon/small-boy-cartoon_318-38077.jpg",
-      //   show_in_foreground: true,
-      //   picture: 'https://firebase.google.com/_static/af7ae4b3fc/images/firebase/lockup.png',
-      //   wake_screen: true,
-      // });
+      FCM.presentLocalNotification({
+          id: "UNIQ_ID_STRING",                               // (optional for instant notification)
+          title: "大會通知",                     // as FCM payload
+          body: message.data,                    // as FCM payload (required)
+          sound: "default",                                   // as FCM payload
+          priority: "high",                                   // as FCM payload
+          click_action: "ACTION",                             // as FCM payload
+          badge: 0,                                           // as FCM payload IOS only, set 0 to clear badges
+          icon: "ic_launcher",                                // as FCM payload, you can relace this with custom icon you put in mipmap
+          my_custom_data:'my_custom_field_value',             // extra data you want to throw
+          show_in_foreground:true                             // notification when app is in foreground (local & remote)
+      });
     });
     CodePush.sync({ updateDialog: false, installMode: CodePush.InstallMode.IMMEDIATE },
       (status) => {
