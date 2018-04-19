@@ -16,6 +16,7 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.wix.RNCameraKit.RNCameraKitPackage;
+import com.reactnative.photoview.PhotoViewPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -44,6 +45,7 @@ public class MainApplication extends Application implements ReactApplication {
             new BlurViewPackage(),
             new LottiePackage(),
             new RNCameraKitPackage(),
+            new PhotoViewPackage(),
             new CodePush("G1zFykkanSA5DGFHGiZQUrr5rBptc5a64ba8-c46e-44a1-a546-41de22ffbd48", getApplicationContext(), BuildConfig.DEBUG, R.string.CodePushPublicKey)
       );
     }

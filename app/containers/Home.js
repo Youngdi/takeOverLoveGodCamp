@@ -378,7 +378,7 @@ export default class Home extends React.Component {
             position={"center"}
             ref={"history_modal"}
             isOpen={this.state.history_isOpen}
-            swipeToClose={true}
+            swipeToClose={false}
           >
             <View style={styles.ImageShadow}>
               <ImageBackground 
