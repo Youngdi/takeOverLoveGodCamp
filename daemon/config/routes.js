@@ -568,13 +568,30 @@ module.exports = (app, io) => {
     resourceUpdate.$inc[req.body.seed] = -(req.body.seed)
     buyLand()
     async function buyLand() {
-      await updateC()
-      await updateM()
-      res.send({
-        data: true
-      })
+      const canBuy = await checkMap();
+      if(canBuy == 'N') {
+        updateC()
+        updateM()
+        res.send({
+          data: true
+        })
+      } else {
+        res.send({
+          data: false
+        })
+      }
     }
-
+    function checkMap() {
+      return new Promise((resolve, reject) => {
+        Map.find({
+          map_name: req.body.mapName
+        },
+        (e, map) => {
+          if (e) reject(e)
+          resolve(map[0].country);
+        })
+      });
+    }
     function updateC() {
       Country.update({
           country: req.body.country
