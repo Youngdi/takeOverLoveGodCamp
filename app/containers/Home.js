@@ -109,6 +109,7 @@ export default class Home extends React.Component {
         }
       }
     } catch (error) {
+      console.log(error);
       alert('不好意思，伺服器已關閉，明年請儘早報名變強好不好夏令營');
     }
   }

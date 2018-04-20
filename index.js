@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { AppRegistry, Platform } from 'react-native';
 import io from 'socket.io-client';
-import FCM, {FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType} from 'react-native-fcm';
+import FCM, {FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType } from 'react-native-fcm';
 import CodePush from "react-native-code-push";
 import App from './app/containers/App';
 class AppProvider extends Component {
@@ -10,6 +10,7 @@ class AppProvider extends Component {
     this.socket = io(`http://bytday.com:8083`, { transports: ['websocket'] });
   }
   componentDidMount() {
+    alert('123');
     global.socket = this.socket;
     FCM.requestPermissions();
 

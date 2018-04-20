@@ -37,19 +37,23 @@ async function login(value) {
       } catch (error) {
         console.log(error);
       }
-      this.setState({
-        visible: !this.state.visible,
-        wrong: false,
-      });
-      this.props.navigation.dispatch(resetAction);
+      setTimeout(() => {
+        this.setState({
+          visible: false,
+          wrong: false,
+        });
+      }, 800);
+      setTimeout(() => {
+        this.props.navigation.dispatch(resetAction);
+      }, 1000);
     } else {
       this.setState({
-        visible: !this.state.visible,
+        visible: false,
         wrong: true,
       });
     }
   } catch(error) {
-    alert('不好意思，伺服器已關閉，明年請儘早報名變強好不好夏令營');
+    alert('不好意思，你網路不穩或是伺服器已關閉，明年請儘早報名變強好不好夏令營');
     // this.setState({
     //   visible: !this.state.visible
     // });
@@ -74,14 +78,18 @@ async function loginForFun() {
       } catch (error) {
         console.log(error);
       }
-      this.setState({
-        visible: !this.state.visible,
-        wrong: false,
-      });
-      this.props.navigation.dispatch(resetAction);
+      setTimeout(() => {
+        this.setState({
+          visible: false,
+          wrong: false,
+        });
+      }, 800);
+      setTimeout(() => {
+        this.props.navigation.dispatch(resetAction);
+      }, 1000);
     } else {
       this.setState({
-        visible: !this.state.visible,
+        visible: false,
         wrong: true,
       });
     }
@@ -116,15 +124,16 @@ export default class Login extends React.Component {
   }
   submit() {
     this.setState({
-      visible: !this.state.visible
+      visible: true,
     });
     login.bind(this, {
-      username: this.state.username, password: this.state.password
+      username: this.state.username,
+      password: this.state.password
     })();
   }
   tryforfun() {
     this.setState({
-      visible: !this.state.visible
+      visible: true,
     });
     loginForFun.bind(this)();
   }

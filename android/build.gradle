@@ -3,9 +3,13 @@
 buildscript {
     repositories {
         jcenter()
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
+        }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.3'
+        classpath 'com.android.tools.build:gradle:3.1.1'
         classpath 'com.google.gms:google-services:3.2.0'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -17,9 +21,6 @@ allprojects {
         jcenter()
         maven { url "https://jitpack.io" }
         maven {
-            url 'https://maven.google.com'
-        }
-        maven {
             // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
             url "$rootDir/../node_modules/react-native/android"
         }
@@ -30,6 +31,10 @@ allprojects {
                 force 'com.google.firebase:firebase-core:11.8.0'
                 force 'com.google.android.gms:play-services-gcm:11.8.0'
             }
+        }
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
         }
     }
 }
