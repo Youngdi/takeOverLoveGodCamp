@@ -10,7 +10,6 @@ class AppProvider extends Component {
     this.socket = io(`http://bytday.com:8083`, { transports: ['websocket'] });
   }
   componentDidMount() {
-    alert('123');
     global.socket = this.socket;
     FCM.requestPermissions();
 

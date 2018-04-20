@@ -46,7 +46,7 @@ public class MainApplication extends Application implements ReactApplication {
             new LottiePackage(),
             new RNCameraKitPackage(),
             new PhotoViewPackage(),
-            new CodePush("G1zFykkanSA5DGFHGiZQUrr5rBptc5a64ba8-c46e-44a1-a546-41de22ffbd48", MainApplication.this, BuildConfig.DEBUG),
+            new CodePush("G1zFykkanSA5DGFHGiZQUrr5rBptc5a64ba8-c46e-44a1-a546-41de22ffbd48", MainApplication.this, BuildConfig.DEBUG)
       );
     }
 
