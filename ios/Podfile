@@ -9,9 +9,8 @@ target 'BYTBibleDiary' do
 
   # Pods for TakeOverOver
 
-
-  pod 'react-native-camera', :path => '../node_modules/react-native-camera'
-
+  pod 'Fabric'
+  pod 'Crashlytics'
   target 'BYTBibleDiaryTests' do
     inherit! :search_paths
     # Pods for testing

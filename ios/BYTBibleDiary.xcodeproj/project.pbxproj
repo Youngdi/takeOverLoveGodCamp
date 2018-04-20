@@ -1064,6 +1064,7 @@
 				2F86AB5020188F880005FACB /* Embed Frameworks */,
 				B77D791D79B639C81258D958 /* [CP] Embed Pods Frameworks */,
 				92703EE6EEB2C966A372AF04 /* [CP] Copy Pods Resources */,
+				2F2F76D42089E99900EB4A6A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1742,6 +1743,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+		};
+		2F2F76D42089E99900EB4A6A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" ef189b81854fb9fdefca6ba4715bf2e9a1e80e11 ab34646c123227eb4fb4bef1652ae7ff9493febf8b396ddf91c2f68c6163ae8d";
 		};
 		4383096140F40F729C13C00C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
