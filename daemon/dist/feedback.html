@@ -95,7 +95,7 @@
     <script>
     function record() {
         $.ajax({
-                url: BASECONNECTION + ':' + PORT + '/get_record',
+                url: BASECONNECTION + '/get_record',
                 type: 'GET'
             })
             .done(function(data) {
@@ -115,7 +115,7 @@
                 blockUI.start();
                 $http({
                     method: 'GET',
-                    url: BASECONNECTION + ':' + PORT + '/manager_logout'
+                    url: BASECONNECTION + '/manager_logout'
                 }).success(function(data) {
                     blockUI.stop();
                     window.location.href = "index.html";
@@ -128,7 +128,7 @@
                 blockUI.start();
                 $http({
                     method: 'GET',
-                    url: BASECONNECTION + ':' + PORT + '/get_feedback'
+                    url: BASECONNECTION + '/get_feedback'
                 }).success(function(data) {
                     $scope.feedback_data = data;
                     blockUI.stop();
@@ -141,7 +141,7 @@
                 blockUI.start();
                 $http({
                     method: 'GET',
-                    url: BASECONNECTION + ':' + PORT + '/manager_check_login'
+                    url: BASECONNECTION + '/manager_check_login'
                 }).success(function(data) {
                     blockUI.stop();
                     if (data.need_login) {

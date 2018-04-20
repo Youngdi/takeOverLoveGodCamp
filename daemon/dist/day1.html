@@ -292,7 +292,7 @@
     <script>
     function record() {
         $.ajax({
-                url: BASECONNECTION + ':' + PORT + '/get_record',
+                url: BASECONNECTION + '/get_record',
                 type: 'GET'
             })
             .done(function(data) {
@@ -376,7 +376,7 @@
                  blockUI.start();
                 $http({
                     method: 'GET',
-                    url: BASECONNECTION + ':' + PORT + '/manager_logout'
+                    url: BASECONNECTION + '/manager_logout'
                 }).success(function(data) {
                      blockUI.stop();
                     window.location.href = "index.html";
@@ -392,7 +392,7 @@
                 blockUI.start();
                 $http({
                     method: 'GET',
-                    url: BASECONNECTION + ':' + PORT + '/get_user'
+                    url: BASECONNECTION + '/get_user'
                 }).success(function(data) {
                     $scope.user_data = data;
                     blockUI.stop();
@@ -405,7 +405,7 @@
                 blockUI.start();
                 $http({
                     method: 'GET',
-                    url: BASECONNECTION + ':' + PORT + '/manager_check_login'
+                    url: BASECONNECTION + '/manager_check_login'
                 }).success(function(data) {
                     blockUI.stop();
                     if (data.need_login) {
@@ -443,7 +443,7 @@
                 if (flag == 'puzzle') {
                     $http({
                         method: 'POST',
-                        url: BASECONNECTION + ':' + PORT + '/update_user_puzzle',
+                        url: BASECONNECTION + '/update_user_puzzle',
                         data: {
                             name: team,
                             P1: B1,
@@ -468,7 +468,7 @@
                     var country = findCountry(team)
                     $http({
                         method: 'POST',
-                        url: BASECONNECTION + ':' + PORT + '/update_user_resource',
+                        url: BASECONNECTION + '/update_user_resource',
                         data: {
                             name: team,
                             country: country,
@@ -489,7 +489,7 @@
                 if (flag == 'puzzle_single') {
                     $http({
                         method: 'POST',
-                        url: BASECONNECTION + ':' + PORT + '/update_user_puzzle_single',
+                        url: BASECONNECTION + '/update_user_puzzle_single',
                         data: {
                             name: team,
                             puzzle: puzzle,
@@ -504,7 +504,7 @@
                 }
                 // $http({
                 //     method: 'POST',
-                //     url: BASECONNECTION + ':' + PORT + '/update_user_data',
+                //     url: BASECONNECTION + '/update_user_data',
                 //     data: {
                 //         name: team,
                 //         K: A1,

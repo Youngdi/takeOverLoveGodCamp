@@ -93,7 +93,7 @@
     <script>
     function record() {
         $.ajax({
-                url: BASECONNECTION + ':' + PORT + '/get_record',
+                url: BASECONNECTION + '/get_record',
                 type: 'GET'
             })
             .done(function(data) {
@@ -108,7 +108,7 @@
         $('#change').on('switchChange.bootstrapSwitch', function(event, state) {
             var state_converter = state ? 'T' : 'F'
             $.ajax({
-                url: BASECONNECTION + ':' + PORT + '/switchs_table',
+                url: BASECONNECTION + '/switchs_table',
                 type: 'POST',
                 data: {
                     state: state_converter
@@ -123,7 +123,7 @@
                 blockUI.start();
                 $http({
                     method: 'GET',
-                    url: BASECONNECTION + ':' + PORT + '/manager_logout'
+                    url: BASECONNECTION + '/manager_logout'
                 }).success(function(data) {
                     blockUI.stop();
                     window.location.href = "index.html";
@@ -137,7 +137,7 @@
                 blockUI.start();
                 $http({
                     method: 'GET',
-                    url: BASECONNECTION + ':' + PORT + '/manager_check_login'
+                    url: BASECONNECTION + '/manager_check_login'
                 }).success(function(data) {
                     blockUI.stop();
                     if (data.need_login) {
@@ -156,7 +156,7 @@
                 var broadcast = $('#broadcast').val();
                 $http({
                     method: 'POST',
-                    url: BASECONNECTION + ':' + PORT + '/update_board',
+                    url: BASECONNECTION + '/update_board',
                     data: {
                         board: broadcast,
                     }
@@ -174,7 +174,7 @@
                 var password = $('#password').val();
                 $http({
                     method: 'POST',
-                    url: BASECONNECTION + ':' + PORT + '/update_password',
+                    url: BASECONNECTION + '/update_password',
                     data: {
                         password: password,
                     }
@@ -190,7 +190,7 @@
                 blockUI.start();
                 $http({
                     method: 'POST',
-                    url: BASECONNECTION + ':' + PORT + '/reset_qrcode'
+                    url: BASECONNECTION + '/reset_qrcode'
                 }).success(function(data) {
                     blockUI.stop();
                     alert('QRcode重置成功');
@@ -203,7 +203,7 @@
                 var reference = Number($('#reference').val());
                 $http({
                     method: 'POST',
-                    url: BASECONNECTION + ':' + PORT + '/update_reference',
+                    url: BASECONNECTION + '/update_reference',
                     data: {
                         reference: reference,
                     }
@@ -218,7 +218,7 @@
             $scope.init = function() {
                 $http({
                     method: 'GET',
-                    url: BASECONNECTION + ':' + PORT + '/get_setting',
+                    url: BASECONNECTION + '/get_setting',
                 }).success(function(data) {
                     blockUI.stop();
                     var state = (data[0].changeToDay3 == 'T') ? true : false;

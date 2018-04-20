@@ -83,7 +83,7 @@
                 if ($scope.userForm.$valid) {
                     $http({
                         method: 'POST',
-                        url: BASECONNECTION + ':' + PORT + '/manager_login',
+                        url: BASECONNECTION + '/manager_login',
                         data: {
                             user: $scope.user
                         }

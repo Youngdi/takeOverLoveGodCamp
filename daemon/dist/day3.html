@@ -242,7 +242,7 @@
     <script>
     function record() {
         $.ajax({
-                url: BASECONNECTION + ':' + PORT + '/get_record',
+                url: BASECONNECTION + '/get_record',
                 type: 'GET'
             })
             .done(function(data) {
@@ -262,7 +262,7 @@
                 blockUI.start();
                 $http({
                     method: 'GET',
-                    url: BASECONNECTION + ':' + PORT + '/manager_logout'
+                    url: BASECONNECTION + '/manager_logout'
                 }).success(function(data) {
                     blockUI.stop();
                     window.location.href = "index.html";
@@ -280,7 +280,7 @@
                 blockUI.start();
                 $http({
                     method: 'GET',
-                    url: BASECONNECTION + ':' + PORT + '/get_country'
+                    url: BASECONNECTION + '/get_country'
                 }).success(function(data) {
                     $scope.country_data = data;
                     blockUI.stop();
@@ -289,7 +289,7 @@
                 });
                $http({
                     method: 'GET',
-                    url: BASECONNECTION + ':' + PORT + '/get_map'
+                    url: BASECONNECTION + '/get_map'
                 }).success(function(data) {
                     $scope.map_data = data;
                     blockUI.stop();
@@ -302,7 +302,7 @@
                 blockUI.start();
                 $http({
                     method: 'GET',
-                    url: BASECONNECTION + ':' + PORT + '/manager_check_login'
+                    url: BASECONNECTION + '/manager_check_login'
                 }).success(function(data) {
                     blockUI.stop();
                     if (data.need_login) {
@@ -326,7 +326,7 @@
                 var A6 = Number($('#A6').val());
                 $http({
                     method: 'POST',
-                    url: BASECONNECTION + ':' + PORT + '/update_country',
+                    url: BASECONNECTION + '/update_country',
                     data: {
                         name: team,
                         K: A1,
@@ -350,7 +350,7 @@
                 var country = $('#country').val();
                 $http({
                     method: 'POST',
-                    url: BASECONNECTION + ':' + PORT + '/update_map',
+                    url: BASECONNECTION + '/update_map',
                     data: {
                         map_name: map_name,
                         country: country,
