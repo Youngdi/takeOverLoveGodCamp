@@ -36,7 +36,7 @@ export default class PuzzleGame extends React.Component {
       P7: "",
       P8: "",
       P9: "",
-      P10: "",
+      P10: "N",
       character: "",
       hint: "",
       isOpen: false,
@@ -286,7 +286,11 @@ export default class PuzzleGame extends React.Component {
                   <View style={{marginRight:60}}>
                     <Button 
                       title={"考慮一下"}
-                      onPress={() => this.setState({isOpen: false})}
+                      onPress={() => {
+                        this.refs.L_modal.close();
+                        this.setState({isOpen:false})
+                        }
+                      }
                     >
                     </Button>
                   </View>
@@ -318,7 +322,7 @@ export default class PuzzleGame extends React.Component {
                       this.refs.N_modal.close();
                       this.setState({isOpen:false})
                     }
-                  } 
+                  }
                   style={{top:10,left:135, fontSize: 20, width:50, height:50, fontWeight: '800'}}
                   hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
                 >

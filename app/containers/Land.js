@@ -28,9 +28,6 @@ import { getMyUser, getMyCountry, getLand, api_buyResource, api_buyLand, getFlag
 const { width, height } = Dimensions.get("window");
 
 export default class Land extends React.Component {
-  // static contextTypes = {
-  //   socket: React.PropTypes.object,
-  // }
   static navigationOptions = {
     title: '領土爭奪戰',
     headerTitleStyle:{
@@ -42,7 +39,7 @@ export default class Land extends React.Component {
     this.state = {
       isRefreshing: false,
       isOpen: false,
-      visible1: false,
+      visible: false,
       lands: [],
       reference:9999,
     };
@@ -55,7 +52,7 @@ export default class Land extends React.Component {
     this.setState({
       isRefreshing: false,
       isOpen:false,
-      visible1:false,
+      visible:false,
       my_K: country.K,
       my_water: country.water,
       my_fire: country.fire,
@@ -87,7 +84,7 @@ export default class Land extends React.Component {
         {text: '購買', onPress: async () => {
           this.setState({
             isOpen: true,
-            visible1: true,
+            visible: true,
           });
           if (this.state.my_fire >= this.state.fire
            && this.state.my_water >= this.state.water
@@ -104,27 +101,34 @@ export default class Land extends React.Component {
                   global.socket.emit('message','refresh')
                   this.setState({
                     isOpen: false,
-                    visible1: false,
+                    visible: false,
                   });
                 }},
               ],
               { cancelable: false }
             )
           } else {
-            Alert.alert(
-              '購買失敗',
-              '資源不足',
-              [
-                {text: '前往首頁購買', onPress: () => {
-                  this.setState({
-                     visible1: false,
-                  })
-                 this.props.navigation.navigate('Home');
-                }},
-                {text: '取消', onPress: () => this.setState({visible1: false,}), style: 'cancel'},
-              ],
-              { cancelable: false }
-            )
+            setTimeout(() => {
+              this.setState({
+                visible: false,
+              });
+            }, 500);
+            setTimeout(() => {
+              Alert.alert(
+                '購買失敗',
+                '資源不足',
+                [
+                  {text: '前往首頁購買', onPress: () => {
+                    this.refs.buy_modal.close();
+                    setTimeout(() => {
+                      this.props.navigation.navigate('Home');
+                    }, 100);
+                  }},
+                  {text: '取消', onPress: () => {}, style: 'cancel'},
+                ],
+                { cancelable: false }
+              )
+            }, 800);
           }
         }},
         {text: '取消', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
@@ -517,7 +521,7 @@ export default class Land extends React.Component {
             </ImageBackground>
           </View>
         </Modal>
-        <Spinner visible={this.state.visible1} textContent={"Loading..."} textStyle={{color: '#FFF'}} />
+        <Spinner visible={this.state.visible} textContent={"Loading..."} textStyle={{color: '#FFF'}} />
       </View>
     )
   }
