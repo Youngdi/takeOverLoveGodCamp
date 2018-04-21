@@ -111,7 +111,7 @@ export default class Land extends React.Component {
             } else {
               Alert.alert(
                 '購買失敗',
-                '此訂已被買走',
+                '此地已被買走，下次請早',
                 [
                   {text: '確認', onPress: () => {
                     this.refs.buy_modal.close();
