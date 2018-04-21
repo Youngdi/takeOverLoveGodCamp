@@ -11,14 +11,12 @@ const { width, height } = Dimensions.get("window");
 const styles = StyleSheet.create({
   DrawerContainer: {
     flex:1,
-    marginTop: Platform.OS == "ios" ? 25 : 0,
     backgroundColor: 'white'
   },
   drawerHeader: {
     flex:1
   },
   drawerIconContainer:{
-    marginTop: Platform.OS == "ios" ? 25 : 0,
     height: (height < 540) ? 125 : 200,
     width: '100%',
     alignItems:'center',

@@ -242,6 +242,7 @@ export async function api_buyLand(fire, water, wood, stone, seed, map_name) {
      }
     )
     .then((response) => response.json())
+    .then(res => res.data)
     .catch((error) => {
       console.error(error);
       return error;

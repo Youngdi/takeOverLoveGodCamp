@@ -120,6 +120,7 @@ export default class Home extends React.Component {
     this.init();
   }
   onPressSourceButton(resource) {
+    alert(shotText);
     let shopText = "";
     switch (resource) {
       case 'fire':

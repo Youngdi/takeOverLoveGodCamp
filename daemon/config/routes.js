@@ -69,7 +69,6 @@ module.exports = (app, io) => {
             res.status(401).send({
               loggedIn: false
             })
-            // res.send({loggedIn: false})
             res.end()
           } else {
             const myToken = jwt.sign({
@@ -77,7 +76,6 @@ module.exports = (app, io) => {
               loggedIn: true
             }, 'takeover')
             
-            // res.status(200).json(myToken)
             res.send({loggedIn: true, user, myToken})
             res.end()
           }

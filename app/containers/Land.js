@@ -92,21 +92,37 @@ export default class Land extends React.Component {
            && this.state.my_seed >= this.state.seed
            && this.state.my_wood >= this.state.wood
           ) {
-            await api_buyLand(this.state.fire, this.state.water, this.state.wood, this.state.stone, this.state.seed, this.state.map_name)
-            Alert.alert(
-              '購買成功',
-              '歡迎下次再度光臨',
-              [
-                {text: '確定', onPress: () => {
-                  global.socket.emit('message','refresh')
-                  this.setState({
-                    isOpen: false,
-                    visible: false,
-                  });
-                }},
-              ],
-              { cancelable: false }
-            )
+            const buy = await api_buyLand(this.state.fire, this.state.water, this.state.wood, this.state.stone, this.state.seed, this.state.map_name)
+            if(buy){
+              Alert.alert(
+                '購買成功',
+                '歡迎下次再度光臨',
+                [
+                  {text: '確定', onPress: () => {
+                    global.socket.emit('message','refresh')
+                    this.setState({
+                      isOpen: false,
+                      visible: false,
+                    });
+                  }},
+                ],
+                { cancelable: false }
+              )
+            } else {
+              Alert.alert(
+                '購買失敗',
+                '此訂已被買走',
+                [
+                  {text: '確認', onPress: () => {
+                    this.refs.buy_modal.close();
+                    this.setState({
+                      isOpen: false,
+                      visible: false,
+                    });
+                  }},
+                ],
+              )
+            }
           } else {
             setTimeout(() => {
               this.setState({
