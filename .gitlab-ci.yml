@@ -87,7 +87,7 @@ prod_deploy:
   when: manual
 
 ios_deploy_beta:
-  images: ruby:2.5
+  image: ruby:2.5
   dependencies: []
   stage: ios
   allow_failure: false
@@ -111,7 +111,7 @@ ios_deploy_beta:
   when: manual
 
 ios_deploy_prod:
-  images: ruby:2.5
+  image: ruby:2.5
   dependencies: []
   stage: ios
   allow_failure: false
