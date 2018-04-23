@@ -1,8 +1,7 @@
 stages:
   - build
   - deploy
-  - ios-beta
-  - ios-prod
+  - ios
 variables:
   LC_ALL: "en_US.UTF-8"
   LANG: "en_US.UTF-8"
@@ -91,7 +90,7 @@ prod_deploy:
 
 ios_deploy_beta:
   dependencies: []
-  stage: ios-beta
+  stage: ios
   allow_failure: false
   before_script:
   - gem install bundler
@@ -106,13 +105,13 @@ ios_deploy_beta:
   when: manual
 
 ios_deploy_prod:
-  stage: ios-prod
+  stage: ios
   allow_failure: false
   before_script:
   - gem install bundler
   - bundle install
   script:
-    - bash .gitlab-deploy.sh
+    - fastlane release
   tags:
     - ios
   only:
