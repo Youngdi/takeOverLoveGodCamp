@@ -112,6 +112,7 @@ ios_deploy_prod:
   - gem install bundler
   - bundle install
   script:
+    - cd ./ios
     - fastlane release
   tags:
     - gitlab-org
