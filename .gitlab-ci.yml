@@ -98,7 +98,7 @@ ios_deploy_beta:
   script:
     - fastlane beta
   tags:
-    - ios
+    - gitlab-org
   only:
     - tags
     - master
@@ -113,7 +113,7 @@ ios_deploy_prod:
   script:
     - fastlane release
   tags:
-    - ios
+    - gitlab-org
   only:
     - tags
     - master
