@@ -2,9 +2,6 @@ stages:
   - build
   - deploy
   - ios
-variables:
-  LANG: "en_US.UTF-8"
-  LC_ALL: "en_US.UTF-8"
 
 build-docker-prod:
   stage: build
@@ -94,7 +91,7 @@ ios_deploy_beta:
   stage: ios
   allow_failure: false
   before_script:
-    - sudo gem install bundler && bundle update 
+    - gem install bundler && bundle update 
   script:
     - cd ./ios
     - fastlane ios beta
@@ -111,7 +108,7 @@ ios_deploy_prod:
   stage: ios
   allow_failure: false
   before_script:
-  - sudo gem install bundler && bundle update 
+  - gem install bundler && bundle update 
   script:
     - cd ./ios
     - fastlane ios release
