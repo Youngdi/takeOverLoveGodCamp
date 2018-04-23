@@ -104,7 +104,7 @@ ios_deploy_beta:
   script:
     - fastlane beta
   tags:
-    - gitlab-org
+    - gce
   only:
     - tags
     - master
