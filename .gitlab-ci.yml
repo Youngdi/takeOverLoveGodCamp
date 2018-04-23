@@ -1,6 +1,8 @@
 stages:
   - build
   - deploy
+  - ios
+
 build-docker-prod:
   stage: build
   image: docker:latest
@@ -78,6 +80,41 @@ prod_deploy:
     - bash .gitlab-deploy.sh
   tags:
     - docker
+  only:
+    - tags
+    - master
+  when: manual
+
+ios_deploy_beta:
+  image: ruby:2.5
+  dependencies: []
+  stage: ios
+  allow_failure: false
+  before_script:
+    - gem install bundler
+    - bundle install
+  script:
+    - cd ./ios
+    - fastlane beta
+  tags:
+    - gce
+  only:
+    - tags
+    - master
+  when: manual
+
+ios_deploy_prod:
+  image: ruby:2.5
+  dependencies: []
+  stage: ios
+  allow_failure: false
+  before_script:
+  - gem install bundler
+  - bundle install
+  script:
+    - fastlane release
+  tags:
+    - gitlab-org
   only:
     - tags
     - master

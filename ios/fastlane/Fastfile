@@ -1,0 +1,44 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Description of what the lane does"
+  lane :test do
+    scan(scheme: "BYTBibleDiary")
+  end
+  lane :screenshots do
+    capture_screenshots
+    upload_to_app_store
+  end
+  lane :beta do 
+    increment_build_number ({ 
+    build_number: latest_testflight_build_number + 1
+    })
+    match(app_identifier: "com.banner.takeitover",
+    type: "appstore",
+    force: true
+    )
+    gym(scheme: "BYTBibleDiary",
+    silent: true,
+    clean: true)   
+ 
+    pilot
+  end
+  lane :release do
+    capture_screenshots                  # generate new screenshots for the App Store
+    sync_code_signing(type: "appstore")  # see code signing guide for more information
+    build_app(scheme: "BYTBibleDiary")
+    upload_to_app_store                  # upload your app to iTunes Connect
+    slack(message: "Successfully uploaded a new App Store build")
+  end
+end
