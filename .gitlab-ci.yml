@@ -1,6 +1,12 @@
 stages:
   - build
   - deploy
+  - ios-beta
+  - ios-prod
+variables:
+  LC_ALL: "en_US.UTF-8"
+  LANG: "en_US.UTF-8"
+
 build-docker-prod:
   stage: build
   image: docker:latest
@@ -78,6 +84,37 @@ prod_deploy:
     - bash .gitlab-deploy.sh
   tags:
     - docker
+  only:
+    - tags
+    - master
+  when: manual
+
+ios_deploy_beta:
+  dependencies: []
+  stage: ios-beta
+  allow_failure: false
+  before_script:
+  - gem install bundler
+  - bundle install
+  script:
+    - fastlane beta
+  tags:
+    - ios
+  only:
+    - tags
+    - master
+  when: manual
+
+ios_deploy_prod:
+  stage: ios-prod
+  allow_failure: false
+  before_script:
+  - gem install bundler
+  - bundle install
+  script:
+    - bash .gitlab-deploy.sh
+  tags:
+    - ios
   only:
     - tags
     - master
