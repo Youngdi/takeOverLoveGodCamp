@@ -2,6 +2,9 @@ stages:
   - build
   - deploy
   - ios
+variables:
+  LANG: "en_US.UTF-8"
+  LC_ALL: "en_US.UTF-8"
 
 build-docker-prod:
   stage: build
@@ -91,11 +94,10 @@ ios_deploy_beta:
   stage: ios
   allow_failure: false
   before_script:
-    - gem install bundler
-    - bundle install
+    - sudo gem install bundler && bundle update 
   script:
     - cd ./ios
-    - fastlane beta
+    - fastlane ios beta
   tags:
     - gce
   only:
@@ -109,13 +111,12 @@ ios_deploy_prod:
   stage: ios
   allow_failure: false
   before_script:
-  - gem install bundler
-  - bundle install
+  - sudo gem install bundler && bundle update 
   script:
     - cd ./ios
-    - fastlane release
+    - fastlane ios release
   tags:
-    - gitlab-org
+    - gce
   only:
     - tags
     - master
