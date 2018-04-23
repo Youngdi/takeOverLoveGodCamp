@@ -3,9 +3,6 @@ stages:
   - deploy
   - ios
 
-before_script:
-  - gem install bundler
-  - bundle install
 
 build-docker-prod:
   stage: build
@@ -90,10 +87,20 @@ prod_deploy:
   when: manual
 
 ios_deploy_beta:
+  images: ruby:2.5
   dependencies: []
   stage: ios
   allow_failure: false
-
+  before_script:
+    - apt-get update >/dev/null
+    - apt-get install -y locales >/dev/null
+    - echo "en_US UTF-8" > /etc/locale.gen
+    - locale-gen en_US.UTF-8
+    - export LANG=en_US.UTF-8
+    - export LANGUAGE=en_US:en
+    - export LC_ALL=en_US.UTF-8
+    - gem install bundler
+    - bundle install
   script:
     - fastlane beta
   tags:
@@ -104,6 +111,8 @@ ios_deploy_beta:
   when: manual
 
 ios_deploy_prod:
+  images: ruby:2.5
+  dependencies: []
   stage: ios
   allow_failure: false
   before_script:
