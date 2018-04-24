@@ -96,7 +96,7 @@ ios_deploy_beta:
     - cd ./ios
     - fastlane ios beta
   tags:
-    - gce
+    - rn_ios
   only:
     - tags
     - master
@@ -113,7 +113,7 @@ ios_deploy_prod:
     - cd ./ios
     - fastlane ios release
   tags:
-    - gce
+    - rn_ios
   only:
     - tags
     - master
