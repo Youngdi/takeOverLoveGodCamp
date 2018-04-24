@@ -93,6 +93,7 @@ ios_deploy_beta:
   before_script:
     - gem install bundler && bundle update && npm install
   script:
+    - npm install
     - cd ./ios
     - fastlane ios beta
   tags:
