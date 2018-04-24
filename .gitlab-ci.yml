@@ -93,7 +93,6 @@ ios_deploy_beta:
   before_script:
     - gem install bundler && bundle update 
   script:
-    - echo "$FASTLANE_SESSION"
     - cd ./ios
     - fastlane ios beta
   tags:
