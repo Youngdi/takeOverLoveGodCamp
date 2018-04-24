@@ -24,7 +24,7 @@ platform :ios do
   end
   lane :beta do
     increment_version_number({
-      version_number: "4.0",
+      version_number: "5.0",
     })
     increment_build_number({
       build_number: latest_testflight_build_number(username: "u9951062@icloud.com", app_identifier: "com.banner.takeitover") + 1,
@@ -42,7 +42,8 @@ platform :ios do
     )
     pilot(
       username: "u9951062@icloud.com",
-      app_identifier: "com.banner.takeitover"
+      app_identifier: "com.banner.takeitover",
+      skip_waiting_for_build_processing: true
     )
   end
   lane :release do 
