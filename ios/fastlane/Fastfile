@@ -20,14 +20,18 @@ platform :ios do
     capture_screenshots
     upload_to_app_store
   end
-  lane :beta do 
-    increment_build_number ({ 
-    build_number: latest_testflight_build_number + 1
+  lane :beta do
+    increment_version_number({
+      version_number: get_version_number(xcodeproj: "BYTBibleDiary.xcodeproj", target: "BYTBibleDiary"),
+    })
+    increment_build_number({
+      build_number: latest_testflight_build_number(app_identifier: "com.banner.takeitover") + 1,
     })
     match(
       app_identifier: "com.banner.takeitover",
-      type: "adhoc",
-      force: true
+      type: "appstore",
+      force: true,
+      readonly: true,
     )
     gym(
       scheme: "BYTBibleDiary",
@@ -37,12 +41,12 @@ platform :ios do
     pilot
   end
   lane :release do 
-    increment_build_number ({ 
-    build_number: latest_testflight_build_number + 1
+    increment_build_number({
+      build_number: latest_testflight_build_number(app_identifier: "com.banner.takeitover") + 1,
     })
     match(
       app_identifier: "com.banner.takeitover",
-      type: "adhoc",
+      type: "appstore",
       force: true
     )
     gym(
