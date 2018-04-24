@@ -1,0 +1,39 @@
+To APPLE APP STORE Approval Committee, 
+Thank you for taking the time to read my approval request. My name is Bill and I am developing this app for my church’s youth camp this summer 2017. The summer camp launches this July 10, 2017, so your expedient feedback is much appreciated. 
+The app allows teams to complete a scavenger hunt around the campus. It includes maps for players to locate game sites and resources. Each game station will have a QR code which players can scan to gain tips, money points, and helpful resources. No actual currency will be exchanged in the app nor in person for these activities. Players simply use the game currency to buy land, thus the player holding the most land is the winner.
+
+---------------------------------------------------------------------------------------------------------------------
+Tips:
+App demo: https://www.youtube.com/watch?v=e8MEfFdFrrs
+
+1.此App裡面所有資源買賣都非現實世界的金錢
+2.此APP需搭配實體大地活動進行的，並在活動過程中給予資源獎勵、解謎破關線索、領土爭奪
+3.Qrcode掃描器是掃瞄實際活動地點的QRcode設置地點，並給予學員資源獎勵
+4.此App裡的登入機制帳密都已經預先設定，所以是採現場發放帳號與密碼的序號給學員，並無實際登入收集學員資料的安全疑慮
+5.因此App將於7/10號配合夏令營使用，還請審核人員幫忙儘速通過上架讓學員可以下載，謝謝您的幫忙
+最後附上後台管理帳號與密碼
+帳號：
+BYT100
+密碼：
+ilovejesus
+網址：
+http://bytday.com:8083/
+
+1. This app is used for summer camp activities including puzzles and scavenger hunt competitions.
+2. The resources and money mentioned in this APP are imaginary for game purposes.
+3. QRcode scanner is used to scan QRcodes located in various sites around the campus for players to gain game currency funds, tips, and resources.
+4. All the accounts and passwords are built in advance. Players will be given these in person, so there is no security issue concerning the user’s personal data.
+5. This app needs to be used on July 10, 2017, so please help us to let it pass ASAP. Thank you in advance for your help!
+6. Here is our server info to operate the app.
+Account:
+BYT100
+Password:
+Ilovejesus
+Keeper Password:
+1X4QWE (You can change in manager server)
+Website:
+http://bytday.com:8083/
+
+
+Sincerely.
+Bill YoungDi.

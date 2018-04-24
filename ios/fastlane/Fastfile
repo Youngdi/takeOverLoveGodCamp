@@ -24,21 +24,36 @@ platform :ios do
     increment_build_number ({ 
     build_number: latest_testflight_build_number + 1
     })
-    match(app_identifier: "com.banner.takeitover",
-    type: "appstore",
-    force: true
+    match(
+      app_identifier: "com.banner.takeitover",
+      type: "adhoc",
+      force: true
     )
-    gym(scheme: "BYTBibleDiary",
-    silent: true,
-    clean: true)   
- 
+    gym(
+      scheme: "BYTBibleDiary",
+      silent: true,
+      clean: true
+    )
     pilot
   end
-  lane :release do
-    capture_screenshots                  # generate new screenshots for the App Store
-    sync_code_signing(type: "appstore")  # see code signing guide for more information
-    build_app(scheme: "BYTBibleDiary")
-    upload_to_app_store                  # upload your app to iTunes Connect
-    slack(message: "Successfully uploaded a new App Store build")
+  lane :release do 
+    increment_build_number ({ 
+    build_number: latest_testflight_build_number + 1
+    })
+    match(
+      app_identifier: "com.banner.takeitover",
+      type: "adhoc",
+      force: true
+    )
+    gym(
+      scheme: "BYTBibleDiary",
+      silent: true,
+      clean: true
+    )
+    deliver(
+      submit_for_review: true,
+      force: true,
+      metadata_path: "./metadata"
+    )
   end
 end

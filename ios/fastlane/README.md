@@ -36,6 +36,11 @@ fastlane ios beta
 fastlane ios release
 ```
 
+### ios release1
+```
+fastlane ios release1
+```
+
 
 ----
 
