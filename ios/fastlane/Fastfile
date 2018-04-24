@@ -40,17 +40,17 @@ platform :ios do
       silent: true,
       clean: true
     )
-    pilot(
-      username: "u9951062@icloud.com",
-      app_identifier: "com.banner.takeitover",
-      skip_waiting_for_build_processing: true
-    )
     crashlytics(
       api_token: "ef189b81854fb9fdefca6ba4715bf2e9a1e80e11",
       build_secret: "ab34646c123227eb4fb4bef1652ae7ff9493febf8b396ddf91c2f68c6163ae8d",
       ipa_path: "./BYTBibleDiary.ipa",
       crashlytics_path: './Pods/Crashlytics/iOS/Crashlytics.framework',
       notes: 'Latest Beta build'
+    )
+    pilot(
+      username: "u9951062@icloud.com",
+      app_identifier: "com.banner.takeitover",
+      skip_waiting_for_build_processing: true
     )
   end
   lane :release do 

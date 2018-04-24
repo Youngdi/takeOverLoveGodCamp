@@ -2,6 +2,8 @@ stages:
   - build
   - deploy
   - ios
+variables:
+  DELIVER_ITMSTRANSPORTER_ADDITIONAL_UPLOAD_PARAMETERS: '-t DAV'
 
 build-docker-prod:
   stage: build
