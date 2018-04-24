@@ -91,7 +91,7 @@ ios_deploy_beta:
   stage: ios
   allow_failure: false
   before_script:
-    - gem install bundler && bundle update 
+    - gem install bundler && bundle update && npm install
   script:
     - cd ./ios
     - fastlane ios beta
@@ -109,7 +109,6 @@ ios_deploy_prod:
   allow_failure: false
   before_script:
   - gem install bundler && bundle update
-  - npm install
   script:
     - cd ./ios
     - fastlane ios release
