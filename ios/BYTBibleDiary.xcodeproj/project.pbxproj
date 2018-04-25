@@ -2013,6 +2013,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = BYTBibleDiary/BYTBibleDiary.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 7;
 				DEAD_CODE_STRIPPING = NO;
@@ -2041,8 +2042,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.banner.takeitover;
 				PRODUCT_NAME = BYTBibleDiary;
-				PROVISIONING_PROFILE = "4bdeacb6-841b-4bb3-9c39-e7fae9c5ec7a";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development com.banner.takeitover";
+				PROVISIONING_PROFILE = "84ea3e93-50d1-47f5-a873-a425cbf810dc";
+				PROVISIONING_PROFILE_SPECIFIER = TakeOver_dev;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -2054,6 +2055,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = BYTBibleDiary/BYTBibleDiary.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 7;
@@ -2082,8 +2084,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.banner.takeitover;
 				PRODUCT_NAME = BYTBibleDiary;
-				PROVISIONING_PROFILE = "e845923c-391c-487d-b182-1ca94ce12f8c";
-				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc com.banner.takeitover";
+				PROVISIONING_PROFILE = "6f413645-2d05-4a4d-b86d-3ae60416206b";
+				PROVISIONING_PROFILE_SPECIFIER = TakeOver_prod;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
