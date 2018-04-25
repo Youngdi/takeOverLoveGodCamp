@@ -1,6 +1,5 @@
-app_identifier("[[com.banner.takeitover]]") # The bundle identifier of your app
-apple_id("[[u9951062@icloud.com]]") # Your Apple email address
-
+app_identifier("com.banner.takeitover") # The bundle identifier of your app
+apple_id("u9951062@icloud.com") # Your Apple email address
 
 # For more information about the Appfile, see:
 #     https://docs.fastlane.tools/advanced/#appfile
