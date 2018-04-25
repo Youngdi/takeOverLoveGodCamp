@@ -1129,7 +1129,7 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = P2ADEVT9YH;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -2014,10 +2014,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = BYTBibleDiary/BYTBibleDiary.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 7;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = P2ADEVT9YH;
+				DEVELOPMENT_TEAM = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
@@ -2042,8 +2042,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.banner.takeitover;
 				PRODUCT_NAME = BYTBibleDiary;
-				PROVISIONING_PROFILE = "84ea3e93-50d1-47f5-a873-a425cbf810dc";
-				PROVISIONING_PROFILE_SPECIFIER = TakeOver_dev;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -2057,9 +2057,9 @@
 				CODE_SIGN_ENTITLEMENTS = BYTBibleDiary/BYTBibleDiary.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 7;
-				DEVELOPMENT_TEAM = P2ADEVT9YH;
+				DEVELOPMENT_TEAM = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
@@ -2084,8 +2084,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.banner.takeitover;
 				PRODUCT_NAME = BYTBibleDiary;
-				PROVISIONING_PROFILE = "6f413645-2d05-4a4d-b86d-3ae60416206b";
-				PROVISIONING_PROFILE_SPECIFIER = TakeOver_prod;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
