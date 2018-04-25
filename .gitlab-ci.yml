@@ -2,6 +2,7 @@ stages:
   - build
   - deploy
   - ios
+  - android
 variables:
   DELIVER_ITMSTRANSPORTER_ADDITIONAL_UPLOAD_PARAMETERS: '-t DAV'
 
@@ -93,7 +94,7 @@ ios_deploy_beta:
   stage: ios
   allow_failure: false
   before_script:
-    - gem install bundler && bundle update && npm install
+    - gem install bundler && bundle update
   script:
     - npm install
     - cd ./ios
@@ -113,10 +114,45 @@ ios_deploy_prod:
   before_script:
   - gem install bundler && bundle update
   script:
+    - npm install
     - cd ./ios
     - fastlane ios release
   tags:
     - rn_ios
+  only:
+    - tags
+    - master
+  when: manual
+
+android_deploy_beta:
+  stage: android
+  allow_failure: false
+  before_script:
+    - gem install bundler && bundle update
+  script:
+    - npm install
+    - cd ./android
+    - fastlane beta
+  tags:
+    - rn_ios
+    - rn_android
+  only:
+    - tags
+    - master
+  when: manual
+
+ios_deploy_prod:
+  stage: android
+  allow_failure: false
+  before_script:
+  - gem install bundler && bundle update
+  script:
+    - npm install
+    - cd ./android
+    - fastlane release
+  tags:
+    - rn_ios
+    - rn_android
   only:
     - tags
     - master
