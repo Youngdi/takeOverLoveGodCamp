@@ -22,6 +22,7 @@ platform :ios do
     capture_screenshots
     upload_to_app_store
   end
+  desc "Submit a new Beta Build ios to Crashlytics Beta"
   lane :beta do
     increment_version_number({
       version_number: get_version_number(xcodeproj: "BYTBibleDiary.xcodeproj", target: "BYTBibleDiary"),
@@ -53,6 +54,7 @@ platform :ios do
       skip_waiting_for_build_processing: true
     )
   end
+  desc "Deploy a new version to the Apple Store"
   lane :release do 
     increment_version_number({
       version_number: get_version_number(xcodeproj: "BYTBibleDiary.xcodeproj", target: "BYTBibleDiary"),
