@@ -3,4 +3,3 @@ git_url("https://gitlab.com/Youngdi/takeover")
 type("development") # The default type, can be: appstore, adhoc, enterprise or development
 app_identifier(["com.banner.takeitover"])
 username("u9951062@icloud.com") # Your Apple Developer Portal username
-readonly(false)
