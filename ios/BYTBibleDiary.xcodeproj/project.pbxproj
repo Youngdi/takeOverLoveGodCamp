@@ -2013,9 +2013,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = BYTBibleDiary/BYTBibleDiary.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yu-Cheng Yang (9TA7884QJ2)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 9;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = P2ADEVT9YH;
 				HEADER_SEARCH_PATHS = (
@@ -2042,8 +2042,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.banner.takeitover;
 				PRODUCT_NAME = BYTBibleDiary;
-				PROVISIONING_PROFILE = "e1e31da1-f673-49dc-99f2-e4c594c82d7a";
-				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc com.banner.takeitover";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "com.banner.takeitover Development";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -2055,10 +2055,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = BYTBibleDiary/BYTBibleDiary.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Yu-Cheng Yang (P2ADEVT9YH)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Yu-Cheng Yang (P2ADEVT9YH)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = P2ADEVT9YH;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2084,8 +2084,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.banner.takeitover;
 				PRODUCT_NAME = BYTBibleDiary;
-				PROVISIONING_PROFILE = "63e642d2-2db5-4036-b403-7c31cc3574c0";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.banner.takeitover";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "com.banner.takeitover AppStore";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

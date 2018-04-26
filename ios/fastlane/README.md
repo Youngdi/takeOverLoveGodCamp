@@ -30,12 +30,12 @@ fastlane ios screenshots
 ```
 fastlane ios beta
 ```
-
+Submit a new Beta Build ios to Crashlytics Beta
 ### ios release
 ```
 fastlane ios release
 ```
-
+Deploy a new version to the Apple Store
 
 ----
 
