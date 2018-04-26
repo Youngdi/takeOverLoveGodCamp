@@ -536,7 +536,7 @@
 		2D02E4901E0B4A5D006451C7 /* BYTBibleDiary-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BYTBibleDiary-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F4D6A81202C82A7002DA407 /* CodePush.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CodePush.xcodeproj; path = "../node_modules/react-native-code-push/ios/CodePush.xcodeproj"; sourceTree = "<group>"; };
-		2F7C6CC9202C4E4100EF8F0A /* BYTBibleDiary.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = BYTBibleDiary.entitlements; path = BYTBibleDiary/BYTBibleDiary.entitlements; sourceTree = "<group>"; };
+		2F740B7E2091BE8F0033EDFA /* BYTBibleDiary.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = BYTBibleDiary.entitlements; path = BYTBibleDiary/BYTBibleDiary.entitlements; sourceTree = "<group>"; };
 		2F883B642085E4B70012D6CA /* ReactNativeCameraKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeCameraKit.xcodeproj; path = "../node_modules/react-native-camera-kit/ios/lib/ReactNativeCameraKit.xcodeproj"; sourceTree = "<group>"; };
 		2FF70D9D2088403C005139EF /* RNPhotoView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNPhotoView.xcodeproj; path = "../node_modules/react-native-photo-view/ios/RNPhotoView.xcodeproj"; sourceTree = "<group>"; };
 		305540E0298E4A2680AE93D5 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
@@ -733,7 +733,7 @@
 		13B07FAE1A68108700A75B9A /* BYTBibleDiary */ = {
 			isa = PBXGroup;
 			children = (
-				2F7C6CC9202C4E4100EF8F0A /* BYTBibleDiary.entitlements */,
+				2F740B7E2091BE8F0033EDFA /* BYTBibleDiary.entitlements */,
 				040F379C208308EA00015F21 /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -1129,10 +1129,22 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = P2ADEVT9YH;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
+							};
+							com.apple.GameCenter.iOS = {
+								enabled = 0;
+							};
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.NetworkExtensions.iOS = {
+								enabled = 0;
 							};
 							com.apple.Push = {
 								enabled = 1;
@@ -2013,11 +2025,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = BYTBibleDiary/BYTBibleDiary.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Yu-Cheng Yang (9TA7884QJ2)";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 9;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = P2ADEVT9YH;
+				DEVELOPMENT_TEAM = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
@@ -2043,7 +2055,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.banner.takeitover;
 				PRODUCT_NAME = BYTBibleDiary;
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "com.banner.takeitover Development";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -2055,11 +2067,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = BYTBibleDiary/BYTBibleDiary.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Yu-Cheng Yang (P2ADEVT9YH)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Yu-Cheng Yang (P2ADEVT9YH)";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 9;
-				DEVELOPMENT_TEAM = P2ADEVT9YH;
+				DEVELOPMENT_TEAM = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
@@ -2085,7 +2097,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.banner.takeitover;
 				PRODUCT_NAME = BYTBibleDiary;
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "com.banner.takeitover AppStore";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
