@@ -4,7 +4,8 @@ import { SafeAreaView, StackNavigator, TabNavigator, NavigationActions } from 'r
 import getSlideFromRightTransition from 'react-navigation-slide-from-right-transition';
 import FCM, {FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType} from 'react-native-fcm';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import EasterEggHunterScreen from './EasterEggHunt.js';
+import EasterEggHunterScreen from './EasterEggHunt';
+import EasterEggHunterScreen2018 from './EasterEggHunt2018';
 import HomeScreen from './Home';
 import LandScreen from './Land';
 import PuzzleGameScreen from './PuzzleGame';
@@ -41,23 +42,23 @@ const HomeTabNav = TabNavigator(
         )
       },
     },
-    PuzzleGame: {
-      path: '/puzzle',
-      screen: PuzzleGameScreen,
-      navigationOptions: {
-        title: '九宮格解謎',
-        tabBarLabel: '解謎',
-        tabBarIcon: ({ tintColor, focused }) => (
-          <Image
-            source={require('../images/tabIcons/grid-01.png')}
-            style={[styles.icon, {tintColor: tintColor}]}
-          />
-        )
-      },
-    },
+    // PuzzleGame: {
+    //   path: '/puzzle',
+    //   screen: PuzzleGameScreen,
+    //   navigationOptions: {
+    //     title: '九宮格解謎',
+    //     tabBarLabel: '解謎',
+    //     tabBarIcon: ({ tintColor, focused }) => (
+    //       <Image
+    //         source={require('../images/tabIcons/grid-01.png')}
+    //         style={[styles.icon, {tintColor: tintColor}]}
+    //       />
+    //     )
+    //   },
+    // },
     EasterEggHunter: {
       path: '/easterEggHunter',
-      screen: EasterEggHunterScreen,
+      screen: EasterEggHunterScreen2018,
       navigationOptions: {
         title: '尋寶獵人',
         tabBarLabel: '尋寶',

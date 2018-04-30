@@ -89,36 +89,6 @@ class AppProvider extends Component {
       }
     );
   }
-  setupScheduleLocalNotification = () => {
-    FCM.cancelLocalNotification('nightReminders');
-    FCM.cancelLocalNotification('dayReminders');
-    FCM.scheduleLocalNotification({
-      fire_date: moment(`${moment().format('YYYY-MM-DD')} 08:00:00`).toDate().getTime(),
-      id: 'dayReminders',
-      title: '早起靈修，開啟你美好的一天',
-      body: this.getDiaryBiblePhrase('每日一'),
-      priority: 'high', 
-      show_in_foreground: true,
-      sound: 'default',
-      local: true,
-      badge: 1,
-      vibrate: 500,
-      wake_screen: true
-    });
-    FCM.scheduleLocalNotification({
-      fire_date: moment(`${moment().format('YYYY-MM-DD')} 22:00:00`).toDate().getTime(),
-      id: 'nightReminders',
-      title: '睡前靈修，願主與你一同進入夢鄉',
-      body: this.getDiaryBiblePhrase('睡前'),
-      priority: 'high', 
-      show_in_foreground: true,
-      sound: 'default',
-      local: true,
-      badge: 1,
-      vibrate: 500,
-      wake_screen: true
-    });
-  }
   render() {
     return (
       <App />
