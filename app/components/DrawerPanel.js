@@ -61,7 +61,7 @@ export default class SideDrawer extends React.Component {
     try {
       if (route == 'Logout') {
         this.setState({status:0});
-        this.props.navigation.navigate('Login');
+        this.props.navigation.navigate({routeName: 'Login', key: 'Login'});
         AsyncStorage.setItem('@isLogined', 'N');
         fetch(`https://${Config.SERVER_IP}:${Config.PORT}/logout`);
       } else if (route == 'HomeTab') {
@@ -69,13 +69,12 @@ export default class SideDrawer extends React.Component {
         this.props.closeControlPanel();
       } else {
         this.setState({status: status});
-        this.props.navigation.navigate(route);
+        this.props.navigation.navigate({routeName: route, key: route});
       }
     } catch (error) {
       console.log(error);
       alert(error);
     }
-
   }
   render() {
     return(

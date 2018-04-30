@@ -171,7 +171,7 @@ export default class EasterEggHunt extends React.Component {
             visible: false,
             score_modal_isOpen:false,
           });
-          this.props.navigation.navigate('Home');
+          this.props.navigation.navigate({routeName: 'Home', key: 'Home'});
         }},
       ],
         { cancelable: false }
@@ -241,7 +241,7 @@ export default class EasterEggHunt extends React.Component {
                     source={require('../images/day3/2018/M2.png')}>
                     <TouchableHighlight
                       underlayColor={'rgba(252,252,252,0.5)'} 
-                      onPress={() => this.props.navigation.navigate('Scan',{getEgg:this.getEgg})}>
+                      onPress={() => this.props.navigation.navigate({routeName:'Scan',key:'Scan',params:{getEgg:this.getEgg}})}>
                       <View style={{width:'100%',height:height * 0.1125}}></View>
                     </TouchableHighlight>
                   </ImageBackground>
@@ -250,7 +250,7 @@ export default class EasterEggHunt extends React.Component {
                     source={require('../images/day3/2018/M3.png')}>
                     <TouchableHighlight
                       underlayColor={'rgba(252,252,252,0.5)'} 
-                      onPress={() => this.props.navigation.navigate('Scan',{getEgg:this.getEgg})}>
+                      onPress={() => this.props.navigation.navigate({routeName:'Scan',key:'Scan',params:{getEgg:this.getEgg}})}>
                       <View style={{width:'100%',height:height * 0.1125}}></View>
                     </TouchableHighlight>
                   </ImageBackground>
@@ -259,7 +259,7 @@ export default class EasterEggHunt extends React.Component {
                     source={require('../images/day3/2018/M4.png')}>
                     <TouchableHighlight
                       underlayColor={'rgba(252,252,252,0.5)'} 
-                      onPress={() => this.props.navigation.navigate('Scan',{getEgg:this.getEgg})}>
+                      onPress={() => this.props.navigation.navigate({routeName:'Scan',key:'Scan',params:{getEgg:this.getEgg}})}>
                       <View style={{width:'100%',height:height * 0.1125}}></View>
                     </TouchableHighlight>
                   </ImageBackground>
@@ -268,7 +268,7 @@ export default class EasterEggHunt extends React.Component {
                     source={require('../images/day3/2018/M5.png')}>
                     <TouchableHighlight
                       underlayColor={'rgba(252,252,252,0.5)'} 
-                      onPress={() => this.props.navigation.navigate('Scan',{getEgg:this.getEgg})}>
+                      onPress={() => this.props.navigation.navigate({routeName:'Scan',key:'Scan',params:{getEgg:this.getEgg}})}>
                       <View style={{width:'100%',height:height * 0.1125}}></View>
                     </TouchableHighlight>
                   </ImageBackground>
@@ -357,7 +357,7 @@ export default class EasterEggHunt extends React.Component {
                     source={require('../images/day3/2018/M14.png')}>
                     <TouchableHighlight
                       underlayColor={'rgba(252,252,252,0.5)'} 
-                      onPress={() => this.props.navigation.navigate('Scan',{getEgg:this.getEgg})}>
+                      onPress={() => this.props.navigation.navigate({routeName:'Scan',key:'Scan',params:{getEgg:this.getEgg}})}>
                       <View style={{width:'100%',height:height * 0.1125}}></View>
                     </TouchableHighlight>
                   </ImageBackground>
@@ -366,7 +366,7 @@ export default class EasterEggHunt extends React.Component {
                     source={require('../images/day3/2018/M15.png')}>
                     <TouchableHighlight
                       underlayColor={'rgba(252,252,252,0.5)'} 
-                      onPress={() => this.props.navigation.navigate('Scan',{getEgg:this.getEgg})}>
+                      onPress={() => this.props.navigation.navigate({routeName:'Scan',key:'Scan',params:{getEgg:this.getEgg}})}>
                       <View style={{width:'100%',height:height * 0.1125}}></View>
                     </TouchableHighlight>
                   </ImageBackground>
@@ -379,7 +379,7 @@ export default class EasterEggHunt extends React.Component {
                     source={require('../images/day3/2018/M16.png')}>
                     <TouchableHighlight
                       underlayColor={'rgba(252,252,252,0.5)'} 
-                      onPress={() => this.props.navigation.navigate('Scan',{getEgg:this.getEgg})}>
+                      onPress={() => this.props.navigation.navigate({routeName:'Scan',key:'Scan',params:{getEgg:this.getEgg}})}>
                       <View style={{width:'100%',height:height * 0.1125}}></View>
                     </TouchableHighlight>
                   </ImageBackground>
@@ -406,7 +406,7 @@ export default class EasterEggHunt extends React.Component {
                     source={require('../images/day3/2018/M19.png')}>
                     <TouchableHighlight
                       underlayColor={'rgba(252,252,252,0.5)'} 
-                      onPress={() => this.props.navigation.navigate('Scan',{getEgg:this.getEgg})}>
+                      onPress={() => this.props.navigation.navigate({routeName:'Scan',key:'Scan',params:{getEgg:this.getEgg}})}>
                       <View style={{width:'100%',height:height * 0.1125}}></View>
                     </TouchableHighlight>
                   </ImageBackground>
@@ -428,7 +428,7 @@ export default class EasterEggHunt extends React.Component {
                     source={require('../images/day3/2018/M21.png')}>
                     <TouchableHighlight
                       underlayColor={'rgba(252,252,252,0.5)'} 
-                      onPress={() => this.props.navigation.navigate('Scan',{getEgg:this.getEgg})}>
+                      onPress={() => this.props.navigation.navigate({routeName:'Scan',key:'Scan',params:{getEgg:this.getEgg}})}>
                       <View style={{width:'100%',height:height * 0.1125}}></View>
                     </TouchableHighlight>
                   </ImageBackground>
@@ -446,7 +446,7 @@ export default class EasterEggHunt extends React.Component {
                     source={require('../images/day3/2018/M23.png')}>
                     <TouchableHighlight
                       underlayColor={'rgba(252,252,252,0.5)'} 
-                      onPress={() => this.props.navigation.navigate('Scan',{getEgg:this.getEgg})}>
+                      onPress={() => this.props.navigation.navigate({routeName:'Scan',key:'Scan',params:{getEgg:this.getEgg}})}>
                       <View style={{width:'100%',height:height * 0.1125}}></View>
                     </TouchableHighlight>
                   </ImageBackground>
@@ -464,7 +464,7 @@ export default class EasterEggHunt extends React.Component {
                     source={require('../images/day3/2018/M25.png')}>
                     <TouchableHighlight
                       underlayColor={'rgba(252,252,252,0.5)'} 
-                      onPress={() => this.props.navigation.navigate('RobotChat')}>
+                      onPress={() => this.props.navigation.navigate({routeName:'RobotChat', key:'RobotChat'})}>
                       <View style={{width:'100%',height:height * 0.1125}}></View>
                     </TouchableHighlight>
                   </ImageBackground>

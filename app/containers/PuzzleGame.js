@@ -117,7 +117,7 @@ export default class PuzzleGame extends React.Component {
             this.setState({
               visible: false,
             });
-            this.props.navigation.navigate('Home');
+            this.props.navigation.navigate({routeName:'Home',key:'Home'});
           }},
         ],
           { cancelable: false }

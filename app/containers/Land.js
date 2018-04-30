@@ -137,7 +137,7 @@ export default class Land extends React.Component {
                   {text: '前往首頁購買', onPress: () => {
                     this.refs.buy_modal.close();
                     setTimeout(() => {
-                      this.props.navigation.navigate('Home');
+                      this.props.navigation.navigate({routeName:'Home', key:'Login'});
                     }, 100);
                   }},
                   {text: '取消', onPress: () => {}, style: 'cancel'},

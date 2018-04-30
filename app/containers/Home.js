@@ -83,7 +83,7 @@ export default class Home extends React.Component {
           this.setState({
             visible: false,
           });
-          this.props.navigation.navigate('Login');
+          this.props.navigation.navigate({routeName:'Login', key:'Login'});
         }
       } else {
         const user = await getMyUser();
@@ -105,7 +105,7 @@ export default class Home extends React.Component {
           this.setState({
             visible: false,
           });
-          this.props.navigation.navigate('Login');
+          this.props.navigation.navigate({routeName:'Login', key:'Login'});
         }
       }
     } catch (error) {

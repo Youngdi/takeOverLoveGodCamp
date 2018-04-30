@@ -24,7 +24,7 @@ async function login(value) {
     const resetAction = NavigationActions.reset({
       index: 0,
       actions: [
-        NavigationActions.navigate({routeName:'HomeTab'}),
+        NavigationActions.navigate({routeName:'HomeTab', key:'HomeTab'}),
       ],
     });
     const response = await api_login(value);
@@ -64,7 +64,7 @@ async function loginForFun() {
     const resetAction = NavigationActions.reset({
       index: 0,
       actions: [
-        NavigationActions.navigate({routeName:'HomeTab'}),
+        NavigationActions.navigate({routeName:'HomeTab',key:'HomeTab'}),
       ],
     });
     const value = {username:'BYT30', password:'A23456'};

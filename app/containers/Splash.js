@@ -15,7 +15,7 @@ async function check_login() {
   const resetAction = NavigationActions.reset({
     index: 0,
     actions: [
-      NavigationActions.navigate({routeName: isLogined == "Y" ? 'HomeTab' : 'Login'}),
+      NavigationActions.navigate({routeName: isLogined == "Y" ? 'HomeTab' : 'Login', key: isLogined == "Y" ? 'HomeTab' : 'Login'}),
     ],
   });
   this.props.navigation.dispatch(resetAction);

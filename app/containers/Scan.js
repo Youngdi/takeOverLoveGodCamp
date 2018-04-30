@@ -29,20 +29,12 @@ export default class Scan extends Component {
     }
   }
   onSuccess = (value) => {
-    // const resetAction = NavigationActions.reset({
-    //   index: 0,
-    //   actions: [
-    //     NavigationActions.navigate({routeName: "HomeTab", params: {data: value }}),
-    //   ],
-    // });
-    // this.props.navigation.dispatch(resetAction);
     if(this.state.checkScanOnce) {
       return 
     } else {
       this.setState({
         checkScanOnce: true,
       });
-      this.props.navigation.goBack();
       setTimeout(() => {
         this.props.navigation.state.params.getEgg(value);
       }, 100);
