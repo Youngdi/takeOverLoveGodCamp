@@ -51,7 +51,7 @@ export default class Home extends React.Component {
       seed: 0,
       shopIcon: 'water',
       shopText: '水寶石',
-      username: 'BYT01',
+      username: '',
       shopMoney: 0,
       isOpen: false,
       visible: true,
@@ -232,12 +232,11 @@ export default class Home extends React.Component {
           >
               <View style={{width:'100%', height:height*0.5, marginBottom:15}}>
                 <TouchableOpacity onPress={() => this.refs.history_modal.open()}>
-                <HomeImage
-                  url={this.state.username}
-                  navigation={this.props.navigation}
-                  openControlPanel={this.openControlPanel}
-                >
-                </HomeImage>
+                  <HomeImage
+                    url={this.state.username}
+                    navigation={this.props.navigation}
+                    openControlPanel={this.openControlPanel}
+                  />
                 </TouchableOpacity>
               </View>
               <View style={{width:'100%'}}>

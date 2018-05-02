@@ -3,18 +3,16 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, Platform, ScrollView, AsyncStorage, Dimensions, TouchableOpacity, TouchableHighlight } from 'react-native';
 import { StackNavigator, DrawerNavigator, DrawerItems, NavigationActions } from 'react-navigation';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import * as Config from '../constants/config';
 import drawerFlag from '../constants/drawer';
+import DraweItems from './DrawerItems';
+
 const { width, height } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
   DrawerContainer: {
     flex:1,
     backgroundColor: 'white'
-  },
-  drawerHeader: {
-    flex:1
   },
   drawerIconContainer:{
     height: (height < 540) ? 125 : 200,
@@ -33,7 +31,7 @@ export default class SideDrawer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: require('../images/drawerBarIcon/DrawerBar_01-01.png'),
+      url: '',
       status: 0,
       drawerItems: [
         {route:'HomeTab', name:'首頁', iconName:'md-home'},
@@ -87,23 +85,11 @@ export default class SideDrawer extends React.Component {
               resizeMode={'contain'}
             />
           </View>
-          <View style={{flex:1}}>
-            <View style={{width:'100%',height:1,marginTop:25}}></View>
-            {this.state.drawerItems.map((item, i) => (
-              <TouchableOpacity
-              onPress={() => this.navigateTo(item.route, i)}
-              >
-                <View style={{width:'100%', backgroundColor: this.state.status == i ? '#EBEBEB' : 'transparent', height:60, marginBottom:0, display:'flex', flexDirection:'row', justifyContent:'flex-start', alignItems:'center'}}>
-                  <Ionicons
-                    name={`${item.iconName}`}
-                    size={Platform.OS == 'ios' ? 28 : 20}
-                    style={{ color: this.state.status == i ? '#2196F3' : '#777', width:30, height:30, marginLeft:20, marginRight:30 }}
-                  />
-                  <Text style={{fontSize:16, color: this.state.status == i ? '#2196F3' : '#777'}}>{item.name}</Text>
-                </View>
-              </TouchableOpacity>
-            ))}
-          </View>
+          <DraweItems
+            drawerItems={this.state.drawerItems}
+            navigateTo={this.navigateTo}
+            status={this.state.status}
+          />
         </View>
       </ScrollView>
     )

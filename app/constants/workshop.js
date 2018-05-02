@@ -4,14 +4,14 @@ const workshop = [
     name: "季榮和牧師",
     introduction:
       "在高雄旌旗牧會的榮和牧師，每每在主日分享信息時，都用極生動的比喻以及切身的見證來鼓勵我們；在這次的愛神營－堅定不移當中，榮和牧師將親自來到我們當中，挑旺我們如何在感情、婚姻、家庭上持續為主堅立！",
-    image: require("../images/workshop/季榮和.jpg")
+    image: require("../images/workshop/Ronghe.jpg")
   },
   {
     category: "講員介紹-Day1晚上 & Day2上午",
     name: "寇紹恩牧師",
     introduction:
       "如果是GOOD TV的忠實觀眾，應該會常在恩典365聽到寇牧師的分享；經歷癌症所苦，但為主持續作工不歇的寇牧師，這次要來到社青愛神營中，教導帶領我們一起追求神，學習在主裡堅定不移。",
-    image: require("../images/workshop/寇紹恩.jpg")
+    image: require("../images/workshop/Shaoen.jpg")
   },
 　{
     category: "講員介紹-Day2下午",
@@ -25,7 +25,7 @@ const workshop = [
     name: "蕭祥修主任牧師",
     introduction:
       "屬靈縱火者－蕭祥修主任牧師，是我們旌旗教會的大家長。18年來的牧會歷程，為主永不息滅的火，在修哥的分享中，或許我們能以一窺，那在主裡永不毀壞的信心，是怎樣一個令人渴求的美好。",
-    image: require("../images/workshop/修哥.jpg")
+    image: require("../images/workshop/Samuel.jpg")
   },
 ];
 export default workshop;

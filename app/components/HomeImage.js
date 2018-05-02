@@ -14,7 +14,7 @@ export default class Modaliconimage extends Component {
               source={imageFlags[this.props.url]}
               style={styles.backgroundImage}
             >
-            <Text onPress={() => this.props.openControlPanel()} style={{width:100, height:50}}>{' '}</Text>
+              <Text onPress={() => this.props.openControlPanel()} style={{width:100, height:50}}>{' '}</Text>
             </ImageBackground>
         )
     }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, ScrollView, Text, View, TouchableOpacity, Animated, StyleSheet, Share, Platform, Image } from 'react-native';
+import { Button, Text, View, TouchableOpacity, Animated, StyleSheet, Share, Platform, Image } from 'react-native';
 import { SafeAreaView, StackNavigator, TabNavigator, NavigationActions } from 'react-navigation';
 import getSlideFromRightTransition from 'react-navigation-slide-from-right-transition';
 import FCM, {FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType} from 'react-native-fcm';
