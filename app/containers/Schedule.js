@@ -12,7 +12,7 @@ export default class Schedule extends React.Component {
   render() {
     return(
       <PhotoView
-        source={require('../images/schdule1.jpg')}
+        source={require('../images/schdule2018.jpg')}
         minimumZoomScale={0.5}
         maximumZoomScale={3}
         androidScaleType="center"

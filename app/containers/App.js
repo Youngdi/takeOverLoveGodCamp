@@ -12,6 +12,7 @@ import PuzzleGameScreen from './PuzzleGame';
 import SplashScreen from './Splash';
 import LoginScreen from './Login';
 import WorkshopScreen from './Workshop';
+import Workshop2018Screen from './Workshop2018';
 import HistoryScreen from './History';
 import HelpInfoScreen from './HelpInfo';
 import ScheduleScreen from './Schedule';
@@ -136,7 +137,7 @@ const App = StackNavigator(
     screen: RobotChatScreen,
   },
   Workshop: {
-    screen: WorkshopScreen,
+    screen: Workshop2018Screen,
   },
   Schedule: {
     screen: ScheduleScreen,

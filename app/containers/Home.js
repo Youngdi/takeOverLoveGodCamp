@@ -21,7 +21,6 @@ import Modal from 'react-native-modalbox';
 import Spinner from 'react-native-loading-spinner-overlay';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
 import Drawer from 'react-native-drawer';
 import * as Config from '../constants/config';
 import imageFlags from '../constants/config';
