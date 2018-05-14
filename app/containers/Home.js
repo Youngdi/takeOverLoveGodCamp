@@ -230,7 +230,7 @@ export default class Home extends React.Component {
               />
             }
           >
-              <View style={{width:'100%', height:height*0.5, marginBottom:15}}>
+              <View style={{width:'100%', height:height*0.5, marginBottom:10}}>
                 <TouchableOpacity onPress={() => this.refs.history_modal.open()}>
                   <HomeImage
                     url={this.state.username}
@@ -240,8 +240,8 @@ export default class Home extends React.Component {
                 </TouchableOpacity>
               </View>
               <View style={{width:'100%'}}>
-                <View style={{flex:1, width:'100%', height: '100%', flexDirection:'row', flexWrap: 'nowrap'}}>
-                  <View style={styles.sourceSize}>
+                <View style={{flex:1, width:'100%', height: '100%', flexDirection:'row', justifyContent:'center'}}>
+                  <View>
                     <ImageBackground
                       style={styles.source}
                       source={require('../images/home/fire.png')}>
@@ -252,7 +252,7 @@ export default class Home extends React.Component {
                       </TouchableOpacity>
                     </ImageBackground>
                   </View>
-                  <View style={styles.sourceSize}>
+                  <View >
                     <ImageBackground
                       style={styles.source}
                       source={require('../images/home/k.png')}>
@@ -263,7 +263,7 @@ export default class Home extends React.Component {
                       </TouchableOpacity>
                     </ImageBackground>
                   </View>
-                  <View style={styles.sourceSize}>
+                  <View >
                     <ImageBackground
                       style={styles.source}
                       source={require('../images/home/water.png')}>
@@ -275,8 +275,8 @@ export default class Home extends React.Component {
                     </ImageBackground>
                   </View>
                 </View>
-                <View style={{flex:1, width:'100%', height: '100%', flexDirection:'row', flexWrap: 'nowrap'}}>
-                  <View style={styles.sourceSize}>
+                <View style={{flex:1, width:'100%', height: '100%', flexDirection:'row', justifyContent:'center'}}>
+                  <View >
                     <ImageBackground
                       style={styles.source}
                       source={require('../images/home/stone.png')}>
@@ -287,7 +287,7 @@ export default class Home extends React.Component {
                       </TouchableOpacity>
                     </ImageBackground>
                   </View>
-                  <View style={styles.sourceSize}>
+                  <View >
                     <ImageBackground
                       style={styles.source}
                       source={require('../images/home/seed.png')}>
@@ -298,7 +298,7 @@ export default class Home extends React.Component {
                       </TouchableOpacity>
                     </ImageBackground>
                   </View>
-                  <View style={styles.sourceSize}>
+                  <View >
                     <ImageBackground
                       style={styles.source}
                       source={require('../images/home/wood.png')}>
@@ -445,8 +445,8 @@ const styles = StyleSheet.create({
   },
   source: {
     flex: 1,
-    width: null,
-    height: null,
+    width: width * 0.31,
+    height: width * 0.31,
     alignItems:'center',
     justifyContent:'center',
   },
