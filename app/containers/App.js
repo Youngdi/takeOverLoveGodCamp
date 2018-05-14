@@ -6,6 +6,7 @@ import FCM, {FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import EasterEggHunterScreen from './EasterEggHunt';
 import EasterEggHunterScreen2018 from './EasterEggHunt2018';
+import EasterEggHunterScreen2018_2 from './EasterEggHunt2018-2';
 import HomeScreen from './Home';
 import LandScreen from './Land';
 import PuzzleGameScreen from './PuzzleGame';
@@ -59,7 +60,7 @@ const HomeTabNav = TabNavigator(
     // },
     EasterEggHunter: {
       path: '/easterEggHunter',
-      screen: EasterEggHunterScreen2018,
+      screen: EasterEggHunterScreen2018_2,
       navigationOptions: {
         title: '尋寶獵人',
         tabBarLabel: '尋寶',

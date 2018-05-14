@@ -467,7 +467,7 @@ const styles = StyleSheet.create({
   },
   sourceSize: {
     width:'100%',
-    height: width*0.3,
+    height: width * 0.3,
     flexShrink:1
   },
   modal: {
