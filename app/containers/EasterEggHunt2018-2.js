@@ -444,12 +444,12 @@ export default class EasterEggHunt extends React.Component {
                           </ImageBackground>
                       </View>
                     </View>
-                    <View style={{width:'100%',height:height*0.1, marginTop:20}}>
-                      <ImageBackground
-                        style={{width:'100%',height:height*0.1}}
-                        source={require('../images/day3/bottom.png')}
-                      ></ImageBackground>
-                    </View>
+                  </View>
+                  <View style={{width:'85%',height:height*0.1, marginTop:-20}}>
+                    <Image
+                      style={{width:'100%',height:28}}
+                      source={require('../images/day3/bottom.png')}
+                    />
                   </View>
                 </View>
               </Day3bg>
