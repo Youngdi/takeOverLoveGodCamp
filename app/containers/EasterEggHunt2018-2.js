@@ -421,7 +421,7 @@ export default class EasterEggHunt extends React.Component {
                             source={require('../images/day3/2018/M23.png')}>
                             <TouchableHighlight
                               underlayColor={'rgba(252,252,252,0.5)'} 
-                              onPress={() => this.props.navigation.navigate({routeName:'Scan',key:'Scan',params:{getEgg:this.getEgg}})}>
+                              onPress={() => this.refs.score_modal.open()}>
                               <View style={{width:'100%',height:height * 0.09, margin:0.5}}></View>
                             </TouchableHighlight>
                           </ImageBackground>

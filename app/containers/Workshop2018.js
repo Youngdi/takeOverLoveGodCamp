@@ -9,7 +9,7 @@ const { width, height } = Dimensions.get("window");
 export default class Workshop2018 extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
-      title:'工作坊',
+      title:'講員介紹',
     }
   };
   render() {
