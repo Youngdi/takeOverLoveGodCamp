@@ -29,9 +29,6 @@ export default class HelpInfo extends React.Component {
                   <ImageBackground 
                     style={styles.backdrop} 
                     source={value.image}>
-                      <View style={styles.backdropView}>
-                        <Text style={styles.headline}>{value.name}</Text>
-                      </View>
                   </ImageBackground>
                 </View>
                 <View style={{marginTop:20, width:300}}>
@@ -55,7 +52,7 @@ var styles = StyleSheet.create({
   },
   text: {
     color: 'black',
-    fontSize: 16,
+    fontSize: 22,
     fontWeight: 'bold',
     marginBottom:10,
     marginTop: Platform.OS == 'ios' ? 0 : 10,
