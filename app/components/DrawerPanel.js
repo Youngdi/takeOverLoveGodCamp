@@ -38,6 +38,7 @@ export default class SideDrawer extends React.Component {
         {route:'Workshop', name:'講員介紹', iconName:'md-construct'},
         {route:'Schedule', name:'行程表', iconName:'md-clipboard'},
         {route:'History', name:'國家歷史', iconName:'md-flag'},
+        {route:'HelpInfo', name:'遊戲規則', iconName: 'md-help'},
         {route:'Questionnaire', name:'回饋單填寫', iconName:'md-document'},
         {route:'Church', name:'旌旗教會資訊', iconName:'md-people'},
         {route:'Logout', name:'登出', iconName:'md-power'}

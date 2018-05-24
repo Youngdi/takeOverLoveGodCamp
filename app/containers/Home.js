@@ -493,7 +493,7 @@ const styles = StyleSheet.create({
   backdropSourceViewHeadline:{
     marginTop:-50,
     marginBottom:20,
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: '800',
     textAlign: 'center',
     color: 'rgb(60,60,60)'

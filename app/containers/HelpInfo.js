@@ -9,7 +9,7 @@ const { width, height } = Dimensions.get("window");
 export default class HelpInfo extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
-      title:'疑難雜症要找誰',
+      title:'遊戲規則',
     }
   };
   render() {
