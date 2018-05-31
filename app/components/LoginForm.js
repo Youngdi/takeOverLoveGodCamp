@@ -45,11 +45,11 @@ export default class LoginForm extends React.Component {
                 <Text style={styles.buttonText}>Log in</Text>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity activeOpacity={.5} onPress={this.props.tryforfun}>
+            {/* <TouchableOpacity activeOpacity={.5} onPress={this.props.tryforfun}>
               <View>
                 <Text style={styles.loginforfun}>體驗帳號登入</Text>
               </View>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
           <View style={styles.container}>
             <View style={styles.signupWrap}>
