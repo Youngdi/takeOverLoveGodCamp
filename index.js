@@ -29,7 +29,7 @@ class AppProvider extends Component {
           alert(notif.aps.alert);
         }
       } else {
-        alert(notif.fcm.body);
+        notif.fcm.body && alert(notif.fcm.body);
       }
       if(notif.local_notification){
         return;
