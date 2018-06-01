@@ -15,8 +15,8 @@ import {
   AsyncStorage,
   Dimensions,
   Alert,
-  KeyboardAvoidingView,
   ImageBackground,
+  KeyboardAvoidingView
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -73,6 +73,34 @@ export default class EasterEggHunt extends React.Component {
       valueSeed:0,
       valueWood:0,
     };
+  }
+  init = async () => {
+    const country = await getMyCountry();
+    this.setState({
+      username: country.username,
+      K: country.K,
+      water: country.water,
+      fire: country.fire,
+      wood: country.wood,
+      stone: country.stone,
+      seed: country.seed,
+      B1: country.B1,
+      B2: country.B2,
+      B3: country.B3,
+      B4: country.B4,
+      B5: country.B5,
+      B6: country.B6,
+      isRefreshing: false,
+      visible: false,
+      score_modal_isOpen:false,
+      valuePWD:'',
+      valueK:0,
+      valueFire:0,
+      valueWater:0,
+      valueStone:0,
+      valueSeed:0,
+      valueWood:0,
+    });
   }
   getEgg = (value) => {
       const RemoveHTML = (strText) => strText.replace('://', "").replace('.', "").replace('.', "").replace('/', "");
@@ -138,10 +166,7 @@ export default class EasterEggHunt extends React.Component {
       [
         {text: '確定', onPress: () => this.init()},
         {text: '前往首頁查看資源', onPress: () => {
-          this.setState({
-            visible: false,
-            score_modal_isOpen:false,
-          });
+          this.init()
           this.props.navigation.navigate({routeName: 'Home', key: 'Home'});
         }},
       ],
