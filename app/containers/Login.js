@@ -12,7 +12,8 @@ import {
   TextInput,
   Button,
   AsyncStorage,
-  Alert
+  Alert,
+  KeyboardAvoidingView
 } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import * as Config from '../constants/config';
@@ -101,7 +102,6 @@ async function loginForFun() {
   }
 }
 
-
 export default class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -139,7 +139,7 @@ export default class Login extends React.Component {
   }
   render() {
     return (
-      <ScrollView style={[styles.container]}>
+      <KeyboardAvoidingView style={[styles.container]}>
         <LoginForm
           onChangeUsername={this.onChangeUsername}
           onChangePassword={this.onChangePassword}
@@ -148,10 +148,11 @@ export default class Login extends React.Component {
           wrong={this.state.wrong}
         />
         <Spinner visible={this.state.visible} textContent={"Loading..."} textStyle={{color: '#FFF'}} />
-      </ScrollView>
+      </KeyboardAvoidingView>
     )
   }
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

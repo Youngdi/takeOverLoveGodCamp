@@ -11,7 +11,8 @@ import {
   Button,
   TouchableOpacity,
   Alert,
-  ImageBackground
+  ImageBackground,
+  Keyboard
 } from 'react-native';
 
 const { width, height } = Dimensions.get("window");
@@ -21,6 +22,7 @@ const lockIcon = require("../images/login1_lock.png");
 const personIcon = require("../images/login1_person.png");
 
 export default class LoginForm extends React.Component {
+  focusPassword = () => this.Password.focus();
   render() {
   return (
       <View style={styles.container}>
@@ -29,10 +31,15 @@ export default class LoginForm extends React.Component {
           </View>
           <View style={styles.wrapper}>
             <View style={styles.inputWrap}>
-              <TextInput placeholder="Username" placeholderTextColor="#FFF" style={styles.input} onChangeText={this.props.onChangeUsername}/>
+              <TextInput blurOnSubmit={false} onSubmitEditing={this.focusPassword} placeholder="Username" placeholderTextColor="#FFF" style={styles.input} onChangeText={this.props.onChangeUsername}/>
             </View>
             <View style={styles.inputWrap}>
-              <TextInput  placeholder="Password" placeholderTextColor="#FFF" style={styles.input} secureTextEntry onChangeText={this.props.onChangePassword} />
+              <TextInput
+                onSubmitEditing={() => {
+                  Keyboard.dismiss();
+                  this.props.submit();
+                }}
+                ref={r => this.Password = r} placeholder="Password" placeholderTextColor="#FFF" style={styles.input} secureTextEntry onChangeText={this.props.onChangePassword} />
             </View>
             <TouchableOpacity activeOpacity={.5} onPress={() => Alert.alert('去問你的隊輔XD')}>
               <View>
@@ -40,7 +47,12 @@ export default class LoginForm extends React.Component {
               </View>
             </TouchableOpacity>
             {(this.props.wrong) && (<TouchableOpacity activeOpacity={.5}><View><Text style={styles.wrongPasswordText}>帳號或密碼錯誤</Text></View></TouchableOpacity>)}
-            <TouchableOpacity activeOpacity={.5} onPress={this.props.submit}>
+            <TouchableOpacity activeOpacity={.5}
+              onPress={() => {
+                Keyboard.dismiss();
+                this.props.submit();
+              }}
+            >
               <View style={styles.button}>
                 <Text style={styles.buttonText}>Log in</Text>
               </View>
@@ -153,3 +165,4 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   }
 });
+

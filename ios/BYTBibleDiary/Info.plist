@@ -17,11 +17,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>7.7</string>
+	<string>7.8</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>13</string>
+	<string>14</string>
 	<key>CodePushDeploymentKey</key>
 	<string>0VWkVSdLJGdM3M506GrSeJBMNbMlc5a64ba8-c46e-44a1-a546-41de22ffbd48</string>
 	<key>Fabric</key>

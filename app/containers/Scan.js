@@ -1,19 +1,14 @@
-'use strict';
-
 import React, { Component } from 'react';
-
 import {
   AppRegistry,
   StyleSheet,
   Text,
-  NavigatorIOS,
   TouchableOpacity,
-  Linking,
-  Alert
+  Dimensions,
+  View
 } from 'react-native';
-import { CameraKitCameraScreen, CameraKitCamera } from 'react-native-camera-kit';
-import { NavigationActions } from 'react-navigation';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+
+import QRCodeScanner from 'react-native-qrcode-scanner';
 
 export default class Scan extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -29,30 +24,86 @@ export default class Scan extends Component {
     }
   }
   onSuccess = (value) => {
-    if(this.state.checkScanOnce) {
+    if (this.state.checkScanOnce) {
       return 
     } else {
       this.setState({
         checkScanOnce: true,
       });
+      this.props.navigation.goBack();
       setTimeout(() => {
-        this.props.navigation.state.params.getEgg(value);
+        this.props.navigation.state.params.getEgg(value.data);
       }, 100);
     }
   }
+  renderMaker = () => {
+    return (
+      <View style={styles.rectangleContainer}>
+        <View style={styles.rectangle} />
+      </View>
+    );
+  }
   render() {
     return (
-      <CameraKitCameraScreen
-        scanBarcode={true}
-        // laserColor={"blue"}
-        // frameColor={"yellow"}
-        onReadCode={((event) => this.onSuccess(event.nativeEvent.codeStringValue))}
-        hideControls={true}           //(default false) optional, hide buttons and additional controls on top and bottom of screen
-        showFrame={true}   //(default false) optional, show frame with transparent layer (qr code or barcode will be read on this area ONLY), start animation for scanner,that stoped when find any code. Frame always at center of the screen
-        offsetForScannerFrame = {10}   //(default 30) optional, offset from left and right side of the screen
-        heightForScannerFrame = {400}  //(default 200) optional, change height of the scanner frame
-        colorForScannerFrame = {'red'} //(default white) optional, change colot of the scanner frame
+      <QRCodeScanner
+        onRead={this.onSuccess.bind(this)}
+        cameraStyle={styles.cameraContainer}
+        topViewStyle={styles.zeroContainer}
+        bottomViewStyle={styles.zeroContainer}
+        customMarker={this.renderMaker}
+        showMarker={true}
+        // topContent={
+        //   <Text style={styles.centerText}>
+        //     Go to <Text style={styles.textBold}>wikipedia.org/wiki/QR_code</Text> on your computer and scan the QR code.
+        //   </Text>
+        // }
+        // bottomContent={
+        //   <TouchableOpacity style={styles.buttonTouchable}>
+        //     <Text style={styles.buttonText}>OK. Got it!</Text>
+        //   </TouchableOpacity>
+        // }
       />
-    )
+    );
   }
 }
+
+const styles = StyleSheet.create({
+  centerText: {
+    flex: 1,
+    fontSize: 18,
+    padding: 32,
+    color: '#777',
+  },
+  textBold: {
+    fontWeight: '500',
+    color: '#000',
+  },
+  buttonText: {
+    fontSize: 21,
+    color: 'rgb(0,122,255)',
+  },
+  buttonTouchable: {
+    padding: 16,
+  },
+  zeroContainer: {
+    height: 0,
+    flex: 0,
+  },
+  cameraContainer: {
+    height: Dimensions.get('window').height,
+  },
+  rectangleContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'transparent',
+  },
+  rectangle: {
+    marginTop: -120,
+    height: 250,
+    width: 250,
+    borderWidth: 2,
+    borderColor: '#00FF00',
+    backgroundColor: 'transparent',
+  },
+});

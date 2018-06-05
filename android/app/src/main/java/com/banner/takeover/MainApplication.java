@@ -5,6 +5,7 @@ import com.facebook.react.ReactApplication;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.react.rnspinkit.RNSpinkitPackage;
 import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
+import org.reactnative.camera.RNCameraPackage;
 import com.rnfs.RNFSPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import com.evollu.react.fcm.FIRMessagingPackage;
@@ -15,7 +16,6 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
-import com.wix.RNCameraKit.RNCameraKitPackage;
 import com.crashlytics.android.Crashlytics;
 import io.fabric.sdk.android.Fabric;
 import com.reactnative.photoview.PhotoViewPackage;
@@ -39,6 +39,7 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
             new VectorIconsPackage(),
+            new RNCameraPackage(),
             new RNSpinkitPackage(),
             new RNI18nPackage(),
             new RNFSPackage(),
@@ -46,7 +47,6 @@ public class MainApplication extends Application implements ReactApplication {
             new FIRMessagingPackage(),
             new BlurViewPackage(),
             new LottiePackage(),
-            new RNCameraKitPackage(),
             new PhotoViewPackage(),
             new CodePush("G1zFykkanSA5DGFHGiZQUrr5rBptc5a64ba8-c46e-44a1-a546-41de22ffbd48", MainApplication.this, BuildConfig.DEBUG)
       );
