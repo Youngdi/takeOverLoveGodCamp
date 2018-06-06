@@ -18,6 +18,7 @@ import {
   ImageBackground,
   KeyboardAvoidingView
 } from 'react-native';
+import Permissions from 'react-native-permissions';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Spinner from 'react-native-loading-spinner-overlay';
@@ -197,6 +198,19 @@ export default class EasterEggHunt extends React.Component {
       { cancelable: false }
     )
   }
+  handleCameraPermission = () => {
+    Permissions.request('camera').then(response => {
+      // authorized, denied, restricted, undetermined
+      if (response == 'authorized') {
+        this.props.navigation.navigate({routeName:'Scan',key:'Scan',params:{getEgg:this.getEgg}})
+      } else {
+        Alert.alert('請授權使用相機才能掃描QRcode', '前往設定頁授權', [
+          {text:'好', onPress:() => Permissions.openSettings()},
+          {text:'取消', onPress: () => {}}
+        ]);
+      }
+    });
+  }
   render() {
     return (
       <View
@@ -249,7 +263,9 @@ export default class EasterEggHunt extends React.Component {
                             source={require('../images/day3/2018/M3.png')}>
                             <TouchableHighlight
                               underlayColor={'rgba(252,252,252,0.5)'} 
-                              onPress={() => this.props.navigation.navigate({routeName:'Scan',key:'Scan',params:{getEgg:this.getEgg}})}>
+                              onPress={() => {
+                                this.handleCameraPermission();
+                              }}>
                               <View style={{width:'100%',height:height * 0.09, margin:0.5}}></View>
                             </TouchableHighlight>
                           </ImageBackground>
@@ -281,7 +297,9 @@ export default class EasterEggHunt extends React.Component {
                             source={require('../images/day3/2018/M6.png')}>
                             <TouchableHighlight
                               underlayColor={'rgba(252,252,252,0.5)'} 
-                              onPress={() => this.props.navigation.navigate({routeName:'Scan',key:'Scan',params:{getEgg:this.getEgg}})}>
+                              onPress={() => {
+                                this.handleCameraPermission();
+                              }}>
                               <View style={{width:'100%',height:height * 0.09, margin:0.5}}></View>
                             </TouchableHighlight>
                           </ImageBackground>
@@ -290,7 +308,9 @@ export default class EasterEggHunt extends React.Component {
                             source={require('../images/day3/2018/M7.png')}>
                             <TouchableHighlight
                               underlayColor={'rgba(252,252,252,0.5)'} 
-                              onPress={() => this.props.navigation.navigate({routeName:'Scan',key:'Scan',params:{getEgg:this.getEgg}})}>
+                              onPress={() => {
+                                this.handleCameraPermission();
+                              }}>
                               <View style={{width:'100%',height:height * 0.09, margin:0.5}}></View>
                             </TouchableHighlight>
                           </ImageBackground>
@@ -308,7 +328,9 @@ export default class EasterEggHunt extends React.Component {
                             source={require('../images/day3/2018/M9.png')}>
                             <TouchableHighlight
                               underlayColor={'rgba(252,252,252,0.5)'} 
-                              onPress={() => this.props.navigation.navigate({routeName:'Scan',key:'Scan',params:{getEgg:this.getEgg}})}>
+                              onPress={() => {
+                                this.handleCameraPermission();
+                              }}>
                               <View style={{width:'100%',height:height * 0.09, margin:0.5}}></View>
                             </TouchableHighlight>
                           </ImageBackground>
@@ -317,7 +339,9 @@ export default class EasterEggHunt extends React.Component {
                             source={require('../images/day3/2018/M10.png')}>
                             <TouchableHighlight
                               underlayColor={'rgba(252,252,252,0.5)'} 
-                              onPress={() => this.props.navigation.navigate({routeName:'Scan',key:'Scan',params:{getEgg:this.getEgg}})}>
+                              onPress={() => {
+                                this.handleCameraPermission();
+                              }}>
                               <View style={{width:'100%',height:height * 0.09, margin:0.5}}></View>
                             </TouchableHighlight>
                           </ImageBackground>
@@ -339,7 +363,9 @@ export default class EasterEggHunt extends React.Component {
                             source={require('../images/day3/2018/M12.png')}>
                             <TouchableHighlight
                               underlayColor={'rgba(252,252,252,0.5)'} 
-                              onPress={() => this.props.navigation.navigate({routeName:'Scan',key:'Scan',params:{getEgg:this.getEgg}})}>
+                              onPress={() => {
+                                this.handleCameraPermission();
+                              }}>
                               <View style={{width:'100%',height:height * 0.09, margin:0.5}}></View>
                             </TouchableHighlight>
                           </ImageBackground>
@@ -348,7 +374,9 @@ export default class EasterEggHunt extends React.Component {
                             source={require('../images/day3/2018/M13.png')}>
                             <TouchableHighlight
                               underlayColor={'rgba(252,252,252,0.5)'} 
-                              onPress={() => this.props.navigation.navigate({routeName:'Scan',key:'Scan',params:{getEgg:this.getEgg}})}>
+                              onPress={() => {
+                                this.handleCameraPermission();
+                              }}>
                               <View style={{width:'100%',height:height * 0.09, margin:0.5}}></View>
                             </TouchableHighlight>
                           </ImageBackground>
@@ -366,7 +394,9 @@ export default class EasterEggHunt extends React.Component {
                             source={require('../images/day3/2018/M15.png')}>
                             <TouchableHighlight
                               underlayColor={'rgba(252,252,252,0.5)'} 
-                              onPress={() => this.props.navigation.navigate({routeName:'Scan',key:'Scan',params:{getEgg:this.getEgg}})}>
+                              onPress={() => {
+                                this.handleCameraPermission();
+                              }}>
                               <View style={{width:'100%',height:height * 0.09, margin:0.5}}></View>
                             </TouchableHighlight>
                           </ImageBackground>
@@ -379,7 +409,9 @@ export default class EasterEggHunt extends React.Component {
                             source={require('../images/day3/2018/M16.png')}>
                             <TouchableHighlight
                               underlayColor={'rgba(252,252,252,0.5)'} 
-                              onPress={() => this.props.navigation.navigate({routeName:'Scan',key:'Scan',params:{getEgg:this.getEgg}})}>
+                              onPress={() => {
+                                this.handleCameraPermission();
+                              }}>
                               <View style={{width:'100%',height:height * 0.09, margin:0.5}}></View>
                             </TouchableHighlight>
                           </ImageBackground>
@@ -397,7 +429,9 @@ export default class EasterEggHunt extends React.Component {
                             source={require('../images/day3/2018/M18.png')}>
                             <TouchableHighlight
                               underlayColor={'rgba(252,252,252,0.5)'} 
-                              onPress={() => this.props.navigation.navigate({routeName:'Scan',key:'Scan',params:{getEgg:this.getEgg}})}>
+                              onPress={() => {
+                                this.handleCameraPermission();
+                              }}>
                               <View style={{width:'100%',height:height * 0.09, margin:0.5}}></View>
                             </TouchableHighlight>
                           </ImageBackground>
@@ -406,7 +440,9 @@ export default class EasterEggHunt extends React.Component {
                             source={require('../images/day3/2018/M19.png')}>
                             <TouchableHighlight
                               underlayColor={'rgba(252,252,252,0.5)'} 
-                              onPress={() => this.props.navigation.navigate({routeName:'Scan',key:'Scan',params:{getEgg:this.getEgg}})}>
+                              onPress={() => {
+                                this.handleCameraPermission();
+                              }}>
                               <View style={{width:'100%',height:height * 0.09, margin:0.5}}></View>
                             </TouchableHighlight>
                           </ImageBackground>
@@ -415,7 +451,9 @@ export default class EasterEggHunt extends React.Component {
                             source={require('../images/day3/2018/M20.png')}>
                             <TouchableHighlight
                               underlayColor={'rgba(252,252,252,0.5)'} 
-                              onPress={() => this.props.navigation.navigate({routeName:'Scan',key:'Scan',params:{getEgg:this.getEgg}})}>
+                              onPress={() => {
+                                this.handleCameraPermission();
+                              }}>
                               <View style={{width:'100%',height:height * 0.09, margin:0.5}}></View>
                             </TouchableHighlight>
                           </ImageBackground>
@@ -437,7 +475,9 @@ export default class EasterEggHunt extends React.Component {
                             source={require('../images/day3/2018/M22.png')}>
                             <TouchableHighlight
                               underlayColor={'rgba(252,252,252,0.5)'} 
-                              onPress={() => this.props.navigation.navigate({routeName:'Scan',key:'Scan',params:{getEgg:this.getEgg}})}>
+                              onPress={() => {
+                                this.handleCameraPermission();
+                              }}>
                               <View style={{width:'100%',height:height * 0.09, margin:0.5}}></View>
                             </TouchableHighlight>
                           </ImageBackground>
@@ -455,7 +495,9 @@ export default class EasterEggHunt extends React.Component {
                             source={require('../images/day3/2018/M24.png')}>
                             <TouchableHighlight
                               underlayColor={'rgba(252,252,252,0.5)'} 
-                              onPress={() => this.props.navigation.navigate({routeName:'Scan',key:'Scan',params:{getEgg:this.getEgg}})}>
+                              onPress={() => {
+                                this.handleCameraPermission();
+                              }}>
                               <View style={{width:'100%',height:height * 0.09, margin:0.5}}></View>
                             </TouchableHighlight>
                           </ImageBackground>
@@ -464,7 +506,9 @@ export default class EasterEggHunt extends React.Component {
                             source={require('../images/day3/2018/M25.png')}>
                             <TouchableHighlight
                               underlayColor={'rgba(252,252,252,0.5)'} 
-                              onPress={() => this.props.navigation.navigate({routeName:'Scan',key:'Scan',params:{getEgg:this.getEgg}})}>
+                              onPress={() => {
+                                this.handleCameraPermission();
+                              }}>
                               <View style={{width:'100%',height:height * 0.09, margin:0.5}}></View>
                             </TouchableHighlight>
                           </ImageBackground>
