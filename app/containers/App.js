@@ -21,6 +21,7 @@ import QuestionnaireScreen from './Questionnaire';
 import ChurchScreen from './Church';
 import ScanScreen from './Scan';
 import RobotChatScreen from './RobotChat';
+import ChatScreen from './Chat';
 
 const styles = StyleSheet.create({
   icon: {
@@ -81,6 +82,20 @@ const HomeTabNav = TabNavigator(
         tabBarIcon: ({ tintColor, focused }) => (
           <Image
             source={require('../images/tabIcons/banner-01.png')}
+            style={[styles.icon, {tintColor: tintColor}]}
+          />
+        )
+      },
+    },
+    Chat: {
+      path: '/chat',
+      screen: ChatScreen,
+      navigationOptions: {
+        title: '戰術討論版',
+        tabBarLabel: '戰術',
+        tabBarIcon: ({ tintColor, focused }) => (
+          <Image
+            source={require('../images/tabIcons/grid-01.png')}
             style={[styles.icon, {tintColor: tintColor}]}
           />
         )

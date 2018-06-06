@@ -64,6 +64,7 @@ export default class Home extends React.Component {
       const table_flag = await getFlagFromSetting();
       if (table_flag.changeToDay3 == 'T') {
         const country = await getMyCountry();
+        global.socket.emit('joinRoom', country.country);
         if (country) {
           this.setState({
             username: country.username,

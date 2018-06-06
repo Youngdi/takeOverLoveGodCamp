@@ -23,6 +23,43 @@ export async function api_login(value) {
   });
   return response;
 }
+export async function getChat(limit) {
+  try {
+    const userCountry = await AsyncStorage.getItem('@UserCountry');
+    let response = await fetch(`https://${Config.SERVER_IP}:${Config.PORT}/chat/${userCountry}/${limit}`)
+    .then((response) => response.json())
+    .catch((error) => {
+      console.error(error);
+      return error;
+    });
+    return response;
+  } catch(error){
+    return false;
+  }
+}
+export async function toChat(chatMessage) {
+  try {
+    const jwtToken = await AsyncStorage.getItem('@jwtToken');
+    await fetch(
+      `https://${Config.SERVER_IP}:${Config.PORT}/chat`,
+      {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${jwtToken}`
+      },
+        body: JSON.stringify(chatMessage)
+     }
+    )
+    .catch((error) => {
+      console.error(error);
+      return error;
+    });
+  } catch(error){
+    return false;
+  }
+}
 export async function getMyUser() {
   try {
     const username = await AsyncStorage.getItem('@UserName');
@@ -53,10 +90,9 @@ export async function getMyUser() {
   } catch(error){
     return false;
   }
-
 }
 export async function getLand() {
-    let response = await fetch(`https://${Config.SERVER_IP}:${Config.PORT}/get_map`,)
+    let response = await fetch(`https://${Config.SERVER_IP}:${Config.PORT}/get_map`)
     .then((response) => response.json())
     .catch((error) => {
       console.error(error);

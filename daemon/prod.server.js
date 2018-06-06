@@ -2,6 +2,7 @@ var express = require('express')
 var config = require('./config/index')
 var cors = require('cors')
 const Setting = require('./models/setting')
+const Chat = require('./models/chat')
 var port = process.env.PORT || config.dev.port
 
 var app = express()
@@ -60,6 +61,33 @@ io.on('connection', (socket) => {
   socket.on('message', (obj) => {
     // 向所有客户端广播发布的消息
     io.emit('message', obj)
+  })
+  socket.on('joinRoom', (country) => {
+    socket.join(country)
+  })
+})
+/* socket api */
+app.post('/chat', (req, res) => {
+  const chat = new Chat({
+    country: req.body.country,
+    user: req.body.user,
+    createdAt: req.body.createdAt,
+    text: req.body.text
+  })
+  chat.save(err => {
+    if (err) return res.status(500).send(err)
+    io.to(req.body.country).emit('chat', req.body)
+    return res.status(200).send('chat successed')
+  })
+})
+app.get('/chat/:country/:limit', (req, res) => {
+  Chat.find({country: req.params.country}, null, {sort: {createdAt: -1}, limit: Number(req.params.limit)}, (e, chatRecord) => {
+    if (e) {
+      console.log(e)
+      res.status(500).send(e)
+    } else {
+      res.status(200).send(chatRecord)
+    }
   })
 })
 app.post('/update_board', (req, res) => {
